@@ -7,6 +7,8 @@
 <!-- Fonts: Poppins para títulos, Open Sans para textos -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<!-- Swiper CSS para carrosséis -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script type="importmap">
     {
         "imports": {
@@ -30,7 +32,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ── FIXED VIDEO BG (do nucleo-economia) ── */
+/* ── FIXED VIDEO BG ── */
 .site-bg {
     position: fixed;
     inset: 0;
@@ -50,7 +52,7 @@ body {
     mix-blend-mode: multiply;
 }
 
-/* Container com margens reduzidas (como nei7) */
+/* Container com margens reduzidas */
 .container {
     max-width: 1600px;
     margin: 0 auto;
@@ -67,25 +69,30 @@ body {
 :root {
     --cyan: #00B4D8;
     --cyan-light: #48CAE4;
+    --cyan-deep: #0096c7;
+    --blue-accent: #2a6f9c;
     --glass-bg: rgba(255,255,255,0.06);
     --glass-border: rgba(255,255,255,0.12);
     --text-light: rgba(255,255,255,0.85);
     --text-muted: rgba(255,255,255,0.5);
 }
 
-/* Header (estilo do nucleo-economia) */
+/* Header — fundo branco */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 200;
-    background: rgba(4,18,43,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--glass-border);
+    background: #ffffff;
+    backdrop-filter: none;
+    border-bottom: 1px solid #e2e8f0;
     transition: box-shadow .3s;
 }
-nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.35); }
+nav.scrolled { 
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background: #ffffff;
+}
 
 .nav-inner {
     max-width: 1600px;
@@ -108,26 +115,9 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.35); }
     gap: 12px;
 }
 .logo-senai, .logo-nei {
-    height: 40px;
+    height: 42px;
     width: auto;
     object-fit: contain;
-}
-.nav-brand {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    color: #fff;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    line-height: 1.2;
-}
-.nav-brand small {
-    display: block;
-    font-size: 10px;
-    font-weight: 400;
-    color: var(--text-muted);
-    text-transform: none;
-    letter-spacing: 0;
 }
 .nav-links {
     display: flex;
@@ -137,18 +127,18 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.35); }
 .nav-links a {
     font-size: 13px;
     font-weight: 600;
-    color: rgba(255,255,255,.75);
+    color: #1e293b;
     text-decoration: none;
     letter-spacing: .3px;
     transition: color .2s;
 }
-.nav-links a:hover { color: var(--cyan); }
+.nav-links a:hover { color: var(--cyan-deep); }
 .nav-search {
     display: flex;
     align-items: center;
     gap: .5rem;
-    background: rgba(255,255,255,.08);
-    border: 1px solid var(--glass-border);
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
     border-radius: 100px;
     padding: .35rem .9rem;
 }
@@ -156,20 +146,20 @@ nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.35); }
     background: none;
     border: none;
     outline: none;
-    color: #fff;
+    color: #0f172a;
     font-size: 13px;
     font-family: 'Open Sans', sans-serif;
     width: 160px;
 }
-.nav-search input::placeholder { color: var(--text-muted); }
-.nav-search i { color: var(--cyan); font-size: .9rem; cursor: pointer; }
+.nav-search input::placeholder { color: #94a3b8; }
+.nav-search i { color: var(--cyan-deep); font-size: .9rem; cursor: pointer; }
 
 @media (max-width: 900px) {
     .nav-links, .nav-search { display: none; }
-    .logo-senai, .logo-nei { height: 32px; }
+    .logo-senai, .logo-nei { height: 34px; }
 }
 
-/* Hero section (do nucleo-economia adaptado) */
+/* Hero section */
 .hero-full {
     position: relative;
     min-height: 100vh;
@@ -303,7 +293,14 @@ h2:after {
     border-radius: 4px;
 }
 
-/* Áreas de atuação (cards estilo nei7) */
+h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    margin: 2rem 0 1rem;
+    color: #fff;
+}
+
+/* Áreas de atuação */
 .grid-areas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -332,6 +329,7 @@ h2:after {
     margin-bottom: 0.5rem;
     color: #fff;
     font-size: 1.1rem;
+    margin-top: 0;
 }
 .area-card p {
     color: var(--text-muted);
@@ -339,7 +337,7 @@ h2:after {
     line-height: 1.5;
 }
 
-/* Stats (números) */
+/* Stats */
 .stats-flex {
     display: flex;
     flex-wrap: wrap;
@@ -367,31 +365,63 @@ h2:after {
     font-size: 0.8rem;
 }
 
-/* Equipe */
+/* EQUIPE */
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
     margin-top: 1.5rem;
 }
 .team-card {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 1.5rem;
+    border-radius: 28px;
+    padding: 1.8rem 1.5rem;
     font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    text-align: center;
+    cursor: pointer;
+}
+.team-card:first-child {
+    background: rgba(0, 180, 216, 0.18);
+    border: 1px solid var(--cyan);
+    box-shadow: 0 8px 20px rgba(0,180,216,0.2);
+}
+.team-card:hover {
+    background: rgba(0, 180, 216, 0.2);
+    border-color: var(--cyan);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(0,180,216,0.25);
+}
+.team-card:hover .team-photo {
+    transform: scale(1.02);
+    border-color: var(--cyan);
+}
+.team-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 3px solid rgba(255, 255, 255, 0.8);     
+    transition: all 0.2s ease;
+    background: #1e2a5e;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
 }
 .team-card h4 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: #fff;
+    margin-bottom: 0.25rem;
 }
 .team-role {
     color: var(--cyan-light);
     font-weight: 600;
-    font-size: 0.8rem;
-    margin: 0.3rem 0 0.5rem;
+    font-size: 0.75rem;
+    margin: 0.3rem 0 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -401,76 +431,200 @@ h2:after {
     line-height: 1.5;
 }
 
-/* Produtos grid */
-.produtos-grid {
+/* NOVOS ESTILOS PARA PRODUTOS E ESTUDOS */
+.produtos-destaque-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
 }
-.produto-card {
+.card-produto {
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 1.4rem;
-    transition: transform 0.2s;
+    border-radius: 28px;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
 }
-.produto-card:hover {
-    transform: translateY(-3px);
-    border-color: rgba(0,180,216,.3);
+.card-produto:hover {
+    transform: translateY(-8px);
+    border-color: var(--cyan);
 }
-.produto-card i {
-    font-size: 1.8rem;
-    color: var(--cyan);
-    margin-bottom: 1rem;
+.card-produto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
 }
-.produto-card h4 {
+.card-produto-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+.card-produto-content h4 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: #fff;
-    font-size: 1rem;
 }
-.produto-card p {
-    font-size: 0.8rem;
+.card-produto-content p {
     color: var(--text-muted);
-    line-height: 1.5;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
 }
-.btn-saiba {
-    display: inline-block;
-    margin-top: 1rem;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--cyan);
+.btn-produto {
+    background: var(--cyan);
+    color: #0a1f4e;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
     text-decoration: none;
-    border-bottom: 1.5px solid var(--cyan);
-    transition: opacity 0.2s;
+    font-weight: bold;
+    display: inline-block;
+    transition: 0.2s;
 }
-.btn-saiba:hover { opacity: 0.8; }
+.btn-produto:hover {
+    background: var(--cyan-light);
+    transform: scale(1.02);
+}
 
-/* Notícias */
-.noticia-item {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+/* Swiper / Carrosséis */
+.swiper {
+    width: 100%;
+    padding: 20px 0 40px;
+    overflow: hidden;
+}
+.swiper-slide {
+    background: rgba(10, 31, 78, 0.6);
+    backdrop-filter: blur(4px);
     border-radius: 20px;
-    padding: 1.5rem;
+    border: 1px solid var(--glass-border);
+    padding: 1.2rem;
+    text-align: center;
+    transition: 0.2s;
+    height: auto;
+}
+.swiper-slide:hover {
+    border-color: var(--cyan);
+}
+.doc-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.doc-thumb {
+    width: 100%;
+    height: 180px;
+    background: #0f2a5a;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 1.2rem;
-    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
 }
-.noticia-item i:first-child {
-    font-size: 2rem;
+.doc-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.doc-thumb i {
+    font-size: 3.5rem;
     color: var(--cyan);
 }
-.noticia-item h3 {
+.doc-card h4 {
+    font-size: 0.85rem;
+    margin: 0.5rem 0;
+    color: #fff;
+    text-align: center;
+}
+.doc-card a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--cyan);
+    transition: opacity 0.2s;
+}
+.doc-card a:hover {
+    opacity: 0.8;
+}
+.swiper-button-next, .swiper-button-prev {
+    color: var(--cyan);
+}
+.swiper-pagination-bullet-active {
+    background: var(--cyan);
+}
+
+/* Dashboards lado a lado */
+.dashboards-row {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0 2rem;
+}
+.dashboard-card {
+    flex: 1;
+    min-width: 260px;
+    max-width: 400px;
+    background: var(--glass-bg);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: 0.3s;
+    border: 1px solid var(--glass-border);
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan);
+}
+.dashboard-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.dashboard-card .info {
+    padding: 1.2rem;
+    text-align: center;
+}
+.dashboard-card .info a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: var(--cyan);
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom: 1px solid var(--cyan);
+}
+
+/* Notícias em grid */
+.news-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+.news-card {
+    background: var(--glass-bg);
+    border-radius: 24px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--cyan);
+    transition: 0.2s;
+}
+.news-card:hover {
+    transform: translateX(4px);
+    background: rgba(0, 180, 216, 0.08);
+}
+.news-card h4 {
     font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
     color: #fff;
 }
-.noticia-item p {
-    font-size: 0.85rem;
+.news-card p {
     color: var(--text-muted);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+.btn-news {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid var(--cyan);
 }
 
 /* Contato */
@@ -480,11 +634,6 @@ h2:after {
     border-radius: 32px;
     padding: 2rem;
     text-align: center;
-}
-.contato-card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.3rem;
-    margin: 0.5rem 0;
 }
 .email-link {
     color: white;
@@ -518,6 +667,10 @@ footer {
     .stats-flex { flex-direction: column; text-align: center; }
     .section { padding: 3rem 0; }
     h2 { font-size: 1.6rem; }
+    .team-photo { width: 85px; height: 85px; }
+    .produtos-destaque-grid { gap: 1rem; }
+    .card-produto img { height: 160px; }
+    .doc-thumb { height: 140px; }
 }
 </style>
 </head>
@@ -531,18 +684,14 @@ footer {
     <div class="site-bg-gradient"></div>
 </div>
 
-<!-- NAV (com logos senai1.png e nei.png) -->
+<!-- NAV -->
 <nav id="main-nav">
     <div class="nav-inner">
         <div class="nav-logo">
             <div class="nav-logo-img">
-                <img src="senai1.png" alt="SENAI CIMATEC" class="logo-senai" onerror="this.onerror=null; this.src='https://placehold.co/120x40?text=SENAI';">
-                <img src="nei.png" alt="NEI" class="logo-nei" onerror="this.onerror=null; this.src='https://placehold.co/88x40?text=NEI';">
+                <img src="senai1.png" alt="SENAI CIMATEC" class="logo-senai" onerror="this.onerror=null; this.src='https://placehold.co/120x42?text=SENAI';">
+                <img src="nei.png" alt="NEI" class="logo-nei" onerror="this.onerror=null; this.src='https://placehold.co/88x42?text=NEI';">
             </div>
-            <!--div class="nav-brand">
-                Núcleo de Economia Industrial
-                <small>SENAI CIMATEC · Salvador, BA</small>
-            </div -->
         </div>
         <ul class="nav-links">
             <li><a href="#sobre">Sobre</a></li>
@@ -579,28 +728,28 @@ footer {
     </div>
 </section>
 
-<!-- Sobre (texto exato do nei7) -->
+<!-- Sobre -->
 <section id="sobre" class="section">
     <div class="container">
         <h2>Sobre o NEI</h2>
         <div style="max-width: 900px;">
-            <p style="font-size:1.05rem; margin-bottom: 1rem; font-family:'Open Sans', sans-serif;"><strong>O Núcleo de Economia Industrial do CIMATEC</strong> é um núcleo de estudos econômicos aplicados à indústria, focado na análise de tendências econômicas, setoriais e tecnológicas. Nossa missão é gerar conhecimento estratégico para impulsionar a competitividade industrial, subsidiando a formulação de políticas públicas, o desenvolvimento de novos negócios e a definição de estratégias empresariais.</p>
-            <p style="font-size:1.05rem; margin-bottom: 1rem; font-family:'Open Sans', sans-serif;">Por meio de pesquisas aprofundadas e análises baseadas em dados, apoiamos o planejamento estratégico do SENAI CIMATEC e de seus parceiros, identificando oportunidades para o fortalecimento da indústria e a valorização das potencialidades locais.</p>
-            <p style="font-size:1.05rem; margin-bottom: 1rem; font-family:'Open Sans', sans-serif;">Com uma abordagem multidisciplinar e orientada para a inovação, atuamos em parceria com instituições públicas e privadas para desenvolver estudos que contribuam para o desenvolvimento da Indústria e Sociedade.</p>
+            <p style="font-size:1.05rem; margin-bottom: 1rem;"><strong>O Núcleo de Economia Industrial do CIMATEC</strong> é um núcleo de estudos econômicos aplicados à indústria, focado na análise de tendências econômicas, setoriais e tecnológicas. Nossa missão é gerar conhecimento estratégico para impulsionar a competitividade industrial, subsidiando a formulação de políticas públicas, o desenvolvimento de novos negócios e a definição de estratégias empresariais.</p>
+            <p style="font-size:1.05rem; margin-bottom: 1rem;">Por meio de pesquisas aprofundadas e análises baseadas em dados, apoiamos o planejamento estratégico do SENAI CIMATEC e de seus parceiros, identificando oportunidades para o fortalecimento da indústria e a valorização das potencialidades locais.</p>
+            <p style="font-size:1.05rem; margin-bottom: 1rem;">Com uma abordagem multidisciplinar e orientada para a inovação, atuamos em parceria com instituições públicas e privadas para desenvolver estudos que contribuam para o desenvolvimento da Indústria e Sociedade.</p>
         </div>
     </div>
 </section>
 
-<!-- Áreas de atuação (5 cards) -->
+<!-- Áreas de atuação -->
 <section id="atuacao" class="section section-alt">
     <div class="container">
         <h2>Áreas de atuação</h2>
         <div class="grid-areas">
             <div class="area-card"><div class="area-icon"><i class="fas fa-chart-line"></i></div><h3>Inteligência de Tecnologia & Inovação</h3><p>Desenvolver informações e conhecimento acerca da dinâmica de mercado, com ênfase na estrutura e evolução da produção setorial, no emprego, nos fluxos do comércio internacional, bem como na identificação de principais players, tendências tecnológicas e na organização da cadeia produtiva.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-landmark"></i></div><h3>Políticas Públicas</h3><p>Conduzir pesquisas direcionadas à análise de políticas públicas, incluindo a identificação de políticas em âmbito global, a avaliação e a proposição de ações norteadoras para formuladores de políticas, com foco em políticas setoriais voltadas para Indústria, Ciência, Tecnologia, Inovação e Desenvolvimento Regional, fundamentadas no adensamento e competitividade da matriz produtiva.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-file-invoice-dollar"></i></div><h3>Fiscal e Regulatório</h3><p>Examinar as diversas questões associadas à tributação e suas relações com o Estado, considerando a identificação de incentivos fiscais e regulatórios em âmbito global, bem como o impacto de diferentes desenhos tributários no desenvolvimento industrial e fortalecimento da competitividade no setor produtivo.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-globe-americas"></i></div><h3>Análise Internacional e Geoeconomia</h3><p>Desenvolver informações e conhecimento acerca da dinâmica de mercado, com ênfase na estrutura e evolução da produção setorial, no emprego, nos fluxos do comércio internacional, bem como na identificação de principais players, tendências tecnológicas e na organização da cadeia produtiva.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-leaf"></i></div><h3>Energia, Sustentabilidade e Mercado de Carbono</h3><p>Analisar experiências de transição energética, redução de emissões de gases do efeito estufa e estratégias para construção de mercado de carbono com o aumento do bem-estar social e da competitividade territorial e empresarial, com vista de orientar a tomada de decisões das instituições públicas e das empresas para alcançar uma economia sustentável.</p></div>
+            <div class="area-card"><div class="area-icon"><i class="fas fa-landmark"></i></div><h3>Políticas Públicas</h3><p>Conduzir pesquisas direcionadas à análise de políticas públicas, incluindo a identificação de políticas em âmbito global, a avaliação e a proposição de ações norteadoras para formuladores de políticas, com foco em políticas setoriais voltadas para Indústria, Ciência, Tecnologia, Inovação e Desenvolvimento Regional.</p></div>
+            <div class="area-card"><div class="area-icon"><i class="fas fa-file-invoice-dollar"></i></div><h3>Fiscal e Regulatório</h3><p>Examinar as diversas questões associadas à tributação e suas relações com o Estado, considerando a identificação de incentivos fiscais e regulatórios em âmbito global, bem como o impacto de diferentes desenhos tributários no desenvolvimento industrial.</p></div>
+            <div class="area-card"><div class="area-icon"><i class="fas fa-globe-americas"></i></div><h3>Análise Internacional e Geoeconomia</h3><p>Desenvolver informações e conhecimento acerca da dinâmica de mercado, com ênfase na estrutura e evolução da produção setorial, no emprego, nos fluxos do comércio internacional, bem como na identificação de principais players, tendências tecnológicas.</p></div>
+            <div class="area-card"><div class="area-icon"><i class="fas fa-leaf"></i></div><h3>Energia, Sustentabilidade e Mercado de Carbono</h3><p>Analisar experiências de transição energética, redução de emissões de gases do efeito estufa e estratégias para construção de mercado de carbono com o aumento do bem-estar social e da competitividade territorial.</p></div>
         </div>
     </div>
 </section>
@@ -618,92 +767,187 @@ footer {
 
         <h3 style="margin: 1.5rem 0 1rem; font-family:'Poppins', sans-serif; font-size:1.5rem; color:#fff;">Equipe</h3>
         <div class="team-grid">
-            <div class="team-card"><h4>André Oliveira</h4><div class="team-role">Superintendente de Planejamento e Novos Negócio
-
-Dr. em Modelagem Computacional e Tecnologia Industrial</div><div class="team-desc">Doutor em Modelagem Computacional, Mestre em Energia e Engenheiro Mecânico. Experiência em energia, negócios, inovação e sustentabilidade.</div></div>
-            <div class="team-card"><h4>Mabel Mota</h4><div class="team-role">Dra. Economia — Coordenação</div><div class="team-desc">Doutora e graduada em Economia pela UFBA, Mestra em Economia Aplicada pela UFSCar. Possui experiência em Economia com ênfase em Economia Industrial, Dinâmica tecnológica e industrial.</div></div>
-            <div class="team-card"><h4>Milton Deiré</h4><div class="team-role">Dr. Estudos Estratégicos Internacionais</div><div class="team-desc">Pós-doutorando em Direito climático (UFBA), Doutor em Estudos Estratégicos Internacionais (UFRS), Mestre em Relações Internacionais (UFBA) e graduado em Direito (UNIFACS). Possui experiência em Regulação e direito climático.</div></div>
-            <div class="team-card"><h4>Yuri Dantas</h4><div class="team-role">Mestre em Economia
-Analista de dados</div><div class="team-desc">Profissional da área de Economia, com ênfase em Política Pública e Economia Industrial.</div></div>
-            <div class="team-card"><h4>Raphael Oliveira</h4><div class="team-role">Doutorando em Economia
-Pesquisador sênior Ciência de dados</div><div class="team-desc">Pesquisador sênior em Ciência de Dados, modelagem econômica e análise preditiva.</div></div>
-            <div class="team-card"><h4>David Regalado</h4><div class="team-role">Doutorando em Estatística Pesquisador Sênior Ciência de dados</div><div class="team-desc">Profissional da área de Estatística e Engenharia Industrial e sistemas, com ênfase em Análise de Dados, Big Data, ETL, Big Data e Inteligência Artificial.</div></div>
-            <div class="team-card"><h4>Italo Ferreira</h4><div class="team-role">Mestrando em </div><div class="team-desc">Engenharia.</div></div>
-        </div>
-        <!--div style="margin-top: 1.8rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 40px; padding: 1rem 1.5rem; text-align: center;">
-            <i class="fas fa-users" style="color: var(--cyan); margin-right: 8px;"></i> <strong>Equipe multidisciplinar</strong> — especialistas em economia, estatística, direito, políticas públicas e relações internacionais.
-        </div>
-        <div class="text-small" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; color: var(--text-muted);">
-            <span><i class="fas fa-chalkboard-user"></i> DASHBOARDS: Ensino Superior, Aeroespacial, Economia Digital e Criativa</span>
-            <span><i class="fas fa-file-alt"></i> WHITE PAPERS, RELATÓRIOS TÉCNICOS, BENCHMARKING</span>
-        </div -->
-    </div>
-</section>
-
-<!-- Produtos & Estudos (grid completo) -->
-<section id="produtos" class="section section-alt">
-    <div class="container">
-        <h2>Produtos & Estudos</h2>
-        <div class="produtos-grid">
-            <div class="produto-card"><i class="fas fa-file-pdf"></i><h4>White Paper: Reciclagem de Painéis Fotovoltaicos</h4><p>Processos inovadores e economia circular para energia solar.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-water"></i><h4>Economia Náutica</h4><p>Cadeia de valor, portos e turismo náutico no Brasil.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-microchip"></i><h4>Comunicação Quântica</h4><p>Tendências tecnológicas e impactos na indústria digital.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-rocket"></i><h4>Tech Trends: Aeroespacial</h4><p>Inovação, cadeia produtiva e competitividade.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-laptop-code"></i><h4>Economia Digital e Criativa</h4><p>Benchmarking do Porto Digital e políticas para startups.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-tshirt"></i><h4>Têxtil e Confecções</h4><p>Reestruturação produtiva e inserção internacional.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-chart-simple"></i><h4>Dashboard Interativo</h4><p>Ensino Superior, Aeroespacial, Economia Digital – indicadores em tempo real.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-ship"></i><h4>Economia do Mar</h4><p>Potencial azul, biodiversidade e negócios oceânicos.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-            <div class="produto-card"><i class="fas fa-leaf"></i><h4>Hidrogênio Verde</h4><p>Transição energética e rota sustentável para indústria.</p><a href="#" class="btn-saiba">Saiba mais →</a></div>
-        </div>
-    </div>
-</section>
-
-<!-- Notícias -->
-<section class="section">
-    <div class="container">
-        <h2>Notícias & Participação</h2>
-        <div class="noticia-item">
-            <i class="fas fa-calendar-alt"></i>
-            <div style="flex:1">
-                <h3>Participação em eventos e congressos nacionais e internacionais</h3>
-                <p>O NEI marca presença nos principais fóruns de economia industrial, política científica e inovação tecnológica. Apresentação de estudos em congressos como ANPEC, Encontro Nacional de Economia Industrial, Seminário Internacional de Inovação, e parcerias com instituições globais.</p>
-                <a href="#" class="btn-saiba" style="margin-top: 8px; display: inline-block;">Confira nossa agenda →</a>
+            <div class="team-card">
+                <img src="img/Andre.jpeg" alt="André Oliveira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=André'">
+                <h4>André Oliveira</h4>
+                <div class="team-role">Superintendente de Programação e Meios Mútuos · Dr. Modelagem Computacional</div>
+                <div class="team-desc">Doutor em Modelagem Computacional e Tecnologia Industrial, Mestre em Engenharia Digital e Mecânica. Experiência em engenharia mecânica, inovação e sustentabilidade.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/Mabel.jpg" alt="Mabel Mota" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Mabel'">
+                <h4>Mabel Mota</h4>
+                <div class="team-role">Dra. Economia — Coordenadora</div>
+                <div class="team-desc">Doutora e graduada em Economia pela UFBA, Mestra em Economia Aplicada pela UFSCar. Experiência em Economia Industrial, Indústria e Tecnologia.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/Milton.jpg" alt="Milton Deiró" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Milton'">
+                <h4>Milton Deiró</h4>
+                <div class="team-role">Dr. Estudos Estratégicos Intervencionista</div>
+                <div class="team-desc">Pós-doutorado em Obras de Construção (UFBA), Doutor em Estudos Intervencionistas, Mestre em Relações Internacionais. Experiência em Gestão de Projetos e Relações Internacionais.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/Yuri.jpeg" alt="Yuri Dantas" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Yuri'">
+                <h4>Yuri Dantas</h4>
+                <div class="team-role">Mestre em Economia · Analista de dados</div>
+                <div class="team-desc">Profissional da área de Economia, com ênfase em Política Pública e Economia Industrial. Experiência em análise de dados econômicos.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/Raphael.jpg" alt="Raphael Oliveira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Raphael'">
+                <h4>Raphael Oliveira</h4>
+                <div class="team-role">Doutorando em Economia · Pesquisador Sênior Ciência de dados</div>
+                <div class="team-desc">Profissional da Economia, ênfase em Política Pública, Desenvolvimento Regional e Economia Industrial. Pesquisador em modelagem preditiva.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/David.jpeg" alt="David Regalado" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=David'">
+                <h4>David Regalado</h4>
+                <div class="team-role">Doutorando em Controle · Pesquisador Sênior Ciência de dados</div>
+                <div class="team-desc">Especialista em Controle e Engenharia Industrial, Sistemas de Informação, ênfase em Gestão de Dados, Big Data, ETL e Inteligência Artificial.</div>
+            </div>
+            <div class="team-card">
+                <img src="img/Italo.PNG" alt="Italo Ferreira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Italo'">
+                <h4>Italo Ferreira</h4>
+                <div class="team-role">Mestrando em Desenvolvimento Sustentável</div>
+                <div class="team-desc">Formação em Engenharia Elétrica e Ciências Exatas, atuando em projetos de inovação em biocombustíveis, com sólida base em Machine Learning e Análise de Dados.</div>
             </div>
         </div>
-        <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between; color: var(--text-muted);">
-            <div><i class="fas fa-microphone-alt"></i> Congresso Internacional de Economia Aplicada</div>
-            <div><i class="fas fa-chalkboard-user"></i> Seminário SENAI de Inovação Industrial</div>
-            <div><i class="fas fa-globe"></i> World Economic Forum - painéis setoriais</div>
+    </div>
+</section>
+
+<!-- ========== PRODUTOS & ESTUDOS (NOVA VERSÃO) ========== -->
+<section id="produtos" class="section section-alt">
+    <div class="container">
+        <h2>Produtos</h2>
+        
+        <!-- 3 cards de produtos com imagens -->
+        <div class="produtos-destaque-grid">
+            <div class="card-produto">
+                <img src="img/intel1.png" alt="Inteligência de Tecnologia">
+                <!--img src="https://placehold.co/600x400/0a2a5a/00B4D8?text=Inteligência+Industrial" alt="Inteligência de Tecnologia"-->
+                <div class="card-produto-content">
+                    <h4>Inteligência de Tecnologia & Inovação</h4>
+                    <!--p>Análises estratégicas para impulsionar a competitividade industrial.</p-->
+                    <a href="#" class="btn-produto">Saiba mais</a>
+                </div>
+            </div>
+            <div class="card-produto">
+                <img src="img/bench1.png" alt="Benchmarking">
+                <!--img src="https://placehold.co/600x400/0a2a5a/00B4D8?text=Benchmarking+Setorial" alt="Benchmarking"-->
+                <div class="card-produto-content">
+                    <h4>Benchmarking Competitivo</h4>
+                    <!--p>Comparativos internacionais e nacionais para tomada de decisão.</p-->
+                    <a href="#" class="btn-produto">Saiba mais</a>
+                </div>
+            </div>
+            <div class="card-produto">
+                <img src="img/dash1.png" alt="Dashboards">
+                <!--img src="https://placehold.co/600x400/0a2a5a/00B4D8?text=Data+Dashboard" alt="Dashboards"-->
+                <div class="card-produto-content">
+                    <h4>Dashboards Interativos</h4>
+                    <!--p>Dados econômicos e indicadores em tempo real.</p-->
+                    <a href="#" class="btn-produto">Saiba mais</a>
+                </div>
+            </div>
         </div>
+
+        <!-- White Papers + Estudos Setoriais lado a lado -->
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
+            <div style="flex: 1; min-width: 260px;">
+                <h3>White Papers</h3>
+                <div class="swiper swiper-white">
+                    <div class="swiper-wrapper" id="white-wrapper"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+            <div style="flex: 1; min-width: 260px;">
+                <h3>Estudos Setoriais</h3>
+                <div class="swiper swiper-setoriais">
+                    <div class="swiper-wrapper" id="setoriais-wrapper"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benchmarking -->
+        <h3>Benchmarking</h3>
+        <div class="swiper swiper-bench">
+            <div class="swiper-wrapper" id="bench-wrapper"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+
+        <!-- Dashboards -->
+        <h3>Dashboards Estratégicos</h3>
+        <div class="dashboards-row">
+            <div class="dashboard-card">
+                <img src="img/inst.png" alt="Dashboard Institucional" onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Institucional'">
+                <div class="info">
+                    <a href="https://nei-senai-cimatec.github.io/anuario-ourolandia/index.html" target="_blank">Acessar Dashboard Institucional →</a>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <img src="img/ouro.png" alt="Dashboard Ourolandia" onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Ourolandia'">
+                <div class="info">
+                    <a href="https://nei-senai-cimatec.github.io/anuario-ourolandia/index.html" target="_blank">Acessar Dashboard Ourolandia →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Publicações Técnico-Científicas -->
+<section class="section">
+    <div class="container">
+        <h2>Publicações</h2>
+        <h3>Técnico & Científico</h3>
+        <div class="swiper swiper-pub">
+            <div class="swiper-wrapper" id="pub-wrapper"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Notícias & Participação -->
+<section class="section section-alt">
+    <div class="container">
+        <h2>Notícias</h2>
+        <h3>Participação em eventos e congressos</h3>
+        <div class="news-grid" id="news-container"></div>
     </div>
 </section>
 
 <!-- Contato -->
-<section id="contato" class="section section-alt">
+<section id="contato" class="section">
     <div class="container">
-        <h2>Serviços de dados & Contato</h2>
+        <h2>Serviços de dados</h2>
         <div class="contato-card">
-            <i class="fas fa-database" style="font-size: 2rem;"></i>
-            <!--h3>Inteligência de dados sob demanda</h3>
-            <p style="margin: 0.5rem 0 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">Dashboards customizados, análise econômico-setorial, white papers e estudos de competitividade para tomada de decisão.</p -->
-            <p style="font-weight: 500;">📬 Quer saber mais sobre o Núcleo de Economia Industrial?</p>
-            <p style="font-weight: 500;"> Fale conosco pelos nossos canais.</p>
+            <!--i class="fas fa-database" style="font-size: 2rem;"></i-->
+            <p style="font-weight: 500;">Contato</p>
+            <p style="font-weight: 500;">Quer saber mais sobre o Núcleo de Economia Industrial?</p>
+            <p style="font-weight: 500;">Fale conosco pelos nossos canais.</p>
             <a href="mailto:cimatec-ecoindustrial@fieb.org.br" class="email-link"><i class="fas fa-envelope"></i> cimatec-ecoindustrial@fieb.org.br</a>
         </div>
-        <div style="text-align: center; margin-top: 2rem;">
+        <!--div style="text-align: center; margin-top: 2rem;">
             <p><i class="fas fa-map-marker-alt"></i> SENAI CIMATEC – Salvador, Bahia | <i class="fas fa-clock"></i> Atendimento técnico e parcerias institucionais</p>
-        </div>
+        </div-->
     </div>
 </section>
 
 <footer>
-    <div class="container">
+    <!--div class="container">
         <p>© 2025 Núcleo de Economia Industrial – SENAI CIMATEC. Transformando conhecimento econômico em vantagem competitiva.</p>
         <p style="margin-top: 6px;"><i class="fas fa-chart-line"></i> NEI · Inteligência para a indústria e políticas públicas</p>
-    </div>
+    </div-->
 </footer>
 
-<!-- Script Three.js -->
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script type="module">
     import * as THREE from 'three';
 
@@ -863,10 +1107,136 @@ Pesquisador sênior Ciência de dados</div><div class="team-desc">Pesquisador s�
         if (e.key === 'Enter') performSearch();
     });
     
-    // Nav scroll effect
     window.addEventListener('scroll', () => {
         document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
     });
+</script>
+
+<!-- Script para carrosséis e dados -->
+<script>
+// Dados dos documentos (ajuste os caminhos conforme sua pasta docs/)
+const whitePapers = [
+    { nome: "Descarbonização Industrial - Mercado de Carbono", arquivo: "docs/white/01282025_Descarbonização_Mercado de carbono_White paper.pdf", thumb: "img/desc.png"  },
+    { nome: "White Paper - Reciclagem de Painéis Fotovoltaicos", arquivo: "docs/white/02142025_White_Paper_Reciclagem_Paineis_Fotovoltaicos.pdf", thumb: "img/reci.png"   },
+    { nome: "White Paper - Mercado de Carbono", arquivo: "docs/white/09292023_White_Paper_Mercado_Carbono.pdf", thumb: "img/merc.png" },
+    { nome: "Mercado Náutico - BTS White Paper", arquivo: "docs/white/25102025_Mercado_Nautico_BTS_White_Paper.pdf", thumb: "img/nau.png" }
+];
+
+const setoriais = [
+    { nome: "Parque Tecnológico Aeroespacial da Bahia", arquivo: "docs/setoriais/02142025_Parque_Tecnologico_Aeroespacial.pdf", thumb: "img/tec.png" },
+    { nome: "Relatório Hub Aeroespacial", arquivo: "docs/setoriais/02142025_Relatorio_Hub_Aeroespacial_FINAL.pdf", thumb: "img/hub.png" },
+    { nome: "Economia Digital e Criativa", arquivo: "docs/setoriais/02142025_Relatorio_Tecnico_Economia_Digital_Criativa.pdf", thumb: "img/eco.png" },
+    { nome: "Implantação Curso Técnico Aeronaves", arquivo: "docs/setoriais/06302025_Relatorio_tecnico_Implantacao_curso.pdf", thumb: "img/imple.png" },
+    { nome: "Economia Digital - Versão ME", arquivo: "docs/setoriais/10302025_Relatorio_Tecnico_Economia_Digital_ME_V2.pdf", thumb: "img/dig.png" }
+];
+
+const benchDocs = [
+    { nome: "Benchmarking Internacional Aeroespacial", arquivo: "docs/bench/02142025_Benchmarking_Internacional_Aeroespacial.pdf", thumb: "img/inte.png" },
+    { nome: "Economia Digital - Benchmarking Porto Digital", arquivo: "docs/bench/02142025_Economia_Digital_Benchmarking_Porto_Digital.pdf", thumb: "img/porto.png" },
+    { nome: "Benchmarking Nacional Aeroespacial - Gavião Peixoto", arquivo: "docs/bench/02252025_Benchmarking_Nacional_Aerospacial_Gaviao_Peixoto.pdf", thumb: "img/aero.png" },
+    { nome: "Benchmarking Licenciamento Ambiental", arquivo: "docs/bench/06022025_Benchmarking_Licenciamento_Ambiental.pdf", thumb: "img/lice.png" },
+    { nome: "Serviços de Data Center - Reforma Tributária", arquivo: "docs/bench/0602025_Servicos_Data_Center_Reforma_Tributaria.pdf", thumb: "img/data.png" }
+];
+
+const publicacoes = [
+    { nome: "Hidrogênio Verde - Simpósio Especial", arquivo: "docs/pub/hidrogenio_verde_simposio.pdf", thumb: "img/hidro.png" },
+    { nome: "Texto para Discussão 2837 - Desenvolvimento Brasileiro", arquivo: "docs/pub/texto_discussao_2837.pdf", thumb: "img/dese.png" },
+    { nome: "Brazil, Brasis - Reconfigurações Industriais", arquivo: "docs/pub/brazil_brasis.pdf", thumb: "img/recon.png" },
+    { nome: "Melting sea ice - Naval Geopolitics", arquivo: "docs/pub/melting_sea_ice.pdf", thumb: "img/naval.png" }
+];
+
+const noticias = [
+    { titulo: "NEI apresenta trabalho inédito em Madri na ETSI Quantum Safe Cryptography Conference", resumo: "Único trabalho aprovado da América Latina, levando abordagem econômica ao debate internacional sobre criptografia quântica.", link: "docs/news/quantum_madri.pdf" },
+    { titulo: "NEI participa de debate sobre Hidrogênio de Baixo Carbono no ENEI 2025", resumo: "Estudo apresentado e contribuição estratégica sobre transição energética e competitividade industrial.", link: "docs/news/enei_hidrogenio.pdf" }
+];
+
+// Função para preencher carrosséis
+// Substitua a função preencherSwiper por esta:
+function preencherSwiper(wrapperId, itens) {
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+    wrapper.innerHTML = "";
+    itens.forEach(item => {
+        const slide = document.createElement("div");
+        slide.className = "swiper-slide";
+        // Verifica se tem thumbnail
+        const thumbHtml = item.thumb 
+            ? `<img src="${item.thumb}" alt="${item.nome}" style="width:100%; height:100%; object-fit:cover;">`
+            : `<i class="fas fa-file-pdf"></i>`;
+        
+        slide.innerHTML = `
+            <div class="doc-card">
+                <div class="doc-thumb">
+                    ${thumbHtml}
+                </div>
+                <h4>${item.nome}</h4>
+                <a href="${item.arquivo}" target="_blank">📄 Visualizar →</a>
+            </div>
+        `;
+        wrapper.appendChild(slide);
+    });
+}
+
+// Carregar notícias
+function carregarNoticias() {
+    const container = document.getElementById("news-container");
+    if (!container) return;
+    container.innerHTML = "";
+    noticias.forEach(noticia => {
+        const card = document.createElement("div");
+        card.className = "news-card";
+        card.innerHTML = `
+            <h4><i class="fas fa-newspaper"></i> ${noticia.titulo}</h4>
+            <p>${noticia.resumo}</p>
+            <a href="${noticia.link}" target="_blank" class="btn-news">Saiba mais →</a>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// Inicializar Swipers
+function initSwipers() {
+    new Swiper('.swiper-white', { 
+        slidesPerView: 1, 
+        spaceBetween: 20, 
+        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, 
+        pagination: { el: '.swiper-pagination' }, 
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+        autoplay: { delay: 4000, disableOnInteraction: false }
+    });
+    new Swiper('.swiper-setoriais', { 
+        slidesPerView: 1, 
+        spaceBetween: 20, 
+        navigation: true, 
+        pagination: { el: '.swiper-pagination' }, 
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+        autoplay: { delay: 4000, disableOnInteraction: false }
+    });
+    new Swiper('.swiper-bench', { 
+        slidesPerView: 1, 
+        spaceBetween: 20, 
+        navigation: true, 
+        pagination: { el: '.swiper-pagination' }, 
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+        autoplay: { delay: 4500, disableOnInteraction: false }
+    });
+    new Swiper('.swiper-pub', { 
+        slidesPerView: 1, 
+        spaceBetween: 20, 
+        navigation: true, 
+        pagination: { el: '.swiper-pagination' }, 
+        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+        autoplay: { delay: 4000, disableOnInteraction: false }
+    });
+}
+
+// Executar
+preencherSwiper("white-wrapper", whitePapers);
+preencherSwiper("setoriais-wrapper", setoriais);
+preencherSwiper("bench-wrapper", benchDocs);
+preencherSwiper("pub-wrapper", publicacoes);
+carregarNoticias();
+initSwipers();
 </script>
 </body>
 </html>
