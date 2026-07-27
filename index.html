@@ -1,829 +1,1067 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>NEI | Núcleo de Economia Industrial CIMATEC</title>
-<!-- Fonts: Poppins para títulos, Open Sans para textos -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!-- Swiper CSS para carrosséis -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-<script type="importmap">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NEI | Núcleo de Economia Industrial CIMATEC</title>
+    <!-- Fonts: Poppins para títulos, Open Sans para textos -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Swiper CSS para carrosséis -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script type="importmap">
     {
         "imports": {
             "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
         }
     }
 </script>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #0a1f4e;
-    color: #fff;
-    line-height: 1.5;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-}
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #0a1f4e;
+            color: #fff;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
 
-/* ── FIXED VIDEO BG ── */
-.site-bg {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-}
-.site-bg video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.22;
-}
-.site-bg-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(160deg, #04122B 0%, #071535 40%, #0a1f4e 100%);
-    mix-blend-mode: multiply;
-}
+        /* ── FIXED VIDEO BG ── */
+        .site-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
 
-/* Container com margens reduzidas */
-.container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
+        .site-bg video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.22;
+        }
 
-@media (max-width: 1200px) {
-    .container { padding: 0 16px; }
-}
-@media (max-width: 768px) {
-    .container { padding: 0 12px; }
-}
+        .site-bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #04122B 0%, #071535 40%, #0a1f4e 100%);
+            mix-blend-mode: multiply;
+        }
 
-:root {
-    --cyan: #00B4D8;
-    --cyan-light: #48CAE4;
-    --cyan-deep: #0096c7;
-    --blue-accent: #2a6f9c;
-    --glass-bg: rgba(255,255,255,0.06);
-    --glass-border: rgba(255,255,255,0.12);
-    --text-light: rgba(255,255,255,0.85);
-    --text-muted: rgba(255,255,255,0.5);
-}
+        /* Container com margens reduzidas */
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-/* Header — fundo branco */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 200;
-    background: #ffffff;
-    backdrop-filter: none;
-    border-bottom: 1px solid #e2e8f0;
-    transition: box-shadow .3s;
-}
-nav.scrolled { 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-    background: #ffffff;
-}
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 16px;
+            }
+        }
 
-.nav-inner {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: .75rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-}
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.nav-logo-img {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-.logo-senai, .logo-nei {
-    height: 42px;
-    width: auto;
-    object-fit: contain;
-}
-.nav-links {
-    display: flex;
-    gap: 1.75rem;
-    list-style: none;
-}
-.nav-links a {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1e293b;
-    text-decoration: none;
-    letter-spacing: .3px;
-    transition: color .2s;
-}
-.nav-links a:hover { color: var(--cyan-deep); }
-.nav-search {
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    border-radius: 100px;
-    padding: .35rem .9rem;
-}
-.nav-search input {
-    background: none;
-    border: none;
-    outline: none;
-    color: #0f172a;
-    font-size: 13px;
-    font-family: 'Open Sans', sans-serif;
-    width: 160px;
-}
-.nav-search input::placeholder { color: #94a3b8; }
-.nav-search i { color: var(--cyan-deep); font-size: .9rem; cursor: pointer; }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 12px;
+            }
+        }
 
-@media (max-width: 900px) {
-    .nav-links, .nav-search { display: none; }
-    .logo-senai, .logo-nei { height: 34px; }
-}
+        :root {
+            --cyan: #00B4D8;
+            --cyan-light: #48CAE4;
+            --cyan-deep: #0096c7;
+            --blue-accent: #2a6f9c;
+            --glass-bg: rgba(255, 255, 255, 0.06);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --text-light: rgba(255, 255, 255, 0.85);
+            --text-muted: rgba(255, 255, 255, 0.5);
+        }
 
-/* Hero section */
-.hero-full {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding-top: 80px;
-}
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(4,18,43,0.65);
-    z-index: 1;
-}
-.hero-container {
-    position: relative;
-    z-index: 2;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 3rem 20px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 3rem;
-}
-.hero-graphic {
-    flex: 1.2;
-    min-width: 300px;
-    height: 420px;
-    position: relative;
-}
-#graphCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-    background: transparent;
-}
-.hero-text {
-    flex: 1;
-    color: white;
-    text-align: right;
-}
-.hero-line {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
-    margin-bottom: 0.2rem;
-}
-.hero-line-light {
-    color: rgba(255,255,255,0.95);
-    font-weight: 700;
-    font-size: 4rem;
-}
-.hero-line-accent {
-    color: var(--cyan);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-    font-weight: 800;
-    font-size: 4rem;
-}
-.hero-badge-wrapper {
-    margin-top: 2rem;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-.hero-badge {
-    display: inline-block;
-    background: linear-gradient(90deg, #0A5B7A 0%, #3FA5C7 100%);
-    padding: 0.8rem 2.5rem;
-    border-radius: 60px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    letter-spacing: 0.8px;
-    font-family: 'Open Sans', sans-serif;
-}
-.hero-badge i { margin-right: 8px; }
+        /* Header — fundo branco */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: #ffffff;
+            backdrop-filter: none;
+            border-bottom: 1px solid #e2e8f0;
+            transition: box-shadow .3s;
+        }
 
-@media (max-width: 900px) {
-    .hero-container { flex-direction: column; text-align: center; padding: 2rem 16px; }
-    .hero-text { text-align: center; }
-    .hero-line-light { font-size: 2.8rem; }
-    .hero-line-accent { font-size: 2.8rem; }
-    .hero-graphic { width: 100%; height: 350px; order: 1; }
-    .hero-text { order: 2; }
-    .hero-badge-wrapper { justify-content: center; }
-    .hero-badge { font-size: 0.85rem; padding: 0.6rem 1.5rem; }
-}
-@media (max-width: 550px) {
-    .hero-line-light { font-size: 2.2rem; }
-    .hero-line-accent { font-size: 2.2rem; }
-}
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+        }
 
-/* Sections gerais */
-.section {
-    padding: 5rem 0;
-    position: relative;
-    z-index: 1;
-}
-.section-alt {
-    background: rgba(4,18,43,0.4);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid var(--glass-border);
-    border-bottom: 1px solid var(--glass-border);
-}
+        .nav-inner {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: .75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
 
-h2 {
-    font-size: 1.9rem;
-    margin-bottom: 2rem;
-    position: relative;
-    display: inline-block;
-    letter-spacing: -0.02em;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    color: #fff;
-}
-h2:after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: var(--cyan);
-    margin-top: 8px;
-    border-radius: 4px;
-}
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    margin: 2rem 0 1rem;
-    color: #fff;
-}
+        .nav-logo-img {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-/* Áreas de atuação */
-.grid-areas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.8rem;
-}
-.area-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 1.6rem;
-    transition: transform 0.2s;
-    font-family: 'Open Sans', sans-serif;
-}
-.area-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0,180,216,.3);
-}
-.area-icon {
-    font-size: 2.2rem;
-    color: var(--cyan);
-    margin-bottom: 1.2rem;
-}
-.area-card h3 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-size: 1.1rem;
-    margin-top: 0;
-}
-.area-card p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    line-height: 1.5;
-}
+        .logo-senai,
+        .logo-nei {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+        }
 
-/* Stats */
-.stats-flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 32px;
-    padding: 2rem;
-}
-.stat-item {
-    flex: 1;
-    text-align: center;
-    min-width: 120px;
-}
-.stat-number {
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: var(--cyan);
-    font-family: 'Poppins', sans-serif;
-}
-.stat-item div:last-child {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
+        .nav-links {
+            display: flex;
+            gap: 1.75rem;
+            list-style: none;
+        }
 
-/* EQUIPE */
-.team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-.team-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 28px;
-    padding: 1.8rem 1.5rem;
-    font-family: 'Open Sans', sans-serif;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(4px);
-    text-align: center;
-    cursor: pointer;
-}
-.team-card:first-child {
-    background: rgba(0, 180, 216, 0.18);
-    border: 1px solid var(--cyan);
-    box-shadow: 0 8px 20px rgba(0,180,216,0.2);
-}
-.team-card:hover {
-    background: rgba(0, 180, 216, 0.2);
-    border-color: var(--cyan);
-    transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(0,180,216,0.25);
-}
-.team-card:hover .team-photo {
-    transform: scale(1.02);
-    border-color: var(--cyan);
-}
-.team-photo {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 0 auto 1rem;
-    display: block;
-    border: 3px solid rgba(255, 255, 255, 0.8);     
-    transition: all 0.2s ease;
-    background: #1e2a5e;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.2);
-}
-.team-card h4 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 1.2rem;
-    color: #fff;
-    margin-bottom: 0.25rem;
-}
-.team-role {
-    color: var(--cyan-light);
-    font-weight: 600;
-    font-size: 0.75rem;
-    margin: 0.3rem 0 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-.team-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-}
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1e293b;
+            text-decoration: none;
+            letter-spacing: .3px;
+            transition: color .2s;
+        }
 
-/* NOVOS ESTILOS PARA PRODUTOS E ESTUDOS */
-.produtos-destaque-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-}
-.card-produto {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 28px;
-    overflow: hidden;
-    transition: transform 0.3s, border-color 0.3s;
-}
-.card-produto:hover {
-    transform: translateY(-8px);
-    border-color: var(--cyan);
-}
-.card-produto img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-}
-.card-produto-content {
-    padding: 1.5rem;
-    text-align: center;
-}
-.card-produto-content h4 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-.card-produto-content p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-}
-.btn-produto {
-    background: var(--cyan);
-    color: #0a1f4e;
-    padding: 0.5rem 1.2rem;
-    border-radius: 40px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    transition: 0.2s;
-}
-.btn-produto:hover {
-    background: var(--cyan-light);
-    transform: scale(1.02);
-}
+        .nav-links a:hover {
+            color: var(--cyan-deep);
+        }
 
-/* Swiper / Carrosséis */
-.swiper {
-    width: 100%;
-    padding: 20px 0 40px;
-    overflow: hidden;
-}
-.swiper-slide {
-    background: rgba(10, 31, 78, 0.6);
-    backdrop-filter: blur(4px);
-    border-radius: 20px;
-    border: 1px solid var(--glass-border);
-    padding: 1.2rem;
-    text-align: center;
-    transition: 0.2s;
-    height: auto;
-}
-.swiper-slide:hover {
-    border-color: var(--cyan);
-}
-.doc-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.doc-thumb {
-    width: 100%;
-    height: 180px;
-    background: #0f2a5a;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-.doc-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.doc-thumb i {
-    font-size: 3.5rem;
-    color: var(--cyan);
-}
-.doc-card h4 {
-    font-size: 0.85rem;
-    margin: 0.5rem 0;
-    color: #fff;
-    text-align: center;
-}
-.doc-card a {
-    color: var(--cyan);
-    text-decoration: none;
-    font-size: 0.75rem;
-    font-weight: 600;
-    border-bottom: 1px solid var(--cyan);
-    transition: opacity 0.2s;
-}
-.doc-card a:hover {
-    opacity: 0.8;
-}
-.swiper-button-next, .swiper-button-prev {
-    color: var(--cyan);
-}
-.swiper-pagination-bullet-active {
-    background: var(--cyan);
-}
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 100px;
+            padding: .35rem .9rem;
+        }
 
-/* Dashboards lado a lado */
-.dashboards-row {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 1.5rem 0 2rem;
-}
-.dashboard-card {
-    flex: 1;
-    min-width: 260px;
-    max-width: 400px;
-    background: var(--glass-bg);
-    border-radius: 24px;
-    overflow: hidden;
-    transition: 0.3s;
-    border: 1px solid var(--glass-border);
-}
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--cyan);
-}
-.dashboard-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-.dashboard-card .info {
-    padding: 1.2rem;
-    text-align: center;
-}
-.dashboard-card .info a {
-    display: inline-block;
-    margin-top: 0.5rem;
-    color: var(--cyan);
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom: 1px solid var(--cyan);
-}
+        .nav-search input {
+            background: none;
+            border: none;
+            outline: none;
+            color: #0f172a;
+            font-size: 13px;
+            font-family: 'Open Sans', sans-serif;
+            width: 160px;
+        }
 
-/* Notícias em grid */
-.news-grid {
-    display: grid;
-    gap: 1.5rem;
-}
-.news-card {
-    background: var(--glass-bg);
-    border-radius: 24px;
-    padding: 1.5rem;
-    border-left: 4px solid var(--cyan);
-    transition: 0.2s;
-}
-.news-card:hover {
-    transform: translateX(4px);
-    background: rgba(0, 180, 216, 0.08);
-}
-.news-card h4 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: #fff;
-}
-.news-card p {
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
-}
-.btn-news {
-    color: var(--cyan);
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 1px solid var(--cyan);
-}
+        .nav-search input::placeholder {
+            color: #94a3b8;
+        }
 
-/* Contato */
-.contato-card {
-    background: linear-gradient(135deg, rgba(10,31,78,0.9) 0%, rgba(4,18,43,0.95) 100%);
-    border: 1px solid var(--glass-border);
-    border-radius: 32px;
-    padding: 2rem;
-    text-align: center;
-}
-.email-link {
-    color: white;
-    font-size: 1rem;
-    background: rgba(0,180,216,0.2);
-    padding: 0.6rem 1.5rem;
-    border-radius: 60px;
-    display: inline-block;
-    margin-top: 1rem;
-    text-decoration: none;
-    transition: background 0.2s;
-    border: 1px solid rgba(0,180,216,0.3);
-}
-.email-link:hover {
-    background: rgba(0,180,216,0.35);
-}
+        .nav-search i {
+            color: var(--cyan-deep);
+            font-size: .9rem;
+            cursor: pointer;
+        }
 
-/* Footer */
-footer {
-    text-align: center;
-    padding: 2rem 0;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    border-top: 1px solid var(--glass-border);
-    background: rgba(4,18,43,0.5);
-    position: relative;
-    z-index: 1;
-}
+        @media (max-width: 900px) {
 
-@media (max-width: 780px) {
-    .stats-flex { flex-direction: column; text-align: center; }
-    .section { padding: 3rem 0; }
-    h2 { font-size: 1.6rem; }
-    .team-photo { width: 85px; height: 85px; }
-    .produtos-destaque-grid { gap: 1rem; }
-    .card-produto img { height: 160px; }
-    .doc-thumb { height: 140px; }
-}
-</style>
+            .nav-links,
+            .nav-search {
+                display: none;
+            }
+
+            .logo-senai,
+            .logo-nei {
+                height: 34px;
+            }
+        }
+
+        /* Hero section */
+        .hero-full {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(4, 18, 43, 0.65);
+            z-index: 1;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 2;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .hero-graphic {
+            flex: 1.2;
+            min-width: 300px;
+            height: 420px;
+            position: relative;
+        }
+
+        #graphCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: transparent;
+        }
+
+        .hero-text {
+            flex: 1;
+            color: white;
+            text-align: right;
+        }
+
+        .hero-line {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-line-light {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+            font-size: 4rem;
+        }
+
+        .hero-line-accent {
+            color: var(--cyan);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 800;
+            font-size: 4rem;
+        }
+
+        .hero-badge-wrapper {
+            margin-top: 2rem;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, #0A5B7A 0%, #3FA5C7 100%);
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.8px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .hero-badge i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 16px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-line-light {
+                font-size: 2.8rem;
+            }
+
+            .hero-line-accent {
+                font-size: 2.8rem;
+            }
+
+            .hero-graphic {
+                width: 100%;
+                height: 350px;
+                order: 1;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-badge-wrapper {
+                justify-content: center;
+            }
+
+            .hero-badge {
+                font-size: 0.85rem;
+                padding: 0.6rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-line-light {
+                font-size: 2.2rem;
+            }
+
+            .hero-line-accent {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Sections gerais */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-alt {
+            background: rgba(4, 18, 43, 0.4);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            letter-spacing: -0.02em;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        h2:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--cyan);
+            margin-top: 8px;
+            border-radius: 4px;
+        }
+
+        h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+            color: #fff;
+        }
+
+        /* Áreas de atuação */
+        .grid-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .area-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.6rem;
+            transition: transform 0.2s;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .area-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 180, 216, .3);
+        }
+
+        .area-icon {
+            font-size: 2.2rem;
+            color: var(--cyan);
+            margin-bottom: 1.2rem;
+        }
+
+        .area-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 0;
+        }
+
+        .area-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Stats */
+        .stats-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 2rem;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--cyan);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .stat-item div:last-child {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* EQUIPE */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            padding: 1.8rem 1.5rem;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .team-card:first-child {
+            background: rgba(0, 180, 216, 0.18);
+            border: 1px solid var(--cyan);
+            box-shadow: 0 8px 20px rgba(0, 180, 216, 0.2);
+        }
+
+        .team-card:hover {
+            background: rgba(0, 180, 216, 0.2);
+            border-color: var(--cyan);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 180, 216, 0.25);
+        }
+
+        .team-card:hover .team-photo {
+            transform: scale(1.02);
+            border-color: var(--cyan);
+        }
+
+        .team-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+            background: #1e2a5e;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-role {
+            color: var(--cyan-light);
+            font-weight: 600;
+            font-size: 0.75rem;
+            margin: 0.3rem 0 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .team-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* NOVOS ESTILOS PARA PRODUTOS E ESTUDOS */
+        .produtos-destaque-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card-produto {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card-produto:hover {
+            transform: translateY(-8px);
+            border-color: var(--cyan);
+        }
+
+        .card-produto img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-produto-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .card-produto-content h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .card-produto-content p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-produto {
+            background: var(--cyan);
+            color: #0a1f4e;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.2s;
+        }
+
+        .btn-produto:hover {
+            background: var(--cyan-light);
+            transform: scale(1.02);
+        }
+
+        /* Swiper / Carrosséis */
+        .swiper {
+            width: 100%;
+            padding: 20px 0 40px;
+            overflow: hidden;
+        }
+
+        .swiper-slide {
+            background: rgba(10, 31, 78, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            padding: 1.2rem;
+            text-align: center;
+            transition: 0.2s;
+            height: auto;
+        }
+
+        .swiper-slide:hover {
+            border-color: var(--cyan);
+        }
+
+        .doc-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .doc-thumb {
+            width: 100%;
+            height: 180px;
+            background: #0f2a5a;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .doc-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .doc-thumb i {
+            font-size: 3.5rem;
+            color: var(--cyan);
+        }
+
+        .doc-card h4 {
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .doc-card a {
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--cyan);
+            transition: opacity 0.2s;
+        }
+
+        .doc-card a:hover {
+            opacity: 0.8;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--cyan);
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--cyan);
+        }
+
+        /* Dashboards lado a lado */
+        .dashboards-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 2rem;
+        }
+
+        .dashboard-card {
+            flex: 1;
+            min-width: 260px;
+            max-width: 400px;
+            background: var(--glass-bg);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: 0.3s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+        }
+
+        .dashboard-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .dashboard-card .info {
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .dashboard-card .info a {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--cyan);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid var(--cyan);
+        }
+
+        /* Notícias em grid */
+        .news-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: var(--glass-bg);
+            border-radius: 24px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--cyan);
+            transition: 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateX(4px);
+            background: rgba(0, 180, 216, 0.08);
+        }
+
+        .news-card h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .news-card p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-news {
+            color: var(--cyan);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid var(--cyan);
+        }
+
+        /* Contato */
+        .contato-card {
+            background: linear-gradient(135deg, rgba(10, 31, 78, 0.9) 0%, rgba(4, 18, 43, 0.95) 100%);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .email-link {
+            color: white;
+            font-size: 1rem;
+            background: rgba(0, 180, 216, 0.2);
+            padding: 0.6rem 1.5rem;
+            border-radius: 60px;
+            display: inline-block;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: background 0.2s;
+            border: 1px solid rgba(0, 180, 216, 0.3);
+        }
+
+        .email-link:hover {
+            background: rgba(0, 180, 216, 0.35);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            background: rgba(4, 18, 43, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 780px) {
+            .stats-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            .team-photo {
+                width: 85px;
+                height: 85px;
+            }
+
+            .produtos-destaque-grid {
+                gap: 1rem;
+            }
+
+            .card-produto img {
+                height: 160px;
+            }
+
+            .doc-thumb {
+                height: 140px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- FIXED VIDEO BACKGROUND -->
-<div class="site-bg">
-    <video autoplay loop muted playsinline>
-        <source src="a1.mp4" type="video/mp4">
-    </video>
-    <div class="site-bg-gradient"></div>
-</div>
+    <!-- FIXED VIDEO BACKGROUND -->
+    <div class="site-bg">
+        <video autoplay loop muted playsinline>
+            <source src="a1.mp4" type="video/mp4">
+        </video>
+        <div class="site-bg-gradient"></div>
+    </div>
 
-<!-- NAV -->
-<nav id="main-nav">
-    <div class="nav-inner">
-        <div class="nav-logo">
-            <div class="nav-logo-img">
-                <img src="senai1.png" alt="SENAI CIMATEC" class="logo-senai" onerror="this.onerror=null; this.src='https://placehold.co/120x42?text=SENAI';">
-                <img src="nei.png" alt="NEI" class="logo-nei" onerror="this.onerror=null; this.src='https://placehold.co/88x42?text=NEI';">
+    <!-- NAV -->
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <div class="nav-logo-img">
+                    <img src="senai1.png" alt="SENAI CIMATEC" class="logo-senai"
+                        onerror="this.onerror=null; this.src='https://placehold.co/120x42?text=SENAI';">
+                    <img src="nei.png" alt="NEI" class="logo-nei"
+                        onerror="this.onerror=null; this.src='https://placehold.co/88x42?text=NEI';">
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#atuacao">Áreas de atuação</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Buscar notícias, estudos...">
+                <i class="fas fa-search" id="searchIcon"></i>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#atuacao">Áreas de atuação</a></li>
-            <li><a href="#equipe">Equipe</a></li>
-            <li><a href="#produtos">Produtos</a></li>
-            <li><a href="#contato">Serviços de dados</a></li>
-        </ul>
-        <div class="nav-search">
-            <input type="text" id="searchInput" placeholder="Buscar notícias, estudos...">
-            <i class="fas fa-search" id="searchIcon"></i>
-        </div>
-    </div>
-</nav>
+    </nav>
 
-<!-- Hero -->
-<section class="hero-full">
-    <div class="hero-overlay"></div>
-    <div class="hero-container">
-        <div class="hero-graphic">
-            <canvas id="graphCanvas"></canvas>
-        </div>
-        <div class="hero-text">
-            <div class="hero-line hero-line-light">Transformamos</div>
-            <div class="hero-line hero-line-light">dados em</div>
-            <div class="hero-line hero-line-accent">decisões</div>
-            <div class="hero-line hero-line-accent">estratégicas</div>
-            <div class="hero-badge-wrapper">
-                <div class="hero-badge">
-                    <i class="fas fa-industry"></i> NÚCLEO DE ECONOMIA INDUSTRIAL
+    <!-- Hero -->
+    <section class="hero-full">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+            <div class="hero-graphic">
+                <canvas id="graphCanvas"></canvas>
+            </div>
+            <div class="hero-text">
+                <div class="hero-line hero-line-light">Transformamos</div>
+                <div class="hero-line hero-line-light">dados em</div>
+                <div class="hero-line hero-line-accent">decisões</div>
+                <div class="hero-line hero-line-accent">estratégicas</div>
+                <div class="hero-badge-wrapper">
+                    <div class="hero-badge">
+                        <i class="fas fa-industry"></i> NÚCLEO DE ECONOMIA INDUSTRIAL
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Sobre -->
-<section id="sobre" class="section">
-    <div class="container">
-        <h2>Sobre o Núcleo de Economia Industrial</h2>
-        <div style="max-width: 900px;">
-            <p style="font-size:1.05rem; margin-bottom: 1rem;">Realizamos estudos e desenvolvemos análises estratégicas com foco no desenvolvimento produtivo e tecnológico da Bahia, oferecendo informações qualificadas para subsidiar a tomada de decisão do SENAI CIMATEC e seus parceiros em diversos segmentos da economia.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Áreas de atuação -->
-<section id="atuacao" class="section section-alt">
-    <div class="container">
-        <h2>Áreas de atuação</h2>
-        <div class="grid-areas">
-            <div class="area-card"><div class="area-icon"><i class="fas fa-landmark"></i></div><h3>Políticas Públicas para Desenvolvimento Industrial</h3><p>Analisamos e interpretamos a estrutura produtiva, as transformações industriais e as trajetórias tecnológicas da indústria, considerando setores, cadeias de negócios e sistemas produtivos, sob a condição de que os estudos estejam fundamentados em dados confiáveis, metodologias consistentes e alinhados às estratégias institucionais de desenvolvimento industrial, inovação e competitividade.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-gavel"></i></div><h3>Regulação em Ambientes Industriais, CT&I e Educação</h3><p>Investigamos e propomos instrumentos de regulação econômica, técnica e institucional em ambientes industriais, de CT&I e Educação, sob a condição de que os mecanismos estejam alinhados às boas práticas regulatórias, às exigências legais e aos objetivos de desenvolvimento tecnológico, produtivo e regional.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-industry"></i></div><h3>Dinâmicas Industriais e Tecnológicas</h3><p>Interpretamos e avaliamos a estrutura produtiva, as transformações industriais e as trajetórias tecnológicas da indústria, considerando setores, cadeias de negócios e sistemas produtivos, sob a condição de que os estudos estejam fundamentados em dados confiáveis, metodologias consistentes e alinhados às estratégias institucionais de desenvolvimento industrial, inovação e competitividade.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-database"></i></div><h3>Ciência de Dados para Economia Industrial</h3><p>Aplicamos técnicas de ciência de dados para modelar, analisar e visualizar fenômenos econômicos e industriais, sob a condição de que os métodos utilizados sejam estatisticamente válidos, replicáveis e orientados à geração de conhecimento para formulação de políticas e decisões institucionais.</p></div>
-            <div class="area-card"><div class="area-icon"><i class="fas fa-chart-line"></i></div><h3>Benchmarking e Inteligência de Mercado</h3><p>Realizamos análises comparativas e diagnósticos de mercado voltados à identificação de oportunidades, posicionamento competitivo e modelos de inserção/adesamento produtivo, por meio de benchmarking e construção de dashboards dinâmicos, sob a condição de que os estudos estejam fundamentados em dados confiáveis, metodologias consistentes e alinhados às estratégias institucionais.</p></div>
-        </div>
-    </div>
-</section>
-
-<!-- Números + Equipe -->
-<section id="equipe" class="section">
-    <div class="container">
-        <h2>O Núcleo em Números</h2>
-        <div class="stats-flex">
-            <div class="stat-item"><div class="stat-number">3+</div><div>Profissionais Economia<br>ênfase em Política Pública e Industrial</div></div>
-            <div class="stat-item"><div class="stat-number">12</div><div>Artigos científicos publicados<br>em revistas/congressos</div></div>
-            <div class="stat-item"><div class="stat-number">+80%</div><div>Estudos aplicados apresentados<br>em congressos nacionais e internacionais</div></div>
-            <div class="stat-item"><div class="stat-number">80%</div><div>Doutores no corpo técnico</div></div>
-        </div>
-
-        <h3 style="margin: 1.5rem 0 1rem; font-family:'Poppins', sans-serif; font-size:1.5rem; color:#fff;">Equipe</h3>
-        <div class="team-grid">
-            <div class="team-card">
-                <img src="img/Andre.jpeg" alt="André Oliveira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=André'">
-                <h4>André Oliveira</h4>
-                <div class="team-role">Superintendente de Novos Negócios · Dr. Modelagem Computacional</div>
-                <div class="team-desc">Doutor em Modelagem Computacional e Tecnologia Industrial, Mestre em Engenharia Digital e Mecânica. Experiência em engenharia mecânica, inovação e sustentabilidade.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Mabel.jpg" alt="Mabel Mota" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Mabel'">
-                <h4>Mabel Mota</h4>
-                <div class="team-role">Dra. Economia — Coordenadora</div>
-                <div class="team-desc">Doutora e Graduada em Economia pela Universidade Federal da Bahia (2014; 2022) e Mestra em Economia Aplicada pela Universidade Federal de São Carlos (2017). Atua na área de Economia, com ênfase em Economia Industrial e da Inovação, Desenvolvimento Econômico e Economia Regional e Urbana.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Milton.jpg" alt="Milton Deiró" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Milton'">
-                <h4>Milton Deiró</h4>
-                <div class="team-role">Dr. Estudos Estratégicos Internacionais</div>
-                <div class="team-desc">Pós-doutorado em Direito Climático (UFBA), Doutor em  Estratégicos Internacionais, Mestre em Relações Internacionais. Experiência em Risco Climático, Mercado de Carbono e Relações Internacionais.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Yuri.jpeg" alt="Yuri Dantas" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Yuri'">
-                <h4>Yuri Dantas</h4>
-                <div class="team-role">Mestre em Economia · Analista de dados</div>
-                <div class="team-desc">Mestre e graduado em Ciências Econômicas pela Universidade Federal da Bahia (2022; 2018). Atua na área de Economia, com ênfase em Economia Industrial e Política Industrial, Políticas Públicas, Desenvolvimento Econômico e Economia Regional e Transição Energética.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Raphael.jpg" alt="Raphael Oliveira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Raphael'">
-                <h4>Raphael Oliveira</h4>
-                <div class="team-role">Doutorando em Economia · Pesquisador Sênior Ciência de dados</div>
-                <div class="team-desc">Profissional da Economia, ênfase em Política Pública, Desenvolvimento Regional e Economia Industrial. Pesquisador em modelagem preditiva.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/David.jpeg" alt="David Regalado" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=David'">
-                <h4>David Regalado</h4>
-                <div class="team-role">Doutorando em Estatística e Ciência de Dados · Pesquisador Sênior Ciência de dados</div>
-                <div class="team-desc">Especialista em Estatística e Engenharia Industrial, Sistemas de Informação, ênfase em Gestão de Dados, Big Data, ETL e Inteligência Artificial.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Italo.PNG" alt="Italo Ferreira" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Italo'">
-                <h4>Italo Ferreira</h4>
-                <div class="team-role">Mestrando em Desenvolvimento Sustentável</div>
-                <div class="team-desc">Formação em Engenharia Elétrica e Ciências Exatas, atuando em projetos de inovação em biocombustíveis, com sólida base em Machine Learning e Análise de Dados.</div>
-            </div>
-            <div class="team-card">
-                <img src="img/Felipe.PNG" alt="Felipe Dourado" class="team-photo" onerror="this.src='https://placehold.co/110x110?text=Felipe'">
-                <h4>Felipe Dourado</h4>
-                <div class="team-role">Engenheiro de Controle e Automação · Especialista em Data Science Analytics</div>
-                <div class="team-desc">Engenheiro de Controle e Automação e especialista em Data Science & Analytics pelo SENAI CIMATEC. Experiência em integração e análise de dados, pipelines IoT, dashboards e automação industrial.</div>
+    <!-- Sobre -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <h2>Sobre o Núcleo de Economia Industrial</h2>
+            <div style="max-width: 900px;">
+                <p style="font-size:1.05rem; margin-bottom: 1rem;">Realizamos estudos e desenvolvemos análises
+                    estratégicas com foco no desenvolvimento produtivo e tecnológico da Bahia, oferecendo informações
+                    qualificadas para subsidiar a tomada de decisão do SENAI CIMATEC e seus parceiros em diversos
+                    segmentos da economia.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ========== PRODUTOS & ESTUDOS (NOVA VERSÃO) ========== -->
-<section id="produtos" class="section section-alt">
-    <div class="container">
-        <!-- h2>Produtos</h2 -->
-        
-        <!-- 3 cards de produtos com imagens -->
-        <!-- div class="produtos-destaque-grid">
+    <!-- Áreas de atuação -->
+    <section id="atuacao" class="section section-alt">
+        <div class="container">
+            <h2>Áreas de atuação</h2>
+            <div class="grid-areas">
+                <div class="area-card">
+                    <div class="area-icon"><i class="fas fa-landmark"></i></div>
+                    <h3>Políticas Públicas para Desenvolvimento Industrial</h3>
+                    <p>Analisamos e interpretamos a estrutura produtiva, as transformações industriais e as trajetórias
+                        tecnológicas da indústria, considerando setores, cadeias de negócios e sistemas produtivos, sob
+                        a condição de que os estudos estejam fundamentados em dados confiáveis, metodologias
+                        consistentes e alinhados às estratégias institucionais de desenvolvimento industrial, inovação e
+                        competitividade.</p>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon"><i class="fas fa-gavel"></i></div>
+                    <h3>Regulação em Ambientes Industriais, CT&I e Educação</h3>
+                    <p>Investigamos e propomos instrumentos de regulação econômica, técnica e institucional em ambientes
+                        industriais, de CT&I e Educação, sob a condição de que os mecanismos estejam alinhados às boas
+                        práticas regulatórias, às exigências legais e aos objetivos de desenvolvimento tecnológico,
+                        produtivo e regional.</p>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon"><i class="fas fa-industry"></i></div>
+                    <h3>Dinâmicas Industriais e Tecnológicas</h3>
+                    <p>Interpretamos e avaliamos a estrutura produtiva, as transformações industriais e as trajetórias
+                        tecnológicas da indústria, considerando setores, cadeias de negócios e sistemas produtivos, sob
+                        a condição de que os estudos estejam fundamentados em dados confiáveis, metodologias
+                        consistentes e alinhados às estratégias institucionais de desenvolvimento industrial, inovação e
+                        competitividade.</p>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon"><i class="fas fa-database"></i></div>
+                    <h3>Ciência de Dados para Economia Industrial</h3>
+                    <p>Aplicamos técnicas de ciência de dados para modelar, analisar e visualizar fenômenos econômicos e
+                        industriais, sob a condição de que os métodos utilizados sejam estatisticamente válidos,
+                        replicáveis e orientados à geração de conhecimento para formulação de políticas e decisões
+                        institucionais.</p>
+                </div>
+                <div class="area-card">
+                    <div class="area-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Benchmarking e Inteligência de Mercado</h3>
+                    <p>Realizamos análises comparativas e diagnósticos de mercado voltados à identificação de
+                        oportunidades, posicionamento competitivo e modelos de inserção/adesamento produtivo, por meio
+                        de benchmarking e construção de dashboards dinâmicos, sob a condição de que os estudos estejam
+                        fundamentados em dados confiáveis, metodologias consistentes e alinhados às estratégias
+                        institucionais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Números + Equipe -->
+    <section id="equipe" class="section">
+        <div class="container">
+            <h2>O Núcleo em Números</h2>
+            <div class="stats-flex">
+                <div class="stat-item">
+                    <div class="stat-number">3+</div>
+                    <div>Profissionais Economia<br>ênfase em Política Pública e Industrial</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div>Artigos científicos publicados<br>em revistas/congressos</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+80%</div>
+                    <div>Estudos aplicados apresentados<br>em congressos nacionais e internacionais</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">80%</div>
+                    <div>Doutores no corpo técnico</div>
+                </div>
+            </div>
+
+            <h3 style="margin: 1.5rem 0 1rem; font-family:'Poppins', sans-serif; font-size:1.5rem; color:#fff;">Equipe
+            </h3>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="img/Andre.jpeg" alt="André Oliveira" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=André'">
+                    <h4>André Oliveira</h4>
+                    <div class="team-role">Superintendente de Novos Negócios · Dr. Modelagem Computacional</div>
+                    <div class="team-desc">Doutor em Modelagem Computacional e Tecnologia Industrial, Mestre em
+                        Engenharia Digital e Mecânica. Experiência em engenharia mecânica, inovação e sustentabilidade.
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Mabel.jpg" alt="Mabel Mota" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Mabel'">
+                    <h4>Mabel Mota</h4>
+                    <div class="team-role">Dra. Economia — Coordenadora</div>
+                    <div class="team-desc">Doutora e Graduada em Economia pela Universidade Federal da Bahia (2014;
+                        2022) e Mestra em Economia Aplicada pela Universidade Federal de São Carlos (2017). Atua na área
+                        de Economia, com ênfase em Economia Industrial e da Inovação, Desenvolvimento Econômico e
+                        Economia Regional e Urbana.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Milton.jpg" alt="Milton Deiró" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Milton'">
+                    <h4>Milton Deiró</h4>
+                    <div class="team-role">Dr. Estudos Estratégicos Internacionais</div>
+                    <div class="team-desc">Pós-doutorado em Direito Climático (UFBA), Doutor em Estratégicos
+                        Internacionais, Mestre em Relações Internacionais. Experiência em Risco Climático, Mercado de
+                        Carbono e Relações Internacionais.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Yuri.jpeg" alt="Yuri Dantas" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Yuri'">
+                    <h4>Yuri Dantas</h4>
+                    <div class="team-role">Mestre em Economia · Analista de dados</div>
+                    <div class="team-desc">Mestre e graduado em Ciências Econômicas pela Universidade Federal da Bahia
+                        (2022; 2018). Atua na área de Economia, com ênfase em Economia Industrial e Política Industrial,
+                        Políticas Públicas, Desenvolvimento Econômico e Economia Regional e Transição Energética.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Raphael.jpg" alt="Raphael Oliveira" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Raphael'">
+                    <h4>Raphael Oliveira</h4>
+                    <div class="team-role">Doutorando em Economia · Pesquisador Sênior Ciência de dados</div>
+                    <div class="team-desc">Profissional da Economia, ênfase em Política Pública, Desenvolvimento
+                        Regional e Economia Industrial. Pesquisador em modelagem preditiva.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/David.jpeg" alt="David Regalado" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=David'">
+                    <h4>David Regalado</h4>
+                    <div class="team-role">Doutorando em Estatística e Ciência de Dados · Pesquisador Sênior Ciência de
+                        dados</div>
+                    <div class="team-desc">Especialista em Estatística e Engenharia Industrial, Sistemas de Informação,
+                        ênfase em Gestão de Dados, Big Data, ETL e Inteligência Artificial.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Italo.PNG" alt="Italo Ferreira" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Italo'">
+                    <h4>Italo Ferreira</h4>
+                    <div class="team-role">Mestrando em Desenvolvimento Sustentável</div>
+                    <div class="team-desc">Formação em Engenharia Elétrica e Ciências Exatas, atuando em projetos de
+                        inovação em biocombustíveis, com sólida base em Machine Learning e Análise de Dados.</div>
+                </div>
+                <div class="team-card">
+                    <img src="img/Felipe.PNG" alt="Felipe Dourado" class="team-photo"
+                        onerror="this.src='https://placehold.co/110x110?text=Felipe'">
+                    <h4>Felipe Dourado</h4>
+                    <div class="team-role">Engenheiro de Controle e Automação · Especialista em Data Science Analytics
+                    </div>
+                    <div class="team-desc">Engenheiro de Controle e Automação e especialista em Data Science & Analytics
+                        pelo SENAI CIMATEC. Experiência em integração e análise de dados, pipelines IoT, dashboards e
+                        automação industrial.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRODUTOS & ESTUDOS (NOVA VERSÃO) ========== -->
+    <section id="produtos" class="section section-alt">
+        <div class="container">
+            <!-- h2>Produtos</h2 -->
+
+            <!-- 3 cards de produtos com imagens -->
+            <!-- div class="produtos-destaque-grid">
             <div class="card-produto">
                 <img src="img/intel1.png" alt="Inteligência de Tecnologia">
 
@@ -853,315 +1091,326 @@ footer {
             </div>
         </div -->
 
-        <!-- White Papers -->
-        <h3>White Papers</h3>
-        <div class="swiper swiper-white">
-            <div class="swiper-wrapper" id="white-wrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
+            <!-- White Papers -->
+            <h3>White Papers</h3>
+            <div class="swiper swiper-white">
+                <div class="swiper-wrapper" id="white-wrapper"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
 
-        <!-- Estudos Setoriais -->
-        <h3>Estudos Setoriais</h3>
-        <div class="swiper swiper-setoriais">
-            <div class="swiper-wrapper" id="setoriais-wrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
+            <!-- Estudos Setoriais -->
+            <h3>Estudos Setoriais</h3>
+            <div class="swiper swiper-setoriais">
+                <div class="swiper-wrapper" id="setoriais-wrapper"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
 
-        <!-- Benchmarking -->
-        <h3>Benchmarking</h3>
-        <div class="swiper swiper-bench">
-            <div class="swiper-wrapper" id="bench-wrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
-        </div>
+            <!-- Benchmarking -->
+            <h3>Benchmarking</h3>
+            <div class="swiper swiper-bench">
+                <div class="swiper-wrapper" id="bench-wrapper"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
 
-        <!-- Dashboards -->
-        <h3>Dashboards Estratégicos</h3>
-        <div class="dashboards-row">
-            <div class="dashboard-card">
-                <img src="img/inst.png" alt="Dashboard Institucional" onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Institucional'">
-                <div class="info">
-                    <a href="https://nei-senai-cimatec.github.io/compras/#/perfil" target="_blank">Acessar Dashboard de Compras públicas →</a>
+            <!-- Dashboards -->
+            <h3>Dashboards</h3>
+            <div class="dashboards-row">
+                <div class="dashboard-card">
+                    <img src="img/inst.png" alt="Dashboard Institucional"
+                        onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Institucional'">
+                    <div class="info">
+                        <a href="https://nei-senai-cimatec.github.io/compras/#/perfil" target="_blank">Acessar Dashboard
+                            de Compras públicas →</a>
+                    </div>
+                </div>
+                <div class="dashboard-card">
+                    <img src="img/ouro.png" alt="Dashboard Ourolandia"
+                        onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Ourolandia'">
+                    <div class="info">
+                        <a href="https://nei-senai-cimatec.github.io/anuario-ourolandia/index.html"
+                            target="_blank">Acessar Dashboard Ourolandia →</a>
+                    </div>
                 </div>
             </div>
-            <div class="dashboard-card">
-                <img src="img/ouro.png" alt="Dashboard Ourolandia" onerror="this.src='https://placehold.co/400x200/0a2a5a/cyan?text=Dashboard+Ourolandia'">
-                <div class="info">
-                    <a href="https://nei-senai-cimatec.github.io/anuario-ourolandia/index.html" target="_blank">Acessar Dashboard Ourolandia →</a>
-                </div>
+        </div>
+    </section>
+
+    <!-- Publicações Técnico-Científicas -->
+    <section class="section">
+        <div class="container">
+            <h2>Publicações</h2>
+            <h3>Técnico & Científico</h3>
+            <div class="swiper swiper-pub">
+                <div class="swiper-wrapper" id="pub-wrapper"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Publicações Técnico-Científicas -->
-<section class="section">
-    <div class="container">
-        <h2>Publicações</h2>
-        <h3>Técnico & Científico</h3>
-        <div class="swiper swiper-pub">
-            <div class="swiper-wrapper" id="pub-wrapper"></div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+    <!-- Notícias & Participação -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2>Notícias</h2>
+            <h3>Participação em eventos e congressos</h3>
+            <div class="news-grid" id="news-container"></div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Notícias & Participação -->
-<section class="section section-alt">
-    <div class="container">
-        <h2>Notícias</h2>
-        <h3>Participação em eventos e congressos</h3>
-        <div class="news-grid" id="news-container"></div>
-    </div>
-</section>
-
-<!-- Contato -->
-<section id="contato" class="section">
-    <div class="container">
-        <h2>Serviços de dados</h2>
-        <div class="contato-card">
-            <!--i class="fas fa-database" style="font-size: 2rem;"></i-->
-            <p style="font-weight: 500;">Contato</p>
-            <p style="font-weight: 500;">Quer saber mais sobre o Núcleo de Economia Industrial?</p>
-            <p style="font-weight: 500;">Fale conosco pelos nossos canais.</p>
-            <a href="mailto:cimatec-ecoindustrial@fieb.org.br" class="email-link"><i class="fas fa-envelope"></i> cimatec-ecoindustrial@fieb.org.br</a>
-        </div>
-        <!--div style="text-align: center; margin-top: 2rem;">
+    <!-- Contato -->
+    <section id="contato" class="section">
+        <div class="container">
+            <h2>Contato</h2>
+            <div class="contato-card">
+                <!--i class="fas fa-database" style="font-size: 2rem;"></i-->
+                <p style="font-weight: 500;">Quer saber mais sobre o Núcleo de Economia Industrial?</p>
+                <p style="font-weight: 500;">Fale conosco pelos nossos canais.</p>
+                <a href="mailto:cimatec-ecoindustrial@fieb.org.br" class="email-link"><i class="fas fa-envelope"></i>
+                    cimatec-ecoindustrial@fieb.org.br</a>
+                <br>
+                <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qphi0sNU7EG6tSre6-k5w7Ukfmdhn4NHmqBk_imgSEhUQllIWk1PUDIxOTlUV1c2TlYxNTU1T09VOS4u"
+                    target="_blank" class="email-link"><i class="fas fa-file-alt"></i> Formulário de demandas</a>
+            </div>
+            <!--div style="text-align: center; margin-top: 2rem;">
             <p><i class="fas fa-map-marker-alt"></i> SENAI CIMATEC – Salvador, Bahia | <i class="fas fa-clock"></i> Atendimento técnico e parcerias institucionais</p>
         </div-->
-    </div>
-</section>
+        </div>
+    </section>
 
-<footer>
-    <!--div class="container">
-        <p>© 2025 Núcleo de Economia Industrial – SENAI CIMATEC. Transformando conhecimento econômico em vantagem competitiva.</p>
-        <p style="margin-top: 6px;"><i class="fas fa-chart-line"></i> NEI · Inteligência para a indústria e políticas públicas</p>
-    </div-->
-</footer>
+    <footer>
+        <div class="container">
+            <h3 style="margin-bottom: 1.5rem; font-family: 'Poppins', sans-serif; font-size: 1.2rem; color: #fff;">Parceiros</h3>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap; padding: 1rem 0;">
+                <img src="img/footer-logos/IBGE-Brazil.svg" alt="IBGE" style="height: 50px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                <img src="img/footer-logos/Logo-ence.svg.webp" alt="ENCE" style="height: 50px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+                <img src="img/footer-logos/abein.png" alt="ABEIN" style="height: 50px; width: auto; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.8; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.8'">
+            </div>
+        </div>
+    </footer>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script type="module">
-    import * as THREE from 'three';
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module">
+        import * as THREE from 'three';
 
-    const canvas = document.getElementById('graphCanvas');
-    const container = canvas.parentElement;
-    
-    function setSize() {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-    }
+        const canvas = document.getElementById('graphCanvas');
+        const container = canvas.parentElement;
 
-    const scene = new THREE.Scene();
-    scene.background = null;
-    scene.fog = null;
+        function setSize() {
+            const width = container.clientWidth;
+            const height = container.clientHeight;
+            renderer.setSize(width, height);
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+        }
 
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(3, 1.8, 5);
-    camera.lookAt(0, 0, 0);
+        const scene = new THREE.Scene();
+        scene.background = null;
+        scene.fog = null;
 
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setClearColor(0x000000, 0);
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+        camera.position.set(3, 1.8, 5);
+        camera.lookAt(0, 0, 0);
 
-    const ambientLight = new THREE.AmbientLight(0x4488bb, 0.6);
-    scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0x88ccff, 0.8);
-    pointLight.position.set(2, 3, 4);
-    scene.add(pointLight);
-    const backLight = new THREE.DirectionalLight(0x00B4D8, 0.5);
-    backLight.position.set(-1, 2, -2);
-    scene.add(backLight);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setClearColor(0x000000, 0);
 
-    const numNodes = 70;
-    const radius = 1.9;
-    const nodes = [];
-    const positions = [];
+        const ambientLight = new THREE.AmbientLight(0x4488bb, 0.6);
+        scene.add(ambientLight);
+        const pointLight = new THREE.PointLight(0x88ccff, 0.8);
+        pointLight.position.set(2, 3, 4);
+        scene.add(pointLight);
+        const backLight = new THREE.DirectionalLight(0x00B4D8, 0.5);
+        backLight.position.set(-1, 2, -2);
+        scene.add(backLight);
 
-    const phiGolden = Math.PI * (3 - Math.sqrt(5));
-    for (let i = 0; i < numNodes; i++) {
-        const y = 1 - (i / (numNodes - 1)) * 2;
-        const radiusAtY = Math.sqrt(1 - y*y);
-        const theta = i * phiGolden * 2;
-        const x = Math.cos(theta) * radiusAtY;
-        const z = Math.sin(theta) * radiusAtY;
-        const pos = new THREE.Vector3(x * radius, y * radius, z * radius);
-        positions.push(pos);
-        
-        const sphereGeo = new THREE.SphereGeometry(0.09, 20, 20);
-        const material = new THREE.MeshStandardMaterial({
-            color: 0x88ccff,
-            emissive: 0x3366aa,
-            emissiveIntensity: 0.45,
-            roughness: 0.3,
-            metalness: 0.5
-        });
-        const sphere = new THREE.Mesh(sphereGeo, material);
-        sphere.position.copy(pos);
-        scene.add(sphere);
-        nodes.push(sphere);
-    }
-    
-    const threshold = 1.35;
-    const lineMaterial = new THREE.LineBasicMaterial({ color: 0x44aaff, transparent: true, opacity: 0.45 });
-    const edges = [];
-    for (let i = 0; i < numNodes; i++) {
-        for (let j = i + 1; j < numNodes; j++) {
-            const dist = positions[i].distanceTo(positions[j]);
-            if (dist < threshold && dist > 0.45) {
-                const points = [positions[i], positions[j]];
-                const geometry = new THREE.BufferGeometry().setFromPoints(points);
-                const line = new THREE.Line(geometry, lineMaterial);
-                scene.add(line);
-                edges.push(line);
+        const numNodes = 70;
+        const radius = 1.9;
+        const nodes = [];
+        const positions = [];
+
+        const phiGolden = Math.PI * (3 - Math.sqrt(5));
+        for (let i = 0; i < numNodes; i++) {
+            const y = 1 - (i / (numNodes - 1)) * 2;
+            const radiusAtY = Math.sqrt(1 - y * y);
+            const theta = i * phiGolden * 2;
+            const x = Math.cos(theta) * radiusAtY;
+            const z = Math.sin(theta) * radiusAtY;
+            const pos = new THREE.Vector3(x * radius, y * radius, z * radius);
+            positions.push(pos);
+
+            const sphereGeo = new THREE.SphereGeometry(0.09, 20, 20);
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x88ccff,
+                emissive: 0x3366aa,
+                emissiveIntensity: 0.45,
+                roughness: 0.3,
+                metalness: 0.5
+            });
+            const sphere = new THREE.Mesh(sphereGeo, material);
+            sphere.position.copy(pos);
+            scene.add(sphere);
+            nodes.push(sphere);
+        }
+
+        const threshold = 1.35;
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x44aaff, transparent: true, opacity: 0.45 });
+        const edges = [];
+        for (let i = 0; i < numNodes; i++) {
+            for (let j = i + 1; j < numNodes; j++) {
+                const dist = positions[i].distanceTo(positions[j]);
+                if (dist < threshold && dist > 0.45) {
+                    const points = [positions[i], positions[j]];
+                    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+                    const line = new THREE.Line(geometry, lineMaterial);
+                    scene.add(line);
+                    edges.push(line);
+                }
             }
         }
-    }
-    
-    const coreGlow = new THREE.Mesh(
-        new THREE.SphereGeometry(0.28, 32, 32),
-        new THREE.MeshStandardMaterial({ color: 0xaaddff, emissive: 0x0088cc, emissiveIntensity: 0.9 })
-    );
-    scene.add(coreGlow);
-    
-    const starField = new THREE.Points(
-        new THREE.BufferGeometry(),
-        new THREE.PointsMaterial({ color: 0x88bbff, size: 0.04, transparent: true, opacity: 0.5 })
-    );
-    const starCount = 200;
-    const starPositions = new Float32Array(starCount * 3);
-    for (let i = 0; i < starCount; i++) {
-        const r = radius + 0.7;
-        const theta2 = Math.random() * Math.PI * 2;
-        const phi2 = Math.acos(2 * Math.random() - 1);
-        starPositions[i*3] = r * Math.sin(phi2) * Math.cos(theta2);
-        starPositions[i*3+1] = r * Math.sin(phi2) * Math.sin(theta2);
-        starPositions[i*3+2] = r * Math.cos(phi2);
-    }
-    starField.geometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
-    scene.add(starField);
-    
-    const group = new THREE.Group();
-    nodes.forEach(n => group.add(n));
-    edges.forEach(e => group.add(e));
-    group.add(coreGlow);
-    group.add(starField);
-    scene.add(group);
-    nodes.forEach(n => scene.remove(n));
-    edges.forEach(e => scene.remove(e));
-    scene.remove(coreGlow);
-    scene.remove(starField);
-    
-    let rotX = 0.0010;
-    let rotY = 0.0014;
-    let rotZ = 0.0006;
-    let time = 0;
-    
-    function animate() {
-        requestAnimationFrame(animate);
-        time += 0.005;
-        
-        rotX = 0.0009 + Math.sin(time * 0.15) * 0.0008;
-        rotY = 0.0012 + Math.cos(time * 0.28) * 0.0010;
-        rotZ = 0.0005 + Math.sin(time * 0.4) * 0.0006;
-        
-        group.rotation.x += rotX;
-        group.rotation.y += rotY;
-        group.rotation.z += rotZ;
-        
-        const scale = 1 + Math.sin(time * 3) * 0.04;
-        coreGlow.scale.set(scale, scale, scale);
-        
-        renderer.render(scene, camera);
-    }
-    
-    animate();
-    
-    window.addEventListener('resize', () => setSize());
-    setSize();
-    
-    // Busca
-    const searchInput = document.getElementById('searchInput');
-    const searchIcon = document.getElementById('searchIcon');
-    const performSearch = () => {
-        const query = searchInput.value.trim();
-        if (query) {
-            alert(`Busca por: "${query}" - funcionalidade em desenvolvimento.`);
-        } else {
-            alert('Digite um termo para buscar notícias, produtos ou estudos.');
+
+        const coreGlow = new THREE.Mesh(
+            new THREE.SphereGeometry(0.28, 32, 32),
+            new THREE.MeshStandardMaterial({ color: 0xaaddff, emissive: 0x0088cc, emissiveIntensity: 0.9 })
+        );
+        scene.add(coreGlow);
+
+        const starField = new THREE.Points(
+            new THREE.BufferGeometry(),
+            new THREE.PointsMaterial({ color: 0x88bbff, size: 0.04, transparent: true, opacity: 0.5 })
+        );
+        const starCount = 200;
+        const starPositions = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount; i++) {
+            const r = radius + 0.7;
+            const theta2 = Math.random() * Math.PI * 2;
+            const phi2 = Math.acos(2 * Math.random() - 1);
+            starPositions[i * 3] = r * Math.sin(phi2) * Math.cos(theta2);
+            starPositions[i * 3 + 1] = r * Math.sin(phi2) * Math.sin(theta2);
+            starPositions[i * 3 + 2] = r * Math.cos(phi2);
         }
-    };
-    searchIcon.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') performSearch();
-    });
-    
-    window.addEventListener('scroll', () => {
-        document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
-    });
-</script>
+        starField.geometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+        scene.add(starField);
 
-<!-- Script para carrosséis e dados -->
-<script>
-// Dados dos documentos (ajuste os caminhos conforme sua pasta docs/)
-const whitePapers = [
-    { nome: "White Paper - Reciclagem de Painéis Fotovoltaicos", arquivo: "docs/white%20papers/02142025_White%20Paper%20Processos%20de%20Reciclagem%20de%20Pain%C3%A9is%20Fotovoltaicos.pdf", thumb: "img/reci.png" },
-    { nome: "White Paper - Mercado de Carbono", arquivo: "docs/white%20papers/10312023_Descarboniza%C3%A7%C3%A3o_Mercado%20de%20carbono_vf.pdf", thumb: "img/merc.png" },
-    { nome: "Mercado Náutico - BTS White Paper", arquivo: "docs/white%20papers/25102025_Mercado%20Na%C3%BAtico%20-%20BTS_White%20paper.pdf", thumb: "img/nau.png" }
-];
+        const group = new THREE.Group();
+        nodes.forEach(n => group.add(n));
+        edges.forEach(e => group.add(e));
+        group.add(coreGlow);
+        group.add(starField);
+        scene.add(group);
+        nodes.forEach(n => scene.remove(n));
+        edges.forEach(e => scene.remove(e));
+        scene.remove(coreGlow);
+        scene.remove(starField);
 
-const setoriais = [
-    { nome: "Relatório Hub Aeroespacial", arquivo: "docs/setoriais/02142025_Relatorio_Hub_Aeroespacial_FINAL.pdf", thumb: "img/hub.png", noLink: true },
-    { nome: "Economia Digital e Criativa", arquivo: "docs/setoriais/02142025_Relatorio_Tecnico_Economia_Digital_Criativa.pdf", thumb: "img/eco.png", noLink: true },
-    { nome: "Implantação Curso Técnico Aeronaves", arquivo: "docs/setoriais/06302025_Relatorio_tecnico_Implantacao_curso.pdf", thumb: "img/imple.png", noLink: true },
-];
+        let rotX = 0.0010;
+        let rotY = 0.0014;
+        let rotZ = 0.0006;
+        let time = 0;
 
-const benchDocs = [
-    { nome: "Benchmarking Internacional Aeroespacial", arquivo: "docs/Benchmarking/02142025_Benchmarking%20Internacional%20do%20Setor%20Aeroespacial.pdf", thumb: "img/inte.png" },
-    { nome: "Economia Digital - Benchmarking Porto Digital", arquivo: "docs/Benchmarking/02142025_Economia%20Digital_Benchmarking%20Porto%20Digital.pdf", thumb: "img/porto.png" },
-    { nome: "Mercado de Data Center", arquivo: "docs/Benchmarking/02142025_Mercado%20de%20Data%20Center.pdf", thumb: "img/data.png" },
-    { nome: "Benchmarking Nacional Aeroespacial - Gavião Peixoto", arquivo: "docs/Benchmarking/02252025_Benchmarking%20Nacional%20Aeroespacial%20Gavi%C3%A3o%20Peixoto.pdf", thumb: "img/aero.png" },
-    { nome: "Benchmarking Licenciamento Ambiental", arquivo: "docs/Benchmarking/06022025_Benchmarking%20Licenciamento%20Ambiental%20Ver_02_06.pdf", thumb: "img/lice.png" }
-];
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.005;
 
-const publicacoes = [
-    { nome: "Hidrogênio Verde - Simpósio Especial", arquivo: "docs/pub/hidrogenio_verde_simposio.pdf", thumb: "img/hidro.png" },
-    { nome: "Texto para Discussão 2837 - Desenvolvimento Brasileiro", arquivo: "docs/pub/texto_discussao_2837.pdf", thumb: "img/dese.png" },
-    { nome: "Brazil, Brasis - Reconfigurações Industriais", arquivo: "docs/pub/brazil_brasis.pdf", thumb: "img/recon.png" },
-    { nome: "Melting sea ice - Naval Geopolitics", arquivo: "docs/pub/melting_sea_ice.pdf", thumb: "img/naval.png" }
-];
+            rotX = 0.0009 + Math.sin(time * 0.15) * 0.0008;
+            rotY = 0.0012 + Math.cos(time * 0.28) * 0.0010;
+            rotZ = 0.0005 + Math.sin(time * 0.4) * 0.0006;
 
-const noticias = [
-    { titulo: "NEI apresenta trabalho inédito em Madri na ETSI Quantum Safe Cryptography Conference", resumo: "Único trabalho aprovado da América Latina, levando abordagem econômica ao debate internacional sobre criptografia quântica.", link: "docs/news/quantum_madri.pdf" },
-    { titulo: "NEI participa de debate sobre Hidrogênio de Baixo Carbono no ENEI 2025", resumo: "Estudo apresentado e contribuição estratégica sobre transição energética e competitividade industrial.", link: "docs/news/enei_hidrogenio.pdf" }
-];
+            group.rotation.x += rotX;
+            group.rotation.y += rotY;
+            group.rotation.z += rotZ;
 
-// Função para preencher carrosséis
-// Substitua a função preencherSwiper por esta:
-function preencherSwiper(wrapperId, itens) {
-    const wrapper = document.getElementById(wrapperId);
-    if (!wrapper) return;
-    wrapper.innerHTML = "";
-    itens.forEach(item => {
-        const slide = document.createElement("div");
-        slide.className = "swiper-slide";
-        // Verifica se tem thumbnail
-        const thumbHtml = item.thumb 
-            ? `<img src="${item.thumb}" alt="${item.nome}" style="width:100%; height:100%; object-fit:cover;">`
-            : `<i class="fas fa-file-pdf"></i>`;
-        
-        slide.innerHTML = `
+            const scale = 1 + Math.sin(time * 3) * 0.04;
+            coreGlow.scale.set(scale, scale, scale);
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => setSize());
+        setSize();
+
+        // Busca
+        const searchInput = document.getElementById('searchInput');
+        const searchIcon = document.getElementById('searchIcon');
+        const performSearch = () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                alert(`Busca por: "${query}" - funcionalidade em desenvolvimento.`);
+            } else {
+                alert('Digite um termo para buscar notícias, produtos ou estudos.');
+            }
+        };
+        searchIcon.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') performSearch();
+        });
+
+        window.addEventListener('scroll', () => {
+            document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
+        });
+    </script>
+
+    <!-- Script para carrosséis e dados -->
+    <script>
+        // Dados dos documentos (ajuste os caminhos conforme sua pasta docs/)
+        const whitePapers = [
+            { nome: "White Paper - Reciclagem de Painéis Fotovoltaicos", arquivo: "docs/white%20papers/02142025_White%20Paper%20Processos%20de%20Reciclagem%20de%20Pain%C3%A9is%20Fotovoltaicos.pdf", thumb: "img/reci.png" },
+            { nome: "White Paper - Mercado de Carbono", arquivo: "docs/white%20papers/10312023_Descarboniza%C3%A7%C3%A3o_Mercado%20de%20carbono_vf.pdf", thumb: "img/merc.png" },
+            { nome: "Mercado Náutico - BTS White Paper", arquivo: "docs/white%20papers/25102025_Mercado%20Na%C3%BAtico%20-%20BTS_White%20paper.pdf", thumb: "img/nau.png" }
+        ];
+
+        const setoriais = [
+            { nome: "Relatório Hub Aeroespacial", arquivo: "docs/setoriais/02142025_Relatorio_Hub_Aeroespacial_FINAL.pdf", thumb: "img/hub.png", noLink: true },
+            { nome: "Economia Digital e Criativa", arquivo: "docs/setoriais/02142025_Relatorio_Tecnico_Economia_Digital_Criativa.pdf", thumb: "img/eco.png", noLink: true },
+            { nome: "Implantação Curso Técnico Aeronaves", arquivo: "docs/setoriais/06302025_Relatorio_tecnico_Implantacao_curso.pdf", thumb: "img/imple.png", noLink: true },
+        ];
+
+        const benchDocs = [
+            { nome: "Benchmarking Internacional Aeroespacial", arquivo: "docs/Benchmarking/02142025_Benchmarking%20Internacional%20do%20Setor%20Aeroespacial.pdf", thumb: "img/inte.png" },
+            { nome: "Economia Digital - Benchmarking Porto Digital", arquivo: "docs/Benchmarking/02142025_Economia%20Digital_Benchmarking%20Porto%20Digital.pdf", thumb: "img/porto.png" },
+            { nome: "Mercado de Data Center", arquivo: "docs/Benchmarking/02142025_Mercado%20de%20Data%20Center.pdf", thumb: "img/data.png" },
+            { nome: "Benchmarking Nacional Aeroespacial - Gavião Peixoto", arquivo: "docs/Benchmarking/02252025_Benchmarking%20Nacional%20Aeroespacial%20Gavi%C3%A3o%20Peixoto.pdf", thumb: "img/aero.png" },
+            { nome: "Benchmarking Licenciamento Ambiental", arquivo: "docs/Benchmarking/06022025_Benchmarking%20Licenciamento%20Ambiental%20Ver_02_06.pdf", thumb: "img/lice.png" }
+        ];
+
+        const publicacoes = [
+            { nome: "Hidrogênio Verde - Simpósio Especial", arquivo: "docs/pub/hidrogenio_verde_simposio.pdf", thumb: "img/hidro.png" },
+            { nome: "Texto para Discussão 2837 - Desenvolvimento Brasileiro", arquivo: "docs/pub/texto_discussao_2837.pdf", thumb: "img/dese.png" },
+            { nome: "Brazil, Brasis - Reconfigurações Industriais", arquivo: "docs/pub/brazil_brasis.pdf", thumb: "img/recon.png" },
+            { nome: "Melting sea ice - Naval Geopolitics", arquivo: "docs/pub/melting_sea_ice.pdf", thumb: "img/naval.png" }
+        ];
+
+        const noticias = [
+            { titulo: "NEI apresenta trabalho inédito em Madri na ETSI Quantum Safe Cryptography Conference", resumo: "Único trabalho aprovado da América Latina, levando abordagem econômica ao debate internacional sobre criptografia quântica.", link: "docs/news/quantum_madri.pdf" },
+            { titulo: "NEI participa de debate sobre Hidrogênio de Baixo Carbono no ENEI 2025", resumo: "Estudo apresentado e contribuição estratégica sobre transição energética e competitividade industrial.", link: "docs/news/enei_hidrogenio.pdf" }
+        ];
+
+        // Função para preencher carrosséis
+        // Substitua a função preencherSwiper por esta:
+        function preencherSwiper(wrapperId, itens) {
+            const wrapper = document.getElementById(wrapperId);
+            if (!wrapper) return;
+            wrapper.innerHTML = "";
+            itens.forEach(item => {
+                const slide = document.createElement("div");
+                slide.className = "swiper-slide";
+                // Verifica se tem thumbnail
+                const thumbHtml = item.thumb
+                    ? `<img src="${item.thumb}" alt="${item.nome}" style="width:100%; height:100%; object-fit:cover;">`
+                    : `<i class="fas fa-file-pdf"></i>`;
+
+                slide.innerHTML = `
             <div class="doc-card">
                 <div class="doc-thumb">
                     ${thumbHtml}
@@ -1170,70 +1419,71 @@ function preencherSwiper(wrapperId, itens) {
                 ${item.noLink ? '' : `<a href="${item.arquivo}" target="_blank">📄 Visualizar →</a>`}
             </div>
         `;
-        wrapper.appendChild(slide);
-    });
-}
+                wrapper.appendChild(slide);
+            });
+        }
 
-// Carregar notícias
-function carregarNoticias() {
-    const container = document.getElementById("news-container");
-    if (!container) return;
-    container.innerHTML = "";
-    noticias.forEach(noticia => {
-        const card = document.createElement("div");
-        card.className = "news-card";
-        card.innerHTML = `
+        // Carregar notícias
+        function carregarNoticias() {
+            const container = document.getElementById("news-container");
+            if (!container) return;
+            container.innerHTML = "";
+            noticias.forEach(noticia => {
+                const card = document.createElement("div");
+                card.className = "news-card";
+                card.innerHTML = `
             <h4><i class="fas fa-newspaper"></i> ${noticia.titulo}</h4>
             <p>${noticia.resumo}</p>
             <a href="${noticia.link}" target="_blank" class="btn-news">Saiba mais →</a>
         `;
-        container.appendChild(card);
-    });
-}
+                container.appendChild(card);
+            });
+        }
 
-// Inicializar Swipers
-function initSwipers() {
-    new Swiper('.swiper-white', { 
-        slidesPerView: 1, 
-        spaceBetween: 20, 
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }, 
-        pagination: { el: '.swiper-pagination' }, 
-        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-        autoplay: { delay: 4000, disableOnInteraction: false }
-    });
-    new Swiper('.swiper-setoriais', { 
-        slidesPerView: 1, 
-        spaceBetween: 20, 
-        navigation: true, 
-        pagination: { el: '.swiper-pagination' }, 
-        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-        autoplay: { delay: 4000, disableOnInteraction: false }
-    });
-    new Swiper('.swiper-bench', { 
-        slidesPerView: 1, 
-        spaceBetween: 20, 
-        navigation: true, 
-        pagination: { el: '.swiper-pagination' }, 
-        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-        autoplay: { delay: 4500, disableOnInteraction: false }
-    });
-    new Swiper('.swiper-pub', { 
-        slidesPerView: 1, 
-        spaceBetween: 20, 
-        navigation: true, 
-        pagination: { el: '.swiper-pagination' }, 
-        breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
-        autoplay: { delay: 4000, disableOnInteraction: false }
-    });
-}
+        // Inicializar Swipers
+        function initSwipers() {
+            new Swiper('.swiper-white', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                pagination: { el: '.swiper-pagination' },
+                breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                autoplay: { delay: 4000, disableOnInteraction: false }
+            });
+            new Swiper('.swiper-setoriais', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: true,
+                pagination: { el: '.swiper-pagination' },
+                breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                autoplay: { delay: 4000, disableOnInteraction: false }
+            });
+            new Swiper('.swiper-bench', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: true,
+                pagination: { el: '.swiper-pagination' },
+                breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                autoplay: { delay: 4500, disableOnInteraction: false }
+            });
+            new Swiper('.swiper-pub', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: true,
+                pagination: { el: '.swiper-pagination' },
+                breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+                autoplay: { delay: 4000, disableOnInteraction: false }
+            });
+        }
 
-// Executar
-preencherSwiper("white-wrapper", whitePapers);
-preencherSwiper("setoriais-wrapper", setoriais);
-preencherSwiper("bench-wrapper", benchDocs);
-preencherSwiper("pub-wrapper", publicacoes);
-carregarNoticias();
-initSwipers();
-</script>
+        // Executar
+        preencherSwiper("white-wrapper", whitePapers);
+        preencherSwiper("setoriais-wrapper", setoriais);
+        preencherSwiper("bench-wrapper", benchDocs);
+        preencherSwiper("pub-wrapper", publicacoes);
+        carregarNoticias();
+        initSwipers();
+    </script>
 </body>
+
 </html>
