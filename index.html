@@ -154,35 +154,7 @@
             color: var(--cyan-deep);
         }
 
-        .nav-search {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-            background: #f1f5f9;
-            border: 1px solid #e2e8f0;
-            border-radius: 100px;
-            padding: .35rem .9rem;
-        }
-
-        .nav-search input {
-            background: none;
-            border: none;
-            outline: none;
-            color: #0f172a;
-            font-size: 13px;
-            font-family: 'Open Sans', sans-serif;
-            width: 160px;
-        }
-
-        .nav-search input::placeholder {
-            color: #94a3b8;
-        }
-
-        .nav-search i {
-            color: var(--cyan-deep);
-            font-size: .9rem;
-            cursor: pointer;
-        }
+        
 
         @media (max-width: 900px) {
 
@@ -860,10 +832,7 @@
                 <li><a href="#produtos">Produtos</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
-            <div class="nav-search">
-                <input type="text" id="searchInput" placeholder="Buscar notícias, estudos...">
-                <i class="fas fa-search" id="searchIcon"></i>
-            </div>
+            
         </div>
     </nav>
 
@@ -1340,21 +1309,7 @@
         window.addEventListener('resize', () => setSize());
         setSize();
 
-        // Busca
-        const searchInput = document.getElementById('searchInput');
-        const searchIcon = document.getElementById('searchIcon');
-        const performSearch = () => {
-            const query = searchInput.value.trim();
-            if (query) {
-                alert(`Busca por: "${query}" - funcionalidade em desenvolvimento.`);
-            } else {
-                alert('Digite um termo para buscar notícias, produtos ou estudos.');
-            }
-        };
-        searchIcon.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') performSearch();
-        });
+    
 
         window.addEventListener('scroll', () => {
             document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 10);
