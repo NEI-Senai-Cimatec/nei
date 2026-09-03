@@ -1215,17 +1215,18 @@
             </article>
 
             <article class="card">
-              <div class="capa"><img
+              <div class="capa">
+                <img
                   src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/Economia%20Digital%20-%20Benchmarking%20do%20Porto%20Digital.png"
-                  alt="Economia Digital, benchmarking do Porto Digital"></div>
+                  alt="Economia Digital, benchmarking do Porto Digital">
+              </div>
               <div class="corpo">
                 <h3>Economia digital</h3>
                 <p>Benchmarking do Porto Digital para orientar o posicionamento do CIMATEC Digital na economia digital.
                 </p>
                 <p class="produto">Produto: benchmarking</p>
-                <a class="link link-protegido"
-                  href="https://nei-senai-cimatec.github.io/nei/docs/benchmarking/02142025_Economia%20Digital_Benchmarking%20Porto%20Digital.pdf"
-                  target="_blank" rel="noopener">Login necessário</a>
+                <a class="link link-protegido link-pdf-protegido" href="#" target="_blank" rel="noopener"
+                  data-arquivo="economia-digital.pdf">Login necessário</a>
               </div>
             </article>
 
@@ -1814,6 +1815,7 @@
     const mensagemLogin = document.getElementById("mensagemLogin");
     const linksProtegidos = document.querySelectorAll("#conteudoProdutos a.link:not(.link-publico)");
     const linksSitesExternos = document.querySelectorAll("#conteudoProdutos a.link-site-externo");
+    const linksPdfProtegidos = document.querySelectorAll("#conteudoProdutos a.link-pdf-protegido");
     const tituloLogin = document.querySelector(".login-caixa h2");
     const introducaoLogin = document.querySelector(".login-intro");
     const abrirCadastro = document.getElementById("abrirCadastro");
@@ -2261,6 +2263,78 @@
       );
     });
 
+    linksPdfProtegidos.forEach(function (link) {
+      link.addEventListener(
+        "click",
+        async function (evento) {
+          evento.preventDefault();
+          evento.stopPropagation();
+
+          if (!sessaoAtual || !sessaoAtual.user) {
+            abrirModalLogin();
+            return;
+          }
+
+          const caminhoArquivo = link.dataset.arquivo;
+          const textoAnterior = link.textContent;
+
+          if (!caminhoArquivo) {
+            console.error(
+              "O atributo data-arquivo não foi informado."
+            );
+            return;
+          }
+
+          link.textContent = "Abrindo...";
+          link.setAttribute("aria-busy", "true");
+
+          try {
+            const { data, error } =
+              await supabaseClient.storage
+                .from("estudos-tecnicos")
+                .createSignedUrl(
+                  caminhoArquivo,
+                  300
+                );
+
+            if (error) {
+              throw error;
+            }
+
+            if (!data || !data.signedUrl) {
+              throw new Error(
+                "A URL temporária não foi gerada."
+              );
+            }
+
+            const novaJanela = window.open(
+              data.signedUrl,
+              "_blank",
+              "noopener,noreferrer"
+            );
+
+            if (!novaJanela) {
+              window.location.href = data.signedUrl;
+            }
+
+            link.textContent = "Acessar estudo";
+          } catch (erro) {
+            console.error(
+              "Erro ao abrir PDF protegido:",
+              erro
+            );
+
+            link.textContent = "Acesso indisponível";
+
+            setTimeout(function () {
+              link.textContent = textoAnterior;
+            }, 2500);
+          } finally {
+            link.removeAttribute("aria-busy");
+          }
+        }
+      );
+    });
     btnFecharLogin.addEventListener(
       "click",
       fecharModalLogin
