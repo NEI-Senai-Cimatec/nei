@@ -2285,6 +2285,41 @@
             return;
           }
 
+          /*
+          * Abre a nova guia antes da solicitação ao Supabase.
+          * Isso evita que o navegador bloqueie a nova guia.
+          */
+          const novaJanela = window.open(
+            "about:blank",
+            "_blank"
+          );
+
+          if (!novaJanela) {
+            alert(
+              "O navegador bloqueou a nova guia. " +
+              "Permita pop-ups para este site e tente novamente."
+            );
+            return;
+          }
+
+          novaJanela.opener = null;
+
+          novaJanela.document.write(
+            "<!DOCTYPE html>" +
+            "<html lang='pt-BR'>" +
+            "<head>" +
+            "<meta charset='utf-8'>" +
+            "<title>Abrindo estudo</title>" +
+            "</head>" +
+            "<body style='font-family: Arial, sans-serif;" +
+            "padding: 40px; color: #002B5C'>" +
+            "<p>Abrindo estudo...</p>" +
+            "</body>" +
+            "</html>"
+          );
+
+          novaJanela.document.close();
+
           link.textContent = "Abrindo...";
           link.setAttribute("aria-busy", "true");
 
@@ -2307,15 +2342,9 @@
               );
             }
 
-            const novaJanela = window.open(
-              data.signedUrl,
-              "_blank",
-              "noopener,noreferrer"
+            novaJanela.location.replace(
+              data.signedUrl
             );
-
-            if (!novaJanela) {
-              window.location.href = data.signedUrl;
-            }
 
             link.textContent = "Acessar estudo";
           } catch (erro) {
@@ -2323,6 +2352,8 @@
               "Erro ao abrir PDF protegido:",
               erro
             );
+
+            novaJanela.close();
 
             link.textContent = "Acesso indisponível";
 
@@ -2335,6 +2366,7 @@
         }
       );
     });
+
     btnFecharLogin.addEventListener(
       "click",
       fecharModalLogin
