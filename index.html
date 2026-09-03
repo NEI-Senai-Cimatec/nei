@@ -1190,8 +1190,10 @@
                 <h3>Painel da Indústria e das Compras Públicas da Bahia</h3>
                 <p>Priorização de setores industriais para orientar a política de compras públicas do Estado.</p>
                 <p class="produto">Produto: painel</p>
-                <a class="link link-protegido" href="https://nei-senai-cimatec.github.io/compras/" target="_blank"
-                  rel="noopener">Login necessário</a>
+                <a class="link link-protegido link-site-externo" href="#" data-site="compras" role="button"
+                  aria-disabled="true" title="Entre para acessar este estudo">
+                  Login necessário
+                </a>
               </div>
             </article>
 
@@ -1205,8 +1207,10 @@
                   socioeconômico,
                   ambiental e territorial de Ourolândia e da Bahia.</p>
                 <p class="produto">Produto: painel</p>
-                <a class="link link-protegido" href="https://nei-senai-cimatec.github.io/anuario-ourolandia/index.html"
-                  target="_blank" rel="noopener">Login necessário</a>
+                <a class="link link-protegido link-site-externo" href="#" data-site="anuario" role="button"
+                  aria-disabled="true" title="Entre para acessar este estudo">
+                  Login necessário
+                </a>
               </div>
             </article>
 
@@ -1315,8 +1319,8 @@
                 <p>Análise do mercado náutico na Baía de Todos os Santos, identificando oportunidades de investimento,
                   tendências da Economia Azul e segmentos com potencial de geração de emprego e renda.</p>
                 <p class="produto">Produto: white paper</p>
-                <a class="link link-protegido" href="docs/white_papers/25102025_Mercado Naútico - BTS_White paper.pdf"
-                  target="_blank" rel="noopener">Login necessário</a>
+                <a class="link link-publico" href="docs/white_papers/25102025_Mercado Naútico - BTS_White paper.pdf"
+                  target="_blank" rel="noopener">Acessar estudo</a>
               </div>
             </article>
 
@@ -1330,9 +1334,9 @@
                 <p>Avaliação de tecnologias, mercado e regulamentação para reciclagem de painéis fotovoltaicos,
                   identificando oportunidades em logística reversa, recuperação de materiais e economia circular.</p>
                 <p class="produto">Produto: white paper</p>
-                <a class="link link-protegido"
+                <a class="link link-publico"
                   href="docs/white_papers/02142025_White Paper Processos de Reciclagem de Painéis Fotovoltaicos.pdf"
-                  target="_blank" rel="noopener">Login necessário</a>
+                  target="_blank" rel="noopener">Acessar estudo</a>
               </div>
             </article>
 
@@ -1346,9 +1350,9 @@
                 <p>Análise dos mecanismos, atores e modelos de funcionamento do mercado de carbono, destacando
                   oportunidades para geração, certificação e comercialização de créditos de carbono.</p> <br>
                 <p class="produto">Produto: white paper</p>
-                <a class="link link-protegido"
+                <a class="link link-publico"
                   href="docs/white_papers/01282025_Descarbonização_Mercado de carbono_White paper.pdf" target="_blank"
-                  rel="noopener">Login necessário</a>
+                  rel="noopener">Acessar estudo</a>
               </div>
             </article>
 
@@ -1725,9 +1729,73 @@
 
         <p id="mensagemLogin" class="login-mensagem" role="status" aria-live="polite"></p>
       </form>
+      <p id="atalhoCadastro" class="login-alternar">
+        Novo usuário?
+        <button id="abrirCadastro" class="login-link" type="button">
+          Cadastre-se
+        </button>
+      </p>
+      <form id="formCadastro" hidden>
+        <div class="login-campo">
+          <label for="nomeCadastro">Nome</label>
+
+          <input id="nomeCadastro" name="nome" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+
+        <div class="login-campo">
+          <label for="emailCadastro">E-mail</label>
+
+          <input id="emailCadastro" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="login-campo">
+          <label for="senhaCadastro">Senha</label>
+
+          <input id="senhaCadastro" name="senha" type="password" autocomplete="new-password" minlength="8" required>
+
+          <small class="login-ajuda">
+            Use pelo menos 8 caracteres.
+          </small>
+        </div>
+
+        <div class="login-campo">
+          <label for="confirmarSenhaCadastro">
+            Confirme a senha
+          </label>
+
+          <input id="confirmarSenhaCadastro" name="confirmarSenha" type="password" autocomplete="new-password"
+            minlength="8" required>
+        </div>
+
+        <label class="login-checkbox">
+          <input id="aceitaEmail" name="aceitaEmail" type="checkbox">
+
+          <span>
+            Quero receber por e-mail informações sobre novos estudos
+            e publicações do NEI. Posso cancelar a inscrição a qualquer
+            momento.
+          </span>
+
+        </label>
+
+        <button id="btnCadastrar" class="btn login-enviar" type="submit">
+          Criar conta
+        </button>
+
+        <p id="mensagemCadastro" class="login-mensagem" role="status" aria-live="polite"></p>
+
+        <p class="login-alternar">
+          Já possui uma conta?
+
+          <button id="voltarLogin" class="login-link" type="button">
+            Entre aqui
+          </button>
+        </p>
+      </form>
     </div>
   </div>
 
+  <!-- URL e annon public key do supabase -->
   <script>
     const SUPABASE_URL = "https://rtesmxnuowguozgnjlrd.supabase.co";
     const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0ZXNteG51b3dndW96Z25qbHJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgzNTY0MzMsImV4cCI6MjEwMzkzMjQzM30.JCHOOBu4AhYSn2-q7h9UUwHx9XePfoCv8LM7ZjlGR6c";
@@ -1745,8 +1813,61 @@
     const btnEntrar = document.getElementById("btnEntrar");
     const mensagemLogin = document.getElementById("mensagemLogin");
     const linksProtegidos = document.querySelectorAll("#conteudoProdutos a.link:not(.link-publico)");
+    const linksSitesExternos = document.querySelectorAll("#conteudoProdutos a.link-site-externo");
+    const tituloLogin = document.querySelector(".login-caixa h2");
+    const introducaoLogin = document.querySelector(".login-intro");
+    const abrirCadastro = document.getElementById("abrirCadastro");
+    const voltarLogin = document.getElementById("voltarLogin");
+    const formCadastro = document.getElementById("formCadastro");
+    const nomeCadastro = document.getElementById("nomeCadastro");
+    const emailCadastro = document.getElementById("emailCadastro");
+    const senhaCadastro = document.getElementById("senhaCadastro");
+    const confirmarSenhaCadastro = document.getElementById("confirmarSenhaCadastro");
+    const aceitaEmail = document.getElementById("aceitaEmail");
+    const btnCadastrar = document.getElementById("btnCadastrar");
+    const mensagemCadastro = document.getElementById("mensagemCadastro");
+    const atalhoCadastro = document.getElementById("atalhoCadastro");
 
     let sessaoAtual = null;
+
+    function exibirCadastro() {
+      formLogin.hidden = true;
+      atalhoCadastro.hidden = true;
+      formCadastro.hidden = false;
+
+      tituloLogin.textContent = "Criar conta";
+
+      introducaoLogin.textContent =
+        "Cadastre-se para acessar os estudos técnicos do NEI.";
+
+      mensagemLogin.textContent = "";
+      mensagemCadastro.textContent = "";
+      mensagemCadastro.className = "login-mensagem";
+
+      setTimeout(function () {
+        nomeCadastro.focus();
+      }, 50);
+    }
+
+    function exibirLogin() {
+      formCadastro.hidden = true;
+      formLogin.hidden = false;
+      atalhoCadastro.hidden = false;
+
+      tituloLogin.textContent = "Entrar";
+
+      introducaoLogin.textContent =
+        "Entre com seu e-mail e senha para acessar " +
+        "os conteúdos restritos.";
+
+      mensagemCadastro.textContent = "";
+      mensagemLogin.textContent = "";
+      mensagemLogin.className = "login-mensagem";
+
+      setTimeout(function () {
+        loginEmail.focus();
+      }, 50);
+    }
 
     function abrirModalLogin() {
       mensagemLogin.textContent = "";
@@ -1766,9 +1887,22 @@
       modalLogin.setAttribute("aria-hidden", "true");
       document.body.classList.remove("travado");
 
-      loginSenha.value = "";
+      formLogin.reset();
+      formCadastro.reset();
+
       mensagemLogin.textContent = "";
-      mensagemLogin.classList.remove("erro", "sucesso");
+      mensagemCadastro.textContent = "";
+
+      mensagemLogin.className = "login-mensagem";
+      mensagemCadastro.className = "login-mensagem";
+
+      formCadastro.hidden = true;
+      formLogin.hidden = false;
+      atalhoCadastro.hidden = false;
+
+      tituloLogin.textContent = "Entrar";
+
+      introducaoLogin.textContent = "Entre com seu e-mail e senha para acessar " + "os conteúdos restritos.";
     }
 
     function traduzirErroLogin(mensagem) {
@@ -1824,6 +1958,122 @@
           window.atualizarNavProdutos();
         }, 100);
       }
+    }
+
+    async function realizarCadastro(evento) {
+      evento.preventDefault();
+      if (!supabaseClient) {
+        mensagemCadastro.textContent = "O serviço de cadastro não está configurado.";
+        mensagemCadastro.className = "login-mensagem erro";
+        return;
+      }
+
+      const nome = nomeCadastro.value.trim();
+      const email = emailCadastro.value.trim();
+      const senha = senhaCadastro.value;
+      const confirmarSenha = confirmarSenhaCadastro.value;
+      const autorizaEmail = aceitaEmail.checked;
+
+      mensagemCadastro.textContent = "";
+      mensagemCadastro.className = "login-mensagem";
+
+      if (!nome || !email || !senha || !confirmarSenha) {
+        mensagemCadastro.textContent =
+          "Preencha todos os campos obrigatórios.";
+
+        mensagemCadastro.classList.add("erro");
+        return;
+      }
+
+      if (senha.length < 8) {
+        mensagemCadastro.textContent =
+          "A senha deve ter pelo menos 8 caracteres.";
+
+        mensagemCadastro.classList.add("erro");
+        return;
+      }
+
+      if (senha !== confirmarSenha) {
+        mensagemCadastro.textContent =
+          "As senhas informadas não coincidem.";
+
+        mensagemCadastro.classList.add("erro");
+        return;
+      }
+
+      btnCadastrar.disabled = true;
+      btnCadastrar.textContent = "Criando conta...";
+
+      let resultado;
+
+      try {
+        resultado = await supabaseClient.auth.signUp({
+          email: email,
+          password: senha,
+          options: {
+            data: {
+              nome: nome,
+              aceita_email: autorizaEmail,
+              aceite_email_em: autorizaEmail
+                ? new Date().toISOString()
+                : null
+            }
+          }
+        });
+      } catch (erro) {
+        console.error("Falha de conexão no cadastro:", erro);
+
+        mensagemCadastro.textContent =
+          "Não foi possível conectar ao serviço de cadastro. " +
+          "Tente novamente.";
+
+        mensagemCadastro.classList.add("erro");
+        return;
+      } finally {
+        btnCadastrar.disabled = false;
+        btnCadastrar.textContent = "Criar conta";
+      }
+
+      btnCadastrar.disabled = false;
+      btnCadastrar.textContent = "Criar conta";
+
+      if (resultado.error) {
+        console.error(
+          "Erro no cadastro:",
+          resultado.error
+        );
+
+        mensagemCadastro.textContent =
+          "Não foi possível criar a conta. " +
+          "Verifique os dados e tente novamente.";
+
+        mensagemCadastro.classList.add("erro");
+        return;
+      }
+
+      formCadastro.reset();
+
+      if (resultado.data.session) {
+        mensagemCadastro.textContent =
+          "Conta criada. Acesso liberado.";
+
+        mensagemCadastro.classList.add("sucesso");
+
+        atualizarInterfaceAutenticacao(
+          resultado.data.session
+        );
+
+        setTimeout(function () {
+          fecharModalLogin();
+        }, 700);
+
+        return;
+      }
+
+      mensagemCadastro.textContent =
+        "Conta criada. Verifique seu e-mail para confirmar o cadastro.";
+
+      mensagemCadastro.classList.add("sucesso");
     }
 
     async function realizarLogin(evento) {
@@ -1944,6 +2194,73 @@
       });
     });
 
+    linksSitesExternos.forEach(function (link) {
+      link.addEventListener(
+        "click",
+        async function (evento) {
+          evento.preventDefault();
+          evento.stopPropagation();
+
+          if (!sessaoAtual || !sessaoAtual.user) {
+            abrirModalLogin();
+            return;
+          }
+
+          const codigoSite = link.dataset.site;
+          const textoAnterior = link.textContent;
+
+          if (!codigoSite) {
+            console.error(
+              "O atributo data-site não foi informado."
+            );
+            return;
+          }
+
+          link.textContent = "Abrindo...";
+          link.setAttribute("aria-busy", "true");
+
+          try {
+            const { data, error } = await supabaseClient
+              .from("destinos_protegidos")
+              .select("url")
+              .eq("codigo", codigoSite)
+              .single();
+
+            if (error) {
+              throw error;
+            }
+
+            if (!data || !data.url) {
+              throw new Error(
+                "Endereço do site não encontrado."
+              );
+            }
+
+            window.open(
+              data.url,
+              "_blank",
+              "noopener,noreferrer"
+            );
+
+            link.textContent = "Acessar estudo";
+          } catch (erro) {
+            console.error(
+              "Erro ao abrir site externo:",
+              erro
+            );
+
+            link.textContent = "Acesso indisponível";
+
+            setTimeout(function () {
+              link.textContent = textoAnterior;
+            }, 2500);
+          } finally {
+            link.removeAttribute("aria-busy");
+          }
+        }
+      );
+    });
+
     btnFecharLogin.addEventListener(
       "click",
       fecharModalLogin
@@ -1952,6 +2269,21 @@
     formLogin.addEventListener(
       "submit",
       realizarLogin
+    );
+
+    abrirCadastro.addEventListener(
+      "click",
+      exibirCadastro
+    );
+
+    voltarLogin.addEventListener(
+      "click",
+      exibirLogin
+    );
+
+    formCadastro.addEventListener(
+      "submit",
+      realizarCadastro
     );
 
     modalLogin.addEventListener("click", function (evento) {
