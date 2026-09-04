@@ -1122,30 +1122,6 @@
       }
     }
 
-    .login-checkbox {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin: 8px 0 24px;
-      color: var(--cinza);
-      font-size: 13.5px;
-      line-height: 1.5;
-      cursor: pointer;
-    }
-
-    .login-checkbox input {
-      flex: 0 0 auto;
-      width: 16px;
-      height: 16px;
-      margin: 3px 0 0;
-      accent-color: var(--azul-institucional);
-      cursor: pointer;
-    }
-
-    .login-checkbox span {
-      display: block;
-    }
-
     #btnCadastrar {
       margin-top: 0;
     }
@@ -1265,7 +1241,22 @@
     }
 
     @media (min-width: 1280px) {
+      .topo .wrap {
+        grid-template-columns: auto 1fr auto;
+        column-gap: 34px;
+        padding-left: max(22px,
+            calc((100vw - var(--max)) / 2 + 22px));
+        padding-right: 20px;
+      }
+
+      .marcas {
+        grid-column: 1;
+        justify-self: start;
+      }
+
       .menu {
+        grid-column: 2;
+        justify-self: start;
         display: flex;
       }
     }
@@ -1360,6 +1351,38 @@
         display: none;
       }
     }
+
+    @media (min-width: 980px) {
+      #desafios h2 {
+        max-width: none;
+        white-space: nowrap;
+        font-size: clamp(25px, 3vw, 38px);
+      }
+    }
+
+    .moldura-contato {
+      min-height: 640px;
+      background: var(--branco);
+    }
+
+    .moldura-contato iframe {
+      width: 100%;
+      height: 76vh;
+      min-height: 640px;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .moldura-contato {
+        min-height: 600px;
+      }
+
+      .moldura-contato iframe {
+        height: 78vh;
+        min-height: 600px;
+      }
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1382,13 +1405,10 @@
         <a href="#desafios" class="menu-link">Nossa atuação</a>
         <a href="#produtos" class="menu-link">Nossos produtos</a>
         <a href="#equipe" class="menu-link">Equipe</a>
-        <button id="btnLoginNavbar" class="menu-login" type="button">Entrar</button>
+        <button class="btn pequeno abre-form" type="button">Solicitar estudo</button>
       </nav>
 
       <div class="topo-acoes">
-        <button class="btn pequeno abre-form" type="button">
-          Solicitar estudo
-        </button>
 
         <fieldset class="seletor-idioma" aria-label="Selecionar idioma" translate="no">
           <legend class="visualmente-oculto">
@@ -1410,6 +1430,7 @@
             <img class="idioma-bandeira" src="https://flagcdn.com/w40/es.png" alt="" aria-hidden="true">
           </button>
         </fieldset>
+        <button id="btnLoginNavbar" class="menu-login" type="button">Entrar</button>
       </div>
 
       <div id="google_translate_element" class="google-tradutor-oculto" aria-hidden="true"></div>
@@ -1514,7 +1535,7 @@
                 <p class="produto">Produto: painel</p>
                 <a class="link link-protegido link-site-externo" href="#" data-site="compras" role="button"
                   aria-disabled="true" title="Entre para acessar este estudo">
-                  Login necessário
+                  Entre em contato
                 </a>
               </div>
             </article>
@@ -1531,7 +1552,7 @@
                 <p class="produto">Produto: painel</p>
                 <a class="link link-protegido link-site-externo" href="#" data-site="anuario" role="button"
                   aria-disabled="true" title="Entre para acessar este estudo">
-                  Login necessário
+                  Entre em contato
                 </a>
               </div>
             </article>
@@ -1547,8 +1568,8 @@
                 <p>Benchmarking do Porto Digital para orientar o posicionamento do CIMATEC Digital na economia digital.
                 </p>
                 <p class="produto">Produto: benchmarking</p>
-                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="economia-digital.pdf">Login
-                  necessário</a>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="economia-digital.pdf">Entre em
+                  contato</a>
               </div>
             </article>
 
@@ -1562,7 +1583,7 @@
                   competitividade para atração e expansão de investimentos em data centers.</p>
                 <p class="produto">Produto: benchmarking</p>
                 <a class="link link-protegido link-pdf-protegido" href="#"
-                  data-arquivo="servicos-de-data-center.pdf">Login necessário</a>
+                  data-arquivo="servicos-de-data-center.pdf">Entre em contato</a>
               </div>
             </article>
 
@@ -1577,8 +1598,7 @@
                   ambiental.</p>
                 <p class="produto">Produto: benchmarking</p>
                 <a class="link link-protegido link-pdf-protegido" href="#"
-                  data-arquivo="benchmarking-licenciamento-ambiental.pdf">Login
-                  necessário</a>
+                  data-arquivo="benchmarking-licenciamento-ambiental.pdf">Entre em contato</a>
               </div>
             </article>
 
@@ -1593,8 +1613,7 @@
                 </p>
                 <p class="produto">Produto: benchmarking</p>
                 <a class="link link-protegido link-pdf-protegido" href="#"
-                  data-arquivo="benchmarking-internacional-setor-aeroespacial.pdf">Login
-                  necessário</a>
+                  data-arquivo="benchmarking-internacional-setor-aeroespacial.pdf">Entre em contato</a>
               </div>
             </article>
 
@@ -1608,8 +1627,22 @@
                   Embraer, geração de empregos, formação de capacidades produtivas e desenvolvimento regional.</p>
                 <p class="produto">Produto: benchmarking</p>
                 <a class="link link-protegido link-pdf-protegido" href="#"
-                  data-arquivo="benchmarking-nacional-aeroespacial-gaviao-peixoto.pdf">Login
-                  necessário</a>
+                  data-arquivo="benchmarking-nacional-aeroespacial-gaviao-peixoto.pdf">Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img
+                  src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/Mercado%20de%20Data%20Center.png"
+                  alt="Benchmarking Mercado de Data Center"></div>
+              <div class="corpo">
+                <h3>Benchmarking Mercado de Data Center</h3>
+                <p>Avaliação das tendências globais e nacionais do mercado de Data Centers e análise do potencial da
+                  Bahia para atração de investimentos no setor, considerando disponibilidade de energia renovável,
+                  recursos hídricos, demanda digital crescente e competências tecnológicas locais</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-data-center.pdf">Entre em contato</a>
               </div>
             </article>
 
@@ -1900,6 +1933,44 @@
     </div>
   </div>
 
+  <!-- Modal para solicitação de acesso aos estudos -->
+  <div class="modal" id="modal-contato-estudo" role="dialog" aria-modal="true" aria-labelledby="modal-contato-titulo"
+    aria-hidden="true">
+    <div class="modal-caixa">
+      <div class="modal-topo">
+        <h2 id="modal-contato-titulo">
+          Entre em contato
+        </h2>
+
+        <button class="fechar" type="button" id="btn-fechar-contato-estudo" aria-label="Fechar formulário de contato">
+          FECHAR
+        </button>
+      </div>
+
+      <div class="modal-corpo">
+        <p class="intro">
+          Preencha o formulário para solicitar acesso ao estudo.
+          A equipe do NEI avaliará o pedido e responderá pelo e-mail informado.
+        </p>
+
+        <div class="moldura moldura-contato">
+          <iframe
+            src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qphi0sNU7EG6tSre6-k5w7Ukfmdhn4NHmqBk_imgSEhUOUsxM0dRR01SSkgwRVNSSEpQMkNISFhDSy4u&amp;embed=true"
+            title="Formulário de solicitação de acesso aos estudos do NEI" allowfullscreen></iframe>
+        </div>
+
+        <p class="alternativa">
+          Se o formulário não carregar,
+          <a href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qphi0sNU7EG6tSre6-k5w7Ukfmdhn4NHmqBk_imgSEhUOUsxM0dRR01SSkgwRVNSSEpQMkNISFhDSy4u"
+            target="_blank" rel="noopener noreferrer">
+            abra em uma nova aba
+          </a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
   <script>
     (function () {
       var alvos = document.querySelectorAll('.reveal');
@@ -1992,6 +2063,9 @@
 
       var modal = document.getElementById('modal-form');
       var moldura = document.getElementById('moldura');
+      var modalContatoEstudo = document.getElementById('modal-contato-estudo');
+
+      var btnFecharContatoEstudo = document.getElementById('btn-fechar-contato-estudo');
       var url = 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qphi0sNU7EG6tSre6-k5w7Ukfmdhn4NHmqBk_imgSEhUQllIWk1PUDIxOTlUV1c2TlYxNTU1T09VOS4u&embed=true';
 
       function abrir() {
@@ -2009,10 +2083,80 @@
         modal.classList.remove('aberto');
         document.body.classList.remove('travado');
       }
-      document.querySelectorAll('.abre-form').forEach(function (b) { b.addEventListener('click', abrir) });
+
+      function abrirContatoEstudo() {
+        if (!modalContatoEstudo) {
+          return;
+        }
+
+        modalContatoEstudo.classList.add('aberto');
+
+        modalContatoEstudo.setAttribute(
+          'aria-hidden',
+          'false'
+        );
+
+        document.body.classList.add('travado');
+      }
+
+      function fecharContatoEstudo() {
+        if (!modalContatoEstudo) {
+          return;
+        }
+
+        modalContatoEstudo.classList.remove('aberto');
+
+        modalContatoEstudo.setAttribute(
+          'aria-hidden',
+          'true'
+        );
+
+        document.body.classList.remove('travado');
+      }
+
+      document.querySelectorAll('.abre-form').forEach(function (botao) {
+        botao.addEventListener(
+          'click',
+          abrir
+        );
+      });
+
       document.getElementById('btn-fechar').addEventListener('click', fechar);
-      modal.addEventListener('click', function (e) { if (e.target === modal) { fechar() } });
-      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { fechar() } });
+
+      modal.addEventListener('click', function (evento) {
+        if (evento.target === modal) {
+          fechar();
+        }
+      });
+
+      if (btnFecharContatoEstudo) {
+        btnFecharContatoEstudo.addEventListener('click', fecharContatoEstudo);
+      }
+
+      if (modalContatoEstudo) {
+        modalContatoEstudo.addEventListener('click', function (evento) {
+          if (evento.target === modalContatoEstudo) {
+            fecharContatoEstudo();
+          }
+        });
+      }
+
+      document.addEventListener('keydown', function (evento) {
+        if (evento.key !== 'Escape') {
+          return;
+        }
+
+        if (modal.classList.contains('aberto')) {
+          fechar();
+        }
+
+        if (modalContatoEstudo && modalContatoEstudo.classList.contains('aberto')) {
+          fecharContatoEstudo();
+        }
+      });
+
+      window.abrirContatoEstudo = abrirContatoEstudo;
+      window.fecharContatoEstudo = fecharContatoEstudo;
     })();
   </script>
 
@@ -2090,16 +2234,6 @@
             minlength="8" required>
         </div>
 
-        <label class="login-checkbox">
-          <input id="aceitaEmail" name="aceitaEmail" type="checkbox">
-
-          <span>
-            Quero receber por e-mail informações sobre novos estudos
-            e publicações do NEI. Posso cancelar a inscrição a qualquer
-            momento.
-          </span>
-
-        </label>
 
         <button id="btnCadastrar" class="btn login-enviar" type="submit">
           Criar conta
@@ -2129,7 +2263,9 @@
           abrindo: "Abrindo...",
           acessoIndisponivel: "Acesso indisponível",
           criarConta: "Criar conta",
-          criandoConta: "Criando conta..."
+          criandoConta: "Criando conta...",
+          solicitarEstudo: "Solicitar estudo",
+          entreEmContato: "Entre em contato"
         },
 
         en: {
@@ -2141,7 +2277,9 @@
           abrindo: "Opening...",
           acessoIndisponivel: "Access unavailable",
           criarConta: "Create account",
-          criandoConta: "Creating account..."
+          criandoConta: "Creating account...",
+          solicitarEstudo: "Request a study",
+          entreEmContato: "Contact us"
         },
 
         es: {
@@ -2153,7 +2291,9 @@
           abrindo: "Abriendo...",
           acessoIndisponivel: "Acceso no disponible",
           criarConta: "Crear cuenta",
-          criandoConta: "Creando cuenta..."
+          criandoConta: "Creando cuenta...",
+          solicitarEstudo: "Solicitar un estudio",
+          entreEmContato: "Contáctenos"
         }
       };
 
@@ -2323,12 +2463,32 @@
     const emailCadastro = document.getElementById("emailCadastro");
     const senhaCadastro = document.getElementById("senhaCadastro");
     const confirmarSenhaCadastro = document.getElementById("confirmarSenhaCadastro");
-    const aceitaEmail = document.getElementById("aceitaEmail");
     const btnCadastrar = document.getElementById("btnCadastrar");
     const mensagemCadastro = document.getElementById("mensagemCadastro");
     const atalhoCadastro = document.getElementById("atalhoCadastro");
+    const modalContatoEstudo = document.getElementById("modal-contato-estudo");
 
     let sessaoAtual = null;
+
+    let usuarioTemAcesso = false;
+
+    function abrirContatoEstudo() {
+      if (!modalContatoEstudo) {
+        console.error(
+          "O elemento #modal-contato-estudo não foi encontrado."
+        );
+        return;
+      }
+
+      modalContatoEstudo.classList.add("aberto");
+
+      modalContatoEstudo.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add("travado");
+    }
 
     function obterTextosAtuais() {
       if (
@@ -2339,6 +2499,30 @@
       }
 
       return window.textosInterface.pt;
+    }
+
+    async function verificarAutorizacaoUsuario(session) {
+      if (!session || !session.user) {
+        return false;
+      }
+
+      const { data, error } = await supabaseClient
+        .from("usuarios_autorizados")
+        .select("ativo")
+        .eq("user_id", session.user.id)
+        .eq("ativo", true)
+        .maybeSingle();
+
+      if (error) {
+        console.error(
+          "Erro ao verificar autorização:",
+          error
+        );
+
+        return false;
+      }
+
+      return Boolean(data && data.ativo);
     }
 
     function exibirCadastro() {
@@ -2427,44 +2611,59 @@
         "Não foi possível entrar. Verifique suas credenciais.";
     }
 
-    function atualizarInterfaceAutenticacao(session) {
+    async function atualizarInterfaceAutenticacao(session) {
       sessaoAtual = session;
 
       const usuarioAutenticado = Boolean(
         session && session.user
       );
 
+      usuarioTemAcesso =
+        await verificarAutorizacaoUsuario(session);
+
       if (usuarioAutenticado) {
-        btnLoginNavbar.textContent = obterTextosAtuais().sair;
+        btnLoginNavbar.textContent =
+          obterTextosAtuais().sair;
 
         btnLoginNavbar.setAttribute(
           "title",
           "Usuário autenticado: " +
           (session.user.email || "conta ativa")
         );
-
-        linksProtegidos.forEach(function (link) {
-          link.textContent = obterTextosAtuais().acessarEstudo;
-          link.classList.remove("link-bloqueado");
-          link.removeAttribute("aria-disabled");
-          link.setAttribute("title", "Acessar estudo");
-        });
       } else {
-
-        btnLoginNavbar.textContent = obterTextosAtuais().entrar;
+        btnLoginNavbar.textContent =
+          obterTextosAtuais().entrar;
 
         btnLoginNavbar.removeAttribute("title");
+      }
 
-        linksProtegidos.forEach(function (link) {
-          link.textContent = obterTextosAtuais().loginNecessario;
-          link.classList.add("link-bloqueado");
-          link.setAttribute("aria-disabled", "true");
+      linksProtegidos.forEach(function (link) {
+        if (usuarioTemAcesso) {
+          link.textContent =
+            obterTextosAtuais().acessarEstudo;
+
+          link.classList.remove("link-bloqueado");
+          link.removeAttribute("aria-disabled");
+
           link.setAttribute(
             "title",
-            "Entre para acessar este estudo"
+            obterTextosAtuais().acessarEstudo
           );
-        });
-      }
+
+          return;
+        }
+
+        link.textContent =
+          obterTextosAtuais().entreEmContato;
+
+        link.classList.add("link-bloqueado");
+        link.removeAttribute("aria-disabled");
+
+        link.setAttribute(
+          "title",
+          obterTextosAtuais().entreEmContato
+        );
+      });
 
       if (window.atualizarNavProdutos) {
         setTimeout(function () {
@@ -2485,7 +2684,6 @@
       const email = emailCadastro.value.trim();
       const senha = senhaCadastro.value;
       const confirmarSenha = confirmarSenhaCadastro.value;
-      const autorizaEmail = aceitaEmail.checked;
 
       mensagemCadastro.textContent = "";
       mensagemCadastro.className = "login-mensagem";
@@ -2525,11 +2723,7 @@
           password: senha,
           options: {
             data: {
-              nome: nome,
-              aceita_email: autorizaEmail,
-              aceite_email_em: autorizaEmail
-                ? new Date().toISOString()
-                : null
+              nome: nome
             }
           }
         });
@@ -2568,13 +2762,11 @@
 
       if (resultado.data.session) {
         mensagemCadastro.textContent =
-          "Conta criada. Acesso liberado.";
+          "Conta criada com sucesso.";
 
         mensagemCadastro.classList.add("sucesso");
 
-        atualizarInterfaceAutenticacao(
-          resultado.data.session
-        );
+        await atualizarInterfaceAutenticacao(resultado.data.session);
 
         setTimeout(function () {
           fecharModalLogin();
@@ -2629,7 +2821,7 @@
 
         mensagemLogin.classList.add("sucesso");
 
-        atualizarInterfaceAutenticacao(data.session);
+        await atualizarInterfaceAutenticacao(data.session);
 
         setTimeout(function () {
           fecharModalLogin();
@@ -2653,11 +2845,11 @@
 
       if (error) {
         console.error("Erro ao verificar sessão:", error);
-        atualizarInterfaceAutenticacao(null);
+        await atualizarInterfaceAutenticacao(null);
         return;
       }
 
-      atualizarInterfaceAutenticacao(data.session);
+      await atualizarInterfaceAutenticacao(data.session);
     }
 
     async function sair() {
@@ -2671,16 +2863,17 @@
         if (error) {
           console.error("Erro ao sair:", error);
           alert("Não foi possível encerrar a sessão.");
-          atualizarInterfaceAutenticacao(sessaoAtual);
+          await atualizarInterfaceAutenticacao(sessaoAtual);
           return;
         }
 
-        atualizarInterfaceAutenticacao(null);
+        await atualizarInterfaceAutenticacao(null);
       } catch (erro) {
         console.error("Erro de conexão ao sair:", erro);
         alert("Não foi possível encerrar a sessão.");
-        atualizarInterfaceAutenticacao(sessaoAtual);
-      } finally {
+        await atualizarInterfaceAutenticacao(sessaoAtual);
+      }
+      finally {
         btnLoginNavbar.disabled = false;
       }
     }
@@ -2697,15 +2890,21 @@
       "click",
       acionarLoginNavbar
     );
+
     linksProtegidos.forEach(function (link) {
-      link.addEventListener("click", function (evento) {
-        if (!sessaoAtual || !sessaoAtual.user) {
-          evento.preventDefault();
-          evento.stopPropagation();
-          abrirModalLogin();
-        }
-      });
+      link.addEventListener(
+        "click",
+        function (evento) {
+          if (!usuarioTemAcesso) {
+            evento.preventDefault();
+            evento.stopImmediatePropagation();
+            abrirContatoEstudo();
+          }
+        },
+        true
+      );
     });
+
 
     linksSitesExternos.forEach(function (link) {
       link.addEventListener(
@@ -2714,8 +2913,8 @@
           evento.preventDefault();
           evento.stopPropagation();
 
-          if (!sessaoAtual || !sessaoAtual.user) {
-            abrirModalLogin();
+          if (!usuarioTemAcesso) {
+            abrirContatoEstudo();
             return;
           }
 
@@ -2782,8 +2981,8 @@
           evento.preventDefault();
           evento.stopPropagation();
 
-          if (!sessaoAtual || !sessaoAtual.user) {
-            abrirModalLogin();
+          if (!usuarioTemAcesso) {
+            abrirContatoEstudo();
             return;
           }
 
@@ -2927,7 +3126,9 @@
       evento,
       session
     ) {
-      atualizarInterfaceAutenticacao(session);
+      setTimeout(function () {
+        atualizarInterfaceAutenticacao(session);
+      }, 0);
     });
 
     verificarSessao();
