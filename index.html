@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -27,6 +27,7 @@
       --ambar: #C8791A;
 
       --display: "IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif;
+      --titulos: "Poppins", "Helvetica Neue", Arial, sans-serif;
       --texto: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
       --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
       --max: 1120px;
@@ -80,17 +81,24 @@
     }
 
     .topo .wrap {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: space-between;
+      width: 100%;
+      max-width: none;
       height: 62px;
-      gap: 16px
+      gap: 20px;
+      padding: 0 20px;
     }
 
+
     .marcas {
+      grid-column: 1;
+      justify-self: start;
       display: flex;
       align-items: center;
-      gap: 14px
+      gap: 14px;
+      min-width: max-content;
     }
 
     .marcas img {
@@ -103,12 +111,18 @@
     }
 
     .menu {
+      grid-column: 2;
+      justify-self: center;
       display: none;
-      gap: 24px;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      min-width: max-content;
       font-family: var(--display);
       font-size: 15px;
       font-weight: 600;
-      letter-spacing: .02em
+      letter-spacing: .02em;
+      white-space: nowrap;
     }
 
     .menu a {
@@ -213,13 +227,13 @@
     }
 
     .hero h1 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-weight: 600;
       font-size: clamp(26px, 5.6vw, 42px);
       line-height: 1.18;
       letter-spacing: -.01em;
       margin: 0 0 32px;
-      max-width: 26ch
+      max-width: 26ch;
     }
 
     .acoes {
@@ -244,13 +258,13 @@
     }
 
     h2 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-weight: 700;
       font-size: clamp(25px, 5.6vw, 38px);
       line-height: 1.14;
       letter-spacing: -.01em;
       margin: 0 0 16px;
-      max-width: 24ch
+      max-width: 24ch;
     }
 
     .intro {
@@ -280,13 +294,13 @@
     }
 
     .quem .frase {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-weight: 600;
       font-size: clamp(21px, 4.6vw, 30px);
       line-height: 1.28;
       color: var(--azul-profundo);
       margin: 0 0 26px;
-      max-width: 34ch
+      max-width: 34ch;
     }
 
     .quem .corpo-texto {
@@ -318,12 +332,12 @@
     }
 
     .pergunta h3 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-size: 20px;
       font-weight: 600;
       line-height: 1.25;
       margin: 0 0 10px;
-      color: var(--azul-profundo)
+      color: var(--azul-profundo);
     }
 
     .pergunta p {
@@ -344,14 +358,14 @@
     }
 
     .grupo {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-weight: 700;
       font-size: 20px;
       color: var(--azul-profundo);
       margin: 0 0 18px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--azul-claro);
-      display: inline-block
+      display: inline-block;
     }
 
     .produtos-wrapper {
@@ -490,11 +504,11 @@
     }
 
     .card h3 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-size: 19.5px;
       font-weight: 600;
       line-height: 1.26;
-      margin: 0 0 10px
+      margin: 0 0 10px;
     }
 
     .card p {
@@ -552,10 +566,10 @@
     }
 
     .lideranca h3 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-size: 18px;
       font-weight: 600;
-      margin: 0 0 3px
+      margin: 0 0 3px;
     }
 
     .lideranca span {
@@ -582,10 +596,13 @@
       border: 1px solid var(--linha)
     }
 
-    .pessoa {
-      background: var(--branco);
-      padding: 20px
+    .pessoa h3 {
+      font-family: var(--titulos);
+      font-size: 17.5px;
+      font-weight: 600;
+      margin: 0 0 4px;
     }
+
 
     .pessoa img {
       width: 60px;
@@ -593,13 +610,6 @@
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 12px
-    }
-
-    .pessoa h3 {
-      font-family: var(--display);
-      font-size: 17.5px;
-      font-weight: 600;
-      margin: 0 0 4px
     }
 
     .pessoa .papel {
@@ -766,11 +776,11 @@
     }
 
     .passo h3 {
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-size: 18px;
       font-weight: 600;
       margin: 0 0 6px;
-      color: var(--azul-profundo)
+      color: var(--azul-profundo);
     }
 
     .passo p {
@@ -940,13 +950,9 @@
       }
     }
 
-    @media (min-width:980px) {
-      .menu {
-        display: flex
-      }
-
+    @media (min-width: 980px) {
       .perguntas {
-        grid-template-columns: repeat(4, 1fr)
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -1004,7 +1010,7 @@
     .login-caixa h2 {
       margin: 0 0 8px;
       color: var(--azul-profundo);
-      font-family: var(--display);
+      font-family: var(--titulos);
       font-size: 28px;
     }
 
@@ -1064,9 +1070,294 @@
       color: #087443;
     }
 
+    .login-alternar {
+      margin: 22px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--linha);
+      color: var(--cinza);
+      font-size: 14.5px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .login-link {
+      appearance: none;
+      margin: 0 0 0 4px;
+      padding: 2px 0;
+      background: transparent;
+      color: var(--azul-institucional);
+      border: 0;
+      border-bottom: 1px solid rgba(0, 87, 168, .35);
+      border-radius: 0;
+      font-family: var(--display);
+      font-size: 14.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition:
+        color .18s ease,
+        border-color .18s ease;
+    }
+
+    .login-link:hover {
+      color: var(--azul-profundo);
+      border-bottom-color: var(--azul-profundo);
+    }
+
+    .login-link:active {
+      color: var(--azul-claro);
+    }
+
+    .login-link:focus-visible {
+      outline: 3px solid var(--azul-claro);
+      outline-offset: 3px;
+    }
+
+    #formCadastro .login-alternar {
+      margin-top: 18px;
+    }
+
     @media (max-width: 520px) {
       .login-caixa {
         padding: 30px 22px 24px;
+      }
+    }
+
+    .login-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 8px 0 24px;
+      color: var(--cinza);
+      font-size: 13.5px;
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .login-checkbox input {
+      flex: 0 0 auto;
+      width: 16px;
+      height: 16px;
+      margin: 3px 0 0;
+      accent-color: var(--azul-institucional);
+      cursor: pointer;
+    }
+
+    .login-checkbox span {
+      display: block;
+    }
+
+    #btnCadastrar {
+      margin-top: 0;
+    }
+
+
+    .topo-acoes {
+      grid-column: 3;
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: max-content;
+    }
+
+    .seletor-idioma {
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      background: var(--branco);
+      border: 1px solid var(--linha);
+      border-radius: 3px;
+    }
+
+    .idioma-opcao {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 31px;
+      height: 29px;
+      min-width: 31px;
+      min-height: 29px;
+      padding: 5px;
+      background: var(--branco);
+      color: var(--cinza);
+      border: 0;
+      border-right: 1px solid var(--linha);
+      cursor: pointer;
+      transition:
+        color .18s ease,
+        background .18s ease,
+        border-color .18s ease;
+    }
+
+    .idioma-opcao:last-child {
+      border-right: 0;
+    }
+
+    .idioma-opcao:hover {
+      color: var(--azul-institucional);
+      background: var(--nevoa);
+    }
+
+    .idioma-opcao.ativo {
+      color: var(--branco);
+      background: var(--azul-profundo);
+    }
+
+    .idioma-opcao.ativo:hover {
+      color: var(--branco);
+      background: var(--azul-profundo);
+    }
+
+    .idioma-opcao:focus-visible {
+      position: relative;
+      z-index: 2;
+      outline: 2px solid var(--azul-claro);
+      outline-offset: -2px;
+    }
+
+    .idioma-bandeira {
+      display: block;
+      width: 20px;
+      height: 14px;
+      max-width: none;
+      object-fit: cover;
+      border-radius: 1px;
+      pointer-events: none;
+    }
+
+    .visualmente-oculto {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    .google-tradutor-oculto {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .goog-te-banner-frame,
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    body>.skiptranslate {
+      display: none !important;
+    }
+
+    @media (min-width: 1280px) {
+      .menu {
+        display: flex;
+      }
+    }
+
+    @media (min-width: 980px) {
+      .perguntas {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 1279px) {
+      .topo .wrap {
+        grid-template-columns: 1fr auto;
+      }
+
+      .marcas {
+        grid-column: 1;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .topo-acoes {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topo .wrap {
+        grid-template-columns: 1fr auto;
+        gap: 10px;
+        padding: 0 14px;
+      }
+
+      .marcas {
+        grid-column: 1;
+        justify-self: start;
+      }
+
+      .menu {
+        display: none;
+      }
+
+      .topo-acoes {
+        grid-column: 2;
+        justify-self: end;
+        gap: 7px;
+      }
+
+      .seletor-idioma {
+        flex: 0 0 auto;
+      }
+
+      .idioma-opcao {
+        width: 29px;
+        height: 27px;
+        min-width: 29px;
+        min-height: 27px;
+        padding: 4px;
+      }
+
+      .idioma-bandeira {
+        width: 18px;
+        height: 12px;
+      }
+
+      .topo-acoes .btn.pequeno {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .marcas {
+        gap: 8px;
+      }
+
+      .marcas img {
+        height: 22px;
+      }
+
+      .marcas img:nth-child(2) {
+        margin-top: 5px;
+      }
+
+      .topo-acoes {
+        margin-left: auto;
+      }
+
+      .topo-acoes .btn.pequeno {
+        display: none;
       }
     }
   </style>
@@ -1078,20 +1369,51 @@
 <body>
 
   <header class="topo">
-    <div class="wrap">
-      <div class="marcas">
+    <div class="wrap topo-conteudo">
+
+      <div class="marcas" translate="no">
         <img src="https://nei-senai-cimatec.github.io/nei/senai1.png" alt="SENAI CIMATEC">
-        <img src="https://nei-senai-cimatec.github.io/nei/nei.png" alt="NEI">
+
+        <img src="https://nei-senai-cimatec.github.io/nei/nei.png" alt="Núcleo de Economia Industrial">
       </div>
-      <nav class="menu">
-        <a href="#quem-somos">Quem somos</a>
-        <a href="#desafios">Nossa atuação</a>
-        <a href="#produtos">Nossos produtos</a>
-        <a href="#equipe">Equipe</a>
-        <!-- Botão de Login -->
+
+      <nav class="menu" aria-label="Navegação principal">
+        <a href="#quem-somos" class="menu-link">Quem somos</a>
+        <a href="#desafios" class="menu-link">Nossa atuação</a>
+        <a href="#produtos" class="menu-link">Nossos produtos</a>
+        <a href="#equipe" class="menu-link">Equipe</a>
         <button id="btnLoginNavbar" class="menu-login" type="button">Entrar</button>
       </nav>
-      <button class="btn pequeno abre-form" type="button">Solicitar estudo</button>
+
+      <div class="topo-acoes">
+        <button class="btn pequeno abre-form" type="button">
+          Solicitar estudo
+        </button>
+
+        <fieldset class="seletor-idioma" aria-label="Selecionar idioma" translate="no">
+          <legend class="visualmente-oculto">
+            Selecionar idioma
+          </legend>
+
+          <button class="idioma-opcao ativo" type="button" data-idioma="pt" aria-pressed="true"
+            aria-label="Selecionar português" title="Português">
+            <img class="idioma-bandeira" src="https://flagcdn.com/w40/br.png" alt="" aria-hidden="true">
+          </button>
+
+          <button class="idioma-opcao" type="button" data-idioma="en" aria-pressed="false" aria-label="Select English"
+            title="English">
+            <img class="idioma-bandeira" src="https://flagcdn.com/w40/us.png" alt="" aria-hidden="true">
+          </button>
+
+          <button class="idioma-opcao" type="button" data-idioma="es" aria-pressed="false"
+            aria-label="Seleccionar español" title="Español">
+            <img class="idioma-bandeira" src="https://flagcdn.com/w40/es.png" alt="" aria-hidden="true">
+          </button>
+        </fieldset>
+      </div>
+
+      <div id="google_translate_element" class="google-tradutor-oculto" aria-hidden="true"></div>
+
     </div>
   </header>
 
@@ -1445,7 +1767,7 @@
         <img src="https://nei-senai-cimatec.github.io/nei/img/team/Andre.jpeg" alt="André Oliveira">
         <div>
           <span class="papel">Liderança institucional</span>
-          <h3>André Oliveira</h3>
+          <h3 translate="no">André Oliveira</h3>
           <span>Superintendente de Novos Negócios do SENAI CIMATEC.</span>
         </div>
       </div>
@@ -1453,42 +1775,42 @@
       <div class="equipe reveal">
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Mabel.jpg" alt="Mabel Mota">
-          <h3>Mabel Mota</h3>
+          <h3 translate="no">Mabel Mota</h3>
           <span class="papel">Coordenação</span>
           <span class="area">Economia industrial e da inovação, desenvolvimento regional.</span>
           <span class="form">Doutora em Economia (UFBA).</span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Yuri.jpeg" alt="Yuri Dantas">
-          <h3>Yuri Dantas</h3>
+          <h3 translate="no">Yuri Dantas</h3>
           <span class="papel">Analista de dados</span>
           <span class="area">Política industrial, políticas públicas e transição energética.</span>
           <span class="form">Mestre em Economia (UFBA).</span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Raphael.jpg" alt="Raphael Oliveira">
-          <h3>Raphael Oliveira</h3>
+          <h3 translate="no">Raphael Oliveira</h3>
           <span class="papel">Pesquisador bolsista</span>
           <span class="area">Modelagem preditiva, política pública e desenvolvimento regional.</span>
           <span class="form">Doutorando em Economia (UFBA).</span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Felipe.jpeg" alt="Felipe Dourado">
-          <h3>Felipe Dourado</h3>
+          <h3 translate="no">Felipe Dourado</h3>
           <span class="papel">Pesquisador bolsista</span>
           <span class="area">Integração de dados, painéis e automação industrial.</span>
           <span class="form">Especialista em Data Science e Analytics (SENAI CIMATEC).</span>
         </div>
         <!-- <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Italo.png" alt="Italo Ferreira">
-          <h3>Italo Ferreira</h3>
+          <h3 translate="no">Italo Ferreira</h3>
           <span class="papel">Pesquisador bolsista</span>
           <span class="area">Biocombustíveis, aprendizado de máquina e análise de dados.</span>
           <span class="form">Mestrando em Desenvolvimento Sustentável (SENAI CIMATEC).</span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/David.jpeg" alt="David Regalado">
-          <h3>David Regalado</h3>
+          <h3 translate="no">David Regalado</h3>
           <span class="papel">Pesquisador bolsista</span>
           <span class="area">Ciência de dados, engenharia de dados e inteligência artificial.</span>
           <span class="form">Doutorando em Estatística e Ciência de Dados (UFBA).</span>
@@ -1531,7 +1853,8 @@
   <footer>
     <div class="wrap">
       <p class="mini">
-        NEI, Núcleo de Economia Industrial. Unidade de inteligência competitiva do SENAI CIMATEC.<br>
+        <span translate="no">NEI, Núcleo de Economia Industrial.</span>
+        Unidade de inteligência competitiva do <span translate="no">SENAI CIMATEC</span>.<br>
         Versão executiva para validação interna. Trechos assinalados como pendentes exigem confirmação antes da
         publicação.
       </p>
@@ -1794,7 +2117,183 @@
       </form>
     </div>
   </div>
+  <script>
+    (function () {
+      window.textosInterface = {
+        pt: {
+          entrar: "Entrar",
+          sair: "Sair",
+          saindo: "Saindo...",
+          acessarEstudo: "Acessar estudo",
+          loginNecessario: "Login necessário",
+          abrindo: "Abrindo...",
+          acessoIndisponivel: "Acesso indisponível",
+          criarConta: "Criar conta",
+          criandoConta: "Criando conta..."
+        },
 
+        en: {
+          entrar: "Sign in",
+          sair: "Sign out",
+          saindo: "Signing out...",
+          acessarEstudo: "Access study",
+          loginNecessario: "Sign-in required",
+          abrindo: "Opening...",
+          acessoIndisponivel: "Access unavailable",
+          criarConta: "Create account",
+          criandoConta: "Creating account..."
+        },
+
+        es: {
+          entrar: "Iniciar sesión",
+          sair: "Cerrar sesión",
+          saindo: "Cerrando sesión...",
+          acessarEstudo: "Acceder al estudio",
+          loginNecessario: "Inicio de sesión requerido",
+          abrindo: "Abriendo...",
+          acessoIndisponivel: "Acceso no disponible",
+          criarConta: "Crear cuenta",
+          criandoConta: "Creando cuenta..."
+        }
+      };
+
+      const botoesIdioma =
+        document.querySelectorAll(".idioma-opcao");
+
+      const idiomasPermitidos = [
+        "pt",
+        "en",
+        "es"
+      ];
+
+      function normalizarIdioma(idioma) {
+        if (!idiomasPermitidos.includes(idioma)) {
+          return "pt";
+        }
+
+        return idioma;
+      }
+
+      function obterIdiomaAtual() {
+        return normalizarIdioma(
+          localStorage.getItem("idioma-nei")
+        );
+      }
+
+      window.obterIdiomaAtual = obterIdiomaAtual;
+
+      window.obterTextosInterface = function () {
+        const idioma = obterIdiomaAtual();
+
+        return window.textosInterface[idioma] ||
+          window.textosInterface.pt;
+      };
+
+      function atualizarBotoesIdioma(idioma) {
+        botoesIdioma.forEach(function (botao) {
+          const estaAtivo =
+            botao.dataset.idioma === idioma;
+
+          botao.classList.toggle(
+            "ativo",
+            estaAtivo
+          );
+
+          botao.setAttribute(
+            "aria-pressed",
+            estaAtivo ? "true" : "false"
+          );
+        });
+      }
+
+      function definirCookieTraducao(idioma) {
+        const valor = "/pt/" + idioma;
+
+        document.cookie =
+          "googtrans=" +
+          valor +
+          "; path=/; SameSite=Lax";
+      }
+
+      function removerCookieTraducao() {
+        document.cookie =
+          "googtrans=; path=/;" +
+          " expires=Thu, 01 Jan 1970 00:00:00 GMT;" +
+          " SameSite=Lax";
+      }
+
+      function alterarIdioma(idioma) {
+        const idiomaEscolhido =
+          normalizarIdioma(idioma);
+
+        localStorage.setItem(
+          "idioma-nei",
+          idiomaEscolhido
+        );
+
+        atualizarBotoesIdioma(
+          idiomaEscolhido
+        );
+
+        if (idiomaEscolhido === "pt") {
+          removerCookieTraducao();
+          window.location.reload();
+          return;
+        }
+
+        definirCookieTraducao(
+          idiomaEscolhido
+        );
+
+        const seletorGoogle =
+          document.querySelector(".goog-te-combo");
+
+        if (seletorGoogle) {
+          seletorGoogle.value =
+            idiomaEscolhido;
+
+          seletorGoogle.dispatchEvent(
+            new Event("change", {
+              bubbles: true
+            })
+          );
+
+          return;
+        }
+
+        /*
+        * Caso o Google ainda não tenha carregado,
+        * recarrega a página usando o cookie salvo.
+        */
+        window.location.relo * d();
+      }
+
+      botoesIdioma.forEach(function (botao) {
+        botao.addEventListener(
+          "click",
+          function () {
+            alterarIdioma(
+              botao.dataset.idioma
+            );
+          }
+        );
+      });
+
+      const idiomaSalvo =
+        obterIdiomaAtual();
+
+      atualizarBotoesIdioma(
+        idiomaSalvo
+      );
+
+      document.documentElement.lang =
+        idiomaSalvo === "en"
+          ? "en-US"
+          : idiomaSalvo === "es"
+            ? "es"
+            : "pt-BR";
+    })();
+  </script>
   <!-- URL e annon public key do supabase -->
   <script>
     const SUPABASE_URL = "https://rtesmxnuowguozgnjlrd.supabase.co";
@@ -1830,6 +2329,17 @@
     const atalhoCadastro = document.getElementById("atalhoCadastro");
 
     let sessaoAtual = null;
+
+    function obterTextosAtuais() {
+      if (
+        typeof window.obterTextosInterface ===
+        "function"
+      ) {
+        return window.obterTextosInterface();
+      }
+
+      return window.textosInterface.pt;
+    }
 
     function exibirCadastro() {
       formLogin.hidden = true;
@@ -1925,7 +2435,7 @@
       );
 
       if (usuarioAutenticado) {
-        btnLoginNavbar.textContent = "Sair";
+        btnLoginNavbar.textContent = obterTextosAtuais().sair;
 
         btnLoginNavbar.setAttribute(
           "title",
@@ -1934,17 +2444,19 @@
         );
 
         linksProtegidos.forEach(function (link) {
-          link.textContent = "Acessar estudo";
+          link.textContent = obterTextosAtuais().acessarEstudo;
           link.classList.remove("link-bloqueado");
           link.removeAttribute("aria-disabled");
           link.setAttribute("title", "Acessar estudo");
         });
       } else {
-        btnLoginNavbar.textContent = "Entrar";
+
+        btnLoginNavbar.textContent = obterTextosAtuais().entrar;
+
         btnLoginNavbar.removeAttribute("title");
 
         linksProtegidos.forEach(function (link) {
-          link.textContent = "Login necessário";
+          link.textContent = obterTextosAtuais().loginNecessario;
           link.classList.add("link-bloqueado");
           link.setAttribute("aria-disabled", "true");
           link.setAttribute(
@@ -2003,7 +2515,7 @@
       }
 
       btnCadastrar.disabled = true;
-      btnCadastrar.textContent = "Criando conta...";
+      btnCadastrar.textContent = obterTextosAtuais().criandoConta;
 
       let resultado;
 
@@ -2032,11 +2544,11 @@
         return;
       } finally {
         btnCadastrar.disabled = false;
-        btnCadastrar.textContent = "Criar conta";
+        btnCadastrar.textContent = obterTextosAtuais().criarConta;
       }
 
       btnCadastrar.disabled = false;
-      btnCadastrar.textContent = "Criar conta";
+      btnCadastrar.textContent = obterTextosAtuais().criarConta;
 
       if (resultado.error) {
         console.error(
@@ -2150,7 +2662,7 @@
 
     async function sair() {
       btnLoginNavbar.disabled = true;
-      btnLoginNavbar.textContent = "Saindo...";
+      btnLoginNavbar.textContent = obterTextosAtuais().saindo;
 
       try {
         const { error } =
@@ -2217,7 +2729,8 @@
             return;
           }
 
-          link.textContent = "Abrindo...";
+          link.textContent =
+            obterTextosAtuais().abrindo;
           link.setAttribute("aria-busy", "true");
 
           try {
@@ -2243,14 +2756,14 @@
               "noopener,noreferrer"
             );
 
-            link.textContent = "Acessar estudo";
+            link.textContent = obterTextosAtuais().acessarEstudo;
           } catch (erro) {
             console.error(
               "Erro ao abrir site externo:",
               erro
             );
 
-            link.textContent = "Acesso indisponível";
+            link.textContent = obterTextosAtuais().acessoIndisponivel;
 
             setTimeout(function () {
               link.textContent = textoAnterior;
@@ -2303,23 +2816,31 @@
 
           novaJanela.opener = null;
 
+          const idiomaAtual = typeof window.obterIdiomaAtual === "function" ? window.obterIdiomaAtual() : "pt";
+
+          const textosAtuais = obterTextosAtuais();
+
           novaJanela.document.write(
             "<!DOCTYPE html>" +
-            "<html lang='pt-BR'>" +
+            "<html lang='" + idiomaAtual + "'>" +
             "<head>" +
             "<meta charset='utf-8'>" +
-            "<title>Abrindo estudo</title>" +
+            "<title>" +
+            textosAtuais.abrindo +
+            "</title>" +
             "</head>" +
             "<body style='font-family: Arial, sans-serif;" +
             "padding: 40px; color: #002B5C'>" +
-            "<p>Abrindo estudo...</p>" +
+            "<p>" +
+            textosAtuais.abrindo +
+            "</p>" +
             "</body>" +
             "</html>"
           );
 
           novaJanela.document.close();
 
-          link.textContent = "Abrindo...";
+          link.textContent = obterTextosAtuais().abrindo;
           link.setAttribute("aria-busy", "true");
 
           try {
@@ -2341,18 +2862,16 @@
               );
             }
 
-            novaJanela.location.replace(
-              data.signedUrl
-            );
+            novaJanela.location.replace(data.signedUrl);
 
-            link.textContent = "Acessar estudo";
+            link.textContent = obterTextosAtuais().acessarEstudo;
           } catch (erro) {
             console.error(
               "Erro ao abrir PDF protegido:",
               erro
             );
 
-            link.textContent = "Acesso indisponível";
+            link.textContent = obterTextosAtuais().acessoIndisponivel;
 
             setTimeout(function () {
               link.textContent = textoAnterior;
@@ -2413,6 +2932,63 @@
 
     verificarSessao();
   </script>
+
+
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement(
+        {
+          pageLanguage: "pt",
+          includedLanguages: "pt,en,es",
+          autoDisplay: false
+        },
+        "google_translate_element"
+      );
+
+      const idiomaSalvo =
+        localStorage.getItem("idioma-nei") || "pt";
+
+      if (idiomaSalvo === "pt") {
+        return;
+      }
+
+      let tentativas = 0;
+
+      const temporizador = setInterval(function () {
+        const seletorGoogle =
+          document.querySelector(".goog-te-combo");
+
+        tentativas += 1;
+
+        if (seletorGoogle) {
+          clearInterval(temporizador);
+
+          if (seletorGoogle.value !== idiomaSalvo) {
+            seletorGoogle.value = idiomaSalvo;
+
+            seletorGoogle.dispatchEvent(
+              new Event("change", {
+                bubbles: true
+              })
+            );
+          }
+
+          return;
+        }
+
+        if (tentativas >= 20) {
+          clearInterval(temporizador);
+
+          console.error(
+            "O seletor do Google Translate não foi carregado."
+          );
+        }
+      }, 250);
+    }
+  </script>
+
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
