@@ -596,45 +596,66 @@
       border: 1px solid var(--linha)
     }
 
+    .pessoa {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 34px 28px;
+      background: var(--branco);
+      text-align: center;
+    }
+
     .pessoa h3 {
+      width: 100%;
+      margin: 0 0 6px;
       font-family: var(--titulos);
       font-size: 17.5px;
       font-weight: 600;
-      margin: 0 0 4px;
+      line-height: 1.3;
+      text-align: center;
     }
 
 
     .pessoa img {
-      width: 60px;
-      height: 60px;
+      width: 68px;
+      height: 68px;
+      margin: 0 auto 18px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 12px
+      flex: 0 0 auto;
     }
 
     .pessoa .papel {
+      display: block;
+      width: 100%;
+      margin-bottom: 12px;
+      color: var(--azul-institucional);
       font-family: var(--mono);
       font-size: 11px;
+      line-height: 1.4;
       letter-spacing: .06em;
+      text-align: center;
       text-transform: uppercase;
-      color: var(--azul-institucional);
-      display: block;
-      margin-bottom: 8px
     }
 
     .pessoa span.area {
-      font-size: 14px;
-      color: var(--grafite);
       display: block;
-      line-height: 1.45;
-      margin-bottom: 6px
+      width: 100%;
+      margin-bottom: 8px;
+      color: var(--grafite);
+      font-size: 14px;
+      line-height: 1.5;
+      text-align: center;
     }
 
     .pessoa span.form {
-      font-size: 13px;
-      color: var(--cinza);
       display: block;
-      line-height: 1.45
+      width: 100%;
+      color: var(--cinza);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
     }
 
     .parceiros-sec {
@@ -1383,6 +1404,12 @@
         min-height: 600px;
       }
     }
+
+    @media (max-width: 699px) {
+      .pessoa {
+        padding: 28px 24px;
+      }
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1646,6 +1673,220 @@
               </div>
             </article>
 
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de óculos com impressão 3D, personalização de armações e manufatura aditiva"></div>
+              <div class="corpo">
+                <h3>Indústria de Óculos</h3>
+                <p>Análise do mercado de óculos com foco em manufatura aditiva, avaliando tendências globais,
+                  oportunidades de personalização, sustentabilidade e expansão da produção sob demanda.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="eyewear-industry.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Indústria de artigos metálicos para uso doméstico e pessoal com análise de mercado, emprego e financiamento">
+              </div>
+              <div class="corpo">
+                <h3>Fabricação de Artigos de Metal para Uso Doméstico e Pessoal</h3>
+                <p>Diagnóstico da estrutura produtiva, emprego, renda e instrumentos de financiamento da fabricação de
+                  artigos metálicos para uso doméstico e pessoal no Brasil e na Bahia.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="fabricacao-de-artigos-de-metal-para-uso-domestico-e-pessoal.pdf">Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Economia do mar com análise de comércio, tecnologia, serviços marítimos e oportunidades produtivas">
+              </div>
+              <div class="corpo">
+                <h3>Economia do Mar</h3>
+                <p>Avaliação dos mercados, tecnologias e cadeias produtivas ligadas à Economia do Mar, identificando
+                  oportunidades de desenvolvimento econômico, inovação e sustentabilidade no Brasil.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="economia-do-mar.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de Data Spaces, compartilhamento seguro de dados, cibersegurança e integração digital">
+              </div>
+              <div class="corpo">
+                <h3>Mercado Data Lake e Data Spaces</h3>
+                <p>Análise do mercado de Data Spaces e compartilhamento seguro de dados, abordando iniciativas
+                  internacionais, segurança cibernética, regulação e oportunidades para integração de ecossistemas
+                  digitais.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-data-lake-e-dataspaces.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de drones e centros de teste para validação, certificação e desenvolvimento tecnológico">
+              </div>
+              <div class="corpo">
+                <h3>Mercado de Centro de Testagem de Drones</h3>
+                <p>Avaliação do mercado de drones, aplicações industriais, centros de teste, evolução tecnológica e
+                  oportunidades para desenvolvimento de infraestrutura de validação e certificação.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-centro-de-testagem-de-drones.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Inteligência artificial generativa aplicada à saúde, diagnósticos, monitoramento e inovação médica">
+              </div>
+              <div class="corpo">
+                <h3>Mercado de IA Generativa em Saúde</h3>
+                <p>Análise das aplicações de inteligência artificial generativa no setor de saúde, incluindo
+                  diagnóstico, monitoramento, pesquisa clínica, automação de processos e oportunidades de mercado no
+                  Brasil.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-ia-generativa-em-saude.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de micropropagação vegetal com foco em agricultura, inovação biotecnológica e produção de mudas">
+              </div>
+              <div class="corpo">
+                <h3>Mercado de Micropropagação</h3>
+                <p>Avaliação do mercado de micropropagação vegetal, tecnologias de cultivo, comércio internacional,
+                  aplicações agrícolas e oportunidades para ampliação da produção e exportação.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-micropropagacao.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de cibersegurança com foco em proteção digital, ataques cibernéticos e tecnologias de segurança">
+              </div>
+              <div class="corpo">
+                <h3>Mercado de Cibersegurança</h3>
+                <p>Análise do mercado de cibersegurança, incluindo tendências globais, ataques cibernéticos,
+                  regulamentação, investimentos e evolução das tecnologias de proteção digital.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="mercado-de-cyberseguranca.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de design industrial com foco em desenvolvimento de produtos, inovação e propriedade intelectual">
+              </div>
+              <div class="corpo">
+                <h3>Design Industrial (Studio)</h3>
+                <p>Análise do mercado de design industrial, abrangendo serviços de desenvolvimento de produtos,
+                  tendências globais de inovação, propriedade industrial e oportunidades para expansão de studios de
+                  design no Brasil.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="mercado-de-studio.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de reciclagem de painéis solares com tecnologias de recuperação de materiais e economia circular">
+              </div>
+              <div class="corpo">
+                <h3>Reciclagem de Painéis Solares</h3>
+                <p>Avaliação do mercado de reciclagem de painéis solares, incluindo tecnologias de recuperação de
+                  materiais, regulamentação, geração de resíduos e oportunidades associadas à economia circular.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-reciclagem-paineis-solares.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de moldes e matrizes com foco em ferramentaria, manufatura avançada e desenvolvimento industrial">
+              </div>
+              <div class="corpo">
+                <h3>Mercado de Moldes e Matrizes</h3>
+                <p>Análise da indústria de moldes, matrizes e ferramentaria, abordando produção, comércio internacional,
+                  tecnologias de fabricação e oportunidades para adensamento industrial no Brasil.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#"
+                  data-arquivo="mercado-de-moldes-e-ferramentas.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado náutico com foco em embarcações, estaleiros, comércio internacional e oportunidades para a Bahia">
+              </div>
+              <div class="corpo">
+                <h3>Mercado Náutico</h3>
+                <p>Análise do mercado náutico, abrangendo produção de embarcações, comércio internacional, inovação
+                  tecnológica, estrutura empresarial e potencial de desenvolvimento da indústria náutica na Bahia.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="mercado-nautico.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="Mercado de brinquedos e certificação de produtos com foco em regulamentação, importações e segurança infantil">
+              </div>
+              <div class="corpo">
+                <h3>Certificação de Brinquedos</h3>
+                <p>Avaliação do mercado de brinquedos e do ecossistema de certificação de produtos, abordando produção,
+                  comércio exterior, regulamentação, organismos certificadores e oportunidades para o Nordeste.</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="ocp-brinquedos.pdf">
+                  Entre em contato</a>
+              </div>
+            </article>
+
+            <!-- <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="altText"></div>
+              <div class="corpo">
+                <h3>titulo</h3>
+                <p>resumo</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="nomeArquivo.pdf">Entre em
+                  contato</a>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="capa"><img src="https://nei-senai-cimatec.github.io/nei/img/thumbs/benchmarking/NOMEURL.png"
+                  alt="altText"></div>
+              <div class="corpo">
+                <h3>titulo</h3>
+                <p>resumo</p>
+                <p class="produto">Produto: benchmarking</p>
+                <a class="link link-protegido link-pdf-protegido" href="#" data-arquivo="nomeArquivo.pdf">Entre em
+                  contato</a>
+              </div>
+            </article> -->
+
           </div>
           <button type="button" class="btn-nav btn-next" aria-label="Próximos estudos" title="Próximo">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -1792,6 +2033,16 @@
     </div>
   </section>
 
+  <section id="pasta-restrita" class="pasta-restrita oculto" aria-hidden="true">
+    <div class="wrap">
+      <p class="rotulo">Área restrita - Superintendência de planejamento e novos negócios</p>
+
+      <h2>Documentos compartilhados</h2>
+
+      <div id="arquivos-pasta-restrita"></div>
+    </div>
+  </section>
+
   <section id="equipe">
     <div class="wrap">
       <p class="rotulo">Equipe</p>
@@ -1801,7 +2052,7 @@
         <div>
           <span class="papel">Liderança institucional</span>
           <h3 translate="no">André Oliveira</h3>
-          <span>Superintendente de Novos Negócios do SENAI CIMATEC.</span>
+          <span>Superintendente Executivo de Planejamento e Novos Negócios do SENAI CIMATEC.</span>
         </div>
       </div>
 
@@ -2467,11 +2718,11 @@
     const mensagemCadastro = document.getElementById("mensagemCadastro");
     const atalhoCadastro = document.getElementById("atalhoCadastro");
     const modalContatoEstudo = document.getElementById("modal-contato-estudo");
+    const secaoPastaRestrita = document.getElementById("pasta-restrita");
 
     let sessaoAtual = null;
-
     let usuarioTemAcesso = false;
-
+    let usuarioTemAcessoPasta = false;
     function abrirContatoEstudo() {
       if (!modalContatoEstudo) {
         console.error(
@@ -2523,6 +2774,30 @@
       }
 
       return Boolean(data && data.ativo);
+    }
+
+    async function verificarAutorizacaoPasta(session) {
+      if (!session || !session.user) {
+        return false;
+      }
+
+      const { data, error } = await supabaseClient
+        .from("usuarios_pasta_restrita")
+        .select("ativo")
+        .eq("user_id", session.user.id)
+        .eq("ativo", true)
+        .maybeSingle();
+
+      if (error) {
+        console.error(
+          "Erro ao verificar autorização da pasta:",
+          error
+        );
+
+        return false;
+      }
+
+      return Boolean(data && data.ativo === true);
     }
 
     function exibirCadastro() {
@@ -2621,6 +2896,9 @@
       usuarioTemAcesso =
         await verificarAutorizacaoUsuario(session);
 
+      usuarioTemAcessoPasta =
+        await verificarAutorizacaoPasta(session);
+
       if (usuarioAutenticado) {
         btnLoginNavbar.textContent =
           obterTextosAtuais().sair;
@@ -2664,6 +2942,20 @@
           obterTextosAtuais().entreEmContato
         );
       });
+
+      if (secaoPastaRestrita) {
+        secaoPastaRestrita.classList.toggle(
+          "oculto",
+          !usuarioTemAcessoPasta
+        );
+
+        secaoPastaRestrita.setAttribute(
+          "aria-hidden",
+          usuarioTemAcessoPasta
+            ? "false"
+            : "true"
+        );
+      }
 
       if (window.atualizarNavProdutos) {
         setTimeout(function () {
