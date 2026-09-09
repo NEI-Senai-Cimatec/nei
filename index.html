@@ -798,6 +798,38 @@
       outline-offset: 3px
     }
 
+    footer .rodape-legal {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .legais {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+    }
+
+    .legais a {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .04em;
+      color: rgba(255, 255, 255, .58);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, .22);
+      transition: color .18s ease, border-color .18s ease;
+    }
+
+    .legais a:hover {
+      color: #fff;
+      border-bottom-color: rgba(255, 255, 255, .7);
+    }
+
+    .legais a:focus-visible {
+      outline: 2px solid var(--azul-claro);
+      outline-offset: 3px;
+    }
+
     /* modal do formulário */
     .modal {
       position: fixed;
@@ -2315,6 +2347,14 @@
         </li>
       </ul>
     </div>
+    <div class="wrap rodape-legal">
+      <p class="mini">© 2026 <span translate="no">SENAI CIMATEC</span></p>
+      <nav class="legais" aria-label="Informações legais">
+        <a href="https://senaicimatec.com.br/seguranca-da-informacao/" target="_blank" rel="noopener">
+          Política de privacidade e segurança da informação
+        </a>
+      </nav>
+    </div>
   </footer>
 
   <div class="modal" id="modal-form" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
@@ -2657,6 +2697,12 @@
             minlength="8" required>
         </div>
 
+        <p class="login-alternar" style="margin-top:14px;padding-top:0;border:0;font-size:12.5px">
+          Ao criar sua conta você concorda com a
+          <a href="https://senaicimatec.com.br/seguranca-da-informacao/" target="_blank" rel="noopener">
+            política de privacidade
+          </a>.
+        </p><br>
 
         <button id="btnCadastrar" class="btn login-enviar" type="submit">
           Criar conta
