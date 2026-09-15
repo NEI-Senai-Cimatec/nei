@@ -62,6 +62,15 @@
       pointer-events: none;
     }
 
+    #trama {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
     body.travado {
       overflow: hidden
     }
@@ -214,6 +223,23 @@
     .hero::after {
       content: "";
       position: absolute;
+      inset: 0;
+      background-image: url("img/backgrounds/bg-decoration-1.png");
+      background-repeat: no-repeat;
+      background-position: 72% center;
+      background-size: auto 240%;
+      opacity: .55;
+      filter: brightness(1.8);
+      pointer-events: none;
+    }
+
+    @media (max-width: 700px) {
+      .hero::after {
+        background-position: 80% center;
+        background-size: auto 150%;
+        opacity: .4;
+      }
+
       inset: 0;
       background-image: url("img/backgrounds/bg-decoration-1.png");
       background-repeat: no-repeat;
@@ -434,6 +460,16 @@
       color: var(--cinza);
       box-shadow: none;
       transform: none
+    }
+
+    @media (max-width: 700px) {
+      .produtos-wrapper {
+        gap: 0
+      }
+
+      .btn-nav {
+        display: none
+      }
     }
 
     @media (max-width: 700px) {
@@ -710,7 +746,26 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
       gap: 26px
+    }
+
+    .contato .intro {
+      max-width: 46ch;
+      margin: 0
+    }
+
+    @media (max-width: 699px) {
+      .contato .caixa {
+        display: block
+      }
+
+      .contato .intro {
+        margin-bottom: 18px
+      }
     }
 
     .contato .intro {
@@ -830,6 +885,81 @@
       outline-offset: 3px;
     }
 
+    footer .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .redes {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .redes a {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      background: #052b60;
+      /* trocar pelo azul do seu botão */
+      color: #fff;
+      border-radius: 2px;
+      transition: background .15s ease;
+    }
+
+    .redes svg {
+      width: 20px;
+      height: 20px;
+      display: block
+    }
+
+    .redes a:hover {
+      background: #0b4a9b
+    }
+
+    .redes a:focus-visible {
+      outline: 2px solid #0b4a9b;
+      outline-offset: 3px
+    }
+
+    footer .rodape-legal {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .legais {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 22px;
+    }
+
+    .legais a {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      letter-spacing: .04em;
+      color: rgba(255, 255, 255, .58);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, .22);
+      transition: color .18s ease, border-color .18s ease;
+    }
+
+    .legais a:hover {
+      color: #fff;
+      border-bottom-color: rgba(255, 255, 255, .7);
+    }
+
+    .legais a:focus-visible {
+      outline: 2px solid var(--azul-claro);
+      outline-offset: 3px;
+    }
+
     /* modal do formulário */
     .modal {
       position: fixed;
@@ -849,7 +979,9 @@
       width: 100%;
       height: 100%;
       height: 100dvh;
+      height: 100dvh;
       overflow-y: auto;
+      overscroll-behavior: contain;
       overscroll-behavior: contain;
       -webkit-overflow-scrolling: touch
     }
@@ -955,9 +1087,21 @@
       width: 100%;
       height: 70vh;
       height: 70dvh;
+      height: 70dvh;
       min-height: 520px;
       border: 0;
       display: block
+    }
+
+    @media (max-width: 699px) {
+      .moldura {
+        min-height: 0
+      }
+
+      .moldura iframe {
+        height: 68dvh;
+        min-height: 0
+      }
     }
 
     @media (max-width: 699px) {
@@ -1067,7 +1211,7 @@
       }
 
       .equipe {
-        grid-template-columns: repeat(2, 1fr)
+        grid-template-columns: repeat(2, 1fr) grid-template-columns: repeat(2, 1fr)
       }
 
       .passos {
@@ -1103,477 +1247,538 @@
     }
 
     @media (min-width: 1080px) {
-      .perguntas {
-        grid-template-columns: repeat(4, 1fr);
+      @media (min-width: 1080px) {
+        .perguntas {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .equipe {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .equipe {
+          grid-template-columns: repeat(4, 1fr);
+        }
       }
 
-      .equipe {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    :focus-visible {
-      outline: 3px solid var(--azul-claro);
-      outline-offset: 3px
-    }
-
-    /* Modal de autenticação */
-    .login-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      display: none;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 22px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      background: rgba(0, 20, 45, .72);
-      backdrop-filter: blur(5px);
-    }
-
-    .login-overlay.aberto {
-      display: flex;
-    }
-
-    .login-caixa {
-      position: relative;
-      width: 100%;
-      max-width: 440px;
-      margin: auto;
-      padding: 34px;
-      background: var(--branco);
-      border: 1px solid var(--linha);
-      border-top: 4px solid var(--azul-claro);
-      box-shadow: 0 24px 70px rgba(0, 20, 45, .28);
-    }
-
-    .login-fechar {
-      position: absolute;
-      top: 14px;
-      right: 16px;
-      appearance: none;
-      background: transparent;
-      border: 0;
-      color: var(--cinza);
-      font-family: var(--mono);
-      font-size: 24px;
-      line-height: 1;
-      cursor: pointer;
-    }
-
-    .login-fechar:hover {
-      color: var(--azul-institucional);
-    }
-
-    .login-caixa h2 {
-      margin: 0 0 8px;
-      color: var(--azul-profundo);
-      font-family: var(--titulos);
-      font-size: 28px;
-    }
-
-    .login-intro {
-      margin: 0 0 26px;
-      color: var(--cinza);
-      font-size: 15.5px;
-    }
-
-    .login-campo {
-      margin-bottom: 18px;
-    }
-
-    .login-campo label {
-      display: block;
-      margin-bottom: 7px;
-      color: var(--azul-profundo);
-      font-family: var(--display);
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    .login-campo input {
-      width: 100%;
-      padding: 13px 14px;
-      background: var(--branco);
-      color: var(--grafite);
-      border: 1px solid var(--linha);
-      border-radius: 2px;
-      font-family: var(--texto);
-      font-size: 16px;
-      outline: none;
-    }
-
-    .login-campo input:focus {
-      border-color: var(--azul-institucional);
-    }
-
-    .login-enviar {
-      width: 100%;
-      margin-top: 4px;
-    }
-
-    .login-mensagem {
-      min-height: 24px;
-      margin: 16px 0 0;
-      font-family: var(--mono);
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .login-mensagem.erro {
-      color: #A12622;
-    }
-
-    .login-mensagem.sucesso {
-      color: #087443;
-    }
-
-    .login-alternar {
-      margin: 22px 0 0;
-      padding-top: 18px;
-      border-top: 1px solid var(--linha);
-      color: var(--cinza);
-      font-size: 14.5px;
-      line-height: 1.5;
-      text-align: center;
-    }
-
-    .login-link {
-      appearance: none;
-      margin: 0 0 0 4px;
-      padding: 2px 0;
-      background: transparent;
-      color: var(--azul-institucional);
-      border: 0;
-      border-bottom: 1px solid rgba(0, 87, 168, .35);
-      border-radius: 0;
-      font-family: var(--display);
-      font-size: 14.5px;
-      font-weight: 600;
-      cursor: pointer;
-      transition:
-        color .18s ease,
-        border-color .18s ease;
-    }
-
-    .login-link:hover {
-      color: var(--azul-profundo);
-      border-bottom-color: var(--azul-profundo);
-    }
-
-    .login-link:active {
-      color: var(--azul-claro);
-    }
-
-    .login-link:focus-visible {
-      outline: 3px solid var(--azul-claro);
-      outline-offset: 3px;
-    }
-
-    #formCadastro .login-alternar {
-      margin-top: 18px;
-    }
-
-    @media (max-width: 520px) {
-      .login-caixa {
-        padding: 30px 22px 24px;
-      }
-    }
-
-    #btnCadastrar {
-      margin-top: 0;
-    }
-
-    .topo-acoes {
-      grid-column: 3;
-      justify-self: end;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px;
-      min-width: max-content;
-    }
-
-    .seletor-idioma {
-      display: inline-flex;
-      align-items: center;
-      flex: 0 0 auto;
-      padding: 0;
-      margin: 0;
-      overflow: hidden;
-      background: var(--branco);
-      border: 1px solid var(--linha);
-      border-radius: 3px;
-    }
-
-    .idioma-opcao {
-      appearance: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 31px;
-      height: 29px;
-      min-width: 31px;
-      min-height: 29px;
-      padding: 5px;
-      background: var(--branco);
-      color: var(--cinza);
-      border: 0;
-      border-right: 1px solid var(--linha);
-      cursor: pointer;
-      transition:
-        color .18s ease,
-        background .18s ease,
-        border-color .18s ease;
-    }
-
-    .idioma-opcao:last-child {
-      border-right: 0;
-    }
-
-    .idioma-opcao:hover {
-      color: var(--azul-institucional);
-      background: var(--nevoa);
-    }
-
-    .idioma-opcao.ativo {
-      color: var(--branco);
-      background: var(--azul-profundo);
-    }
-
-    .idioma-opcao.ativo:hover {
-      color: var(--branco);
-      background: var(--azul-profundo);
-    }
-
-    .idioma-opcao:focus-visible {
-      position: relative;
-      z-index: 2;
-      outline: 2px solid var(--azul-claro);
-      outline-offset: -2px;
-    }
-
-    .idioma-bandeira {
-      display: block;
-      width: 20px;
-      height: 14px;
-      max-width: none;
-      object-fit: cover;
-      border-radius: 1px;
-      pointer-events: none;
-    }
-
-    @media (pointer: coarse) {
-      .idioma-opcao {
-        width: 40px;
-        height: 38px;
-        min-width: 40px;
-        min-height: 38px;
-        padding: 5px;
+      :focus-visible {
+        outline: 3px solid var(--azul-claro);
+        outline-offset: 3px
       }
 
-      .idioma-bandeira {
-        width: 22px;
-        height: 15px;
-      }
-    }
-
-    .visualmente-oculto {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    .google-tradutor-oculto {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .goog-te-banner-frame,
-    .goog-te-banner-frame.skiptranslate {
-      display: none !important;
-    }
-
-    body {
-      top: 0 !important;
-    }
-
-    body>.skiptranslate {
-      display: none !important;
-    }
-
-    @media (min-width: 1280px) {
-      .topo .wrap {
-        grid-template-columns: auto 1fr auto;
-        column-gap: 34px;
-        padding-left: max(22px,
-            calc((100vw - var(--max)) / 2 + 22px));
-        padding-right: 20px;
-      }
-
-      .marcas {
-        grid-column: 1;
-        justify-self: start;
-      }
-
-      .menu {
-        grid-column: 2;
-        justify-self: start;
-        display: flex;
-      }
-    }
-
-    @media (max-width: 1279px) {
-      .topo .wrap {
-        grid-template-columns: 1fr auto;
-        grid-template-rows: 62px auto;
-        height: auto;
-      }
-
-      .marcas {
-        grid-column: 1;
-      }
-
-      .menu {
-        display: flex;
-        grid-column: 1 / -1;
-        grid-row: 2;
-        justify-self: stretch;
-        justify-content: flex-start;
-        gap: 22px;
-        min-width: 0;
-        overflow-x: auto;
-        scrollbar-width: none;
-        border-top: 1px solid var(--linha);
-        padding: 9px 0;
-        font-size: 14px;
-      }
-
-      .menu::-webkit-scrollbar {
+      /* Modal de autenticação */
+      .login-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
         display: none;
+        align-items: flex-start;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 22px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        background: rgba(0, 20, 45, .72);
+        backdrop-filter: blur(5px);
+      }
+
+      .login-overlay.aberto {
+        display: flex;
+      }
+
+      .login-caixa {
+        position: relative;
+        width: 100%;
+        max-width: 440px;
+        margin: auto;
+        margin: auto;
+        padding: 34px;
+        background: var(--branco);
+        border: 1px solid var(--linha);
+        border-top: 4px solid var(--azul-claro);
+        box-shadow: 0 24px 70px rgba(0, 20, 45, .28);
+      }
+
+      .login-fechar {
+        position: absolute;
+        top: 14px;
+        right: 16px;
+        appearance: none;
+        background: transparent;
+        border: 0;
+        color: var(--cinza);
+        font-family: var(--mono);
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      .login-fechar:hover {
+        color: var(--azul-institucional);
+      }
+
+      .login-caixa h2 {
+        margin: 0 0 8px;
+        color: var(--azul-profundo);
+        font-family: var(--titulos);
+        font-size: 28px;
+      }
+
+      .login-intro {
+        margin: 0 0 26px;
+        color: var(--cinza);
+        font-size: 15.5px;
+      }
+
+      .login-campo {
+        margin-bottom: 18px;
+      }
+
+      .login-campo label {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--azul-profundo);
+        font-family: var(--display);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .login-campo input {
+        width: 100%;
+        padding: 13px 14px;
+        background: var(--branco);
+        color: var(--grafite);
+        border: 1px solid var(--linha);
+        border-radius: 2px;
+        font-family: var(--texto);
+        font-size: 16px;
+        outline: none;
+      }
+
+      .login-campo input:focus {
+        border-color: var(--azul-institucional);
+      }
+
+      .login-enviar {
+        width: 100%;
+        margin-top: 4px;
+      }
+
+      .login-mensagem {
+        min-height: 24px;
+        margin: 16px 0 0;
+        font-family: var(--mono);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .login-mensagem.erro {
+        color: #A12622;
+      }
+
+      .login-mensagem.sucesso {
+        color: #087443;
+      }
+
+      .login-alternar {
+        margin: 22px 0 0;
+        padding-top: 18px;
+        border-top: 1px solid var(--linha);
+        color: var(--cinza);
+        font-size: 14.5px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .login-link {
+        appearance: none;
+        margin: 0 0 0 4px;
+        padding: 2px 0;
+        background: transparent;
+        color: var(--azul-institucional);
+        border: 0;
+        border-bottom: 1px solid rgba(0, 87, 168, .35);
+        border-radius: 0;
+        font-family: var(--display);
+        font-size: 14.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          color .18s ease,
+          border-color .18s ease;
+      }
+
+      .login-link:hover {
+        color: var(--azul-profundo);
+        border-bottom-color: var(--azul-profundo);
+      }
+
+      .login-link:active {
+        color: var(--azul-claro);
+      }
+
+      .login-link:focus-visible {
+        outline: 3px solid var(--azul-claro);
+        outline-offset: 3px;
+      }
+
+      #formCadastro .login-alternar {
+        margin-top: 18px;
+      }
+
+      @media (max-width: 520px) {
+        .login-caixa {
+          padding: 30px 22px 24px;
+        }
+      }
+
+      #btnCadastrar {
+        margin-top: 0;
       }
 
       .topo-acoes {
-        grid-column: 2;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .topo .wrap {
-        grid-template-columns: 1fr auto;
-        grid-template-rows: 62px auto;
-        height: auto;
-        gap: 10px 18px;
-        padding: 0 14px;
-      }
-
-      .marcas {
-        min-width: 0;
-        overflow: hidden;
-        grid-column: 1;
-        justify-self: start;
-      }
-
-      .marcas> :last-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
-      .menu {
-        gap: 18px;
-        font-size: 13.5px;
-      }
-
-      .topo-acoes {
-        grid-column: 2;
+        grid-column: 3;
         justify-self: end;
-        gap: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        min-width: max-content;
       }
 
       .seletor-idioma {
+        display: inline-flex;
+        align-items: center;
         flex: 0 0 auto;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background: var(--branco);
+        border: 1px solid var(--linha);
+        border-radius: 3px;
       }
 
-      .topo-acoes .btn.pequeno {
-        padding: 8px 10px;
-        font-size: 13px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .marcas {
-        gap: 8px;
-        min-width: 0;
-      }
-
-      .marcas img {
-        height: 22px;
-      }
-
-      .marcas img:nth-child(2) {
-        margin-top: 5px;
-      }
-
-      .topo-acoes {
-        margin-left: auto;
+      .idioma-opcao {
+        appearance: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 31px;
+        height: 29px;
+        min-width: 31px;
+        min-height: 29px;
+        padding: 5px;
+        background: var(--branco);
+        color: var(--cinza);
+        border: 0;
+        border-right: 1px solid var(--linha);
+        cursor: pointer;
+        transition:
+          color .18s ease,
+          background .18s ease,
+          border-color .18s ease;
       }
 
-      .topo-acoes .btn.pequeno {
-        padding: 8px 11px;
-        font-size: 12.5px;
+      .idioma-opcao:last-child {
+        border-right: 0;
       }
-    }
 
-    @media (min-width: 980px) {
-      #desafios h2 {
+      .idioma-opcao:hover {
+        color: var(--azul-institucional);
+        background: var(--nevoa);
+      }
+
+      .idioma-opcao.ativo {
+        color: var(--branco);
+        background: var(--azul-profundo);
+      }
+
+      .idioma-opcao.ativo:hover {
+        color: var(--branco);
+        background: var(--azul-profundo);
+      }
+
+      .idioma-opcao:focus-visible {
+        position: relative;
+        z-index: 2;
+        outline: 2px solid var(--azul-claro);
+        outline-offset: -2px;
+      }
+
+      .idioma-bandeira {
+        display: block;
+        width: 20px;
+        height: 14px;
         max-width: none;
-        white-space: nowrap;
-        font-size: clamp(25px, 3vw, 38px);
+        object-fit: cover;
+        border-radius: 1px;
+        pointer-events: none;
       }
-    }
 
-    .moldura-contato {
-      min-height: 640px;
-      background: var(--branco);
-    }
+      @media (pointer: coarse) {
+        .idioma-opcao {
+          width: 40px;
+          height: 38px;
+          min-width: 40px;
+          min-height: 38px;
+          padding: 5px;
+        }
 
-    .moldura-contato iframe {
-      width: 100%;
-      height: 76vh;
-      height: 76dvh;
-      min-height: 640px;
-      border: 0;
-      display: block;
-    }
+        .idioma-bandeira {
+          width: 22px;
+          height: 15px;
+        }
+      }
 
-    @media (max-width: 700px) {
+      @media (pointer: coarse) {
+        .idioma-opcao {
+          width: 40px;
+          height: 38px;
+          min-width: 40px;
+          min-height: 38px;
+          padding: 5px;
+        }
+
+        .idioma-bandeira {
+          width: 22px;
+          height: 15px;
+        }
+      }
+
+      .visualmente-oculto {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+      }
+
+      .google-tradutor-oculto {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .goog-te-banner-frame,
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+      }
+
+      body {
+        top: 0 !important;
+      }
+
+      body>.skiptranslate {
+        display: none !important;
+      }
+
+      @media (min-width: 1280px) {
+        .topo .wrap {
+          grid-template-columns: auto 1fr auto;
+          column-gap: 34px;
+          padding-left: max(22px,
+              calc((100vw - var(--max)) / 2 + 22px));
+          padding-right: 20px;
+        }
+
+        .marcas {
+          grid-column: 1;
+          justify-self: start;
+        }
+
+        .menu {
+          grid-column: 2;
+          justify-self: start;
+          display: flex;
+        }
+      }
+
+      @media (max-width: 1279px) {
+        .topo .wrap {
+          grid-template-columns: 1fr auto;
+          grid-template-rows: 62px auto;
+          height: auto;
+          grid-template-rows: 62px auto;
+          height: auto;
+        }
+
+        .marcas {
+          grid-column: 1;
+        }
+
+        .menu {
+          display: flex;
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-self: stretch;
+          justify-content: flex-start;
+          gap: 22px;
+          min-width: 0;
+          overflow-x: auto;
+          scrollbar-width: none;
+          border-top: 1px solid var(--linha);
+          padding: 9px 0;
+          font-size: 14px;
+        }
+
+        .menu::-webkit-scrollbar {
+          display: flex;
+          grid-column: 1 / -1;
+          grid-row: 2;
+          justify-self: stretch;
+          justify-content: flex-start;
+          gap: 22px;
+          min-width: 0;
+          overflow-x: auto;
+          scrollbar-width: none;
+          border-top: 1px solid var(--linha);
+          padding: 9px 0;
+          font-size: 14px;
+        }
+
+        .menu::-webkit-scrollbar {
+          display: none;
+        }
+
+        .topo-acoes {
+          grid-column: 2;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .topo .wrap {
+          grid-template-columns: 1fr auto;
+          grid-template-rows: 62px auto;
+          height: auto;
+          gap: 10px 18px;
+          grid-template-rows: 62px auto;
+          height: auto;
+          gap: 10px 18px;
+          padding: 0 14px;
+        }
+
+        .marcas {
+          min-width: 0;
+          overflow: hidden;
+          min-width: 0;
+          overflow: hidden;
+          grid-column: 1;
+          justify-self: start;
+        }
+
+        .marcas> :last-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .marcas> :last-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        .menu {
+          gap: 18px;
+          font-size: 13.5px;
+          gap: 18px;
+          font-size: 13.5px;
+        }
+
+        .topo-acoes {
+          grid-column: 2;
+          justify-self: end;
+          gap: 7px;
+        }
+
+        .seletor-idioma {
+          flex: 0 0 auto;
+        }
+
+        .topo-acoes .btn.pequeno {
+          padding: 8px 10px;
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .marcas {
+          gap: 8px;
+          min-width: 0;
+          min-width: 0;
+        }
+
+        .marcas img {
+          height: 22px;
+        }
+
+        .marcas img:nth-child(2) {
+          margin-top: 5px;
+        }
+
+        .topo-acoes {
+          margin-left: auto;
+        }
+
+        .topo-acoes .btn.pequeno {
+          padding: 8px 11px;
+          font-size: 12.5px;
+          padding: 8px 11px;
+          font-size: 12.5px;
+        }
+      }
+
+      @media (min-width: 980px) {
+        #desafios h2 {
+          max-width: none;
+          white-space: nowrap;
+          font-size: clamp(25px, 3vw, 38px);
+        }
+      }
+
       .moldura-contato {
-        min-height: 0;
+        min-height: 640px;
+        background: var(--branco);
       }
 
       .moldura-contato iframe {
-        height: 72dvh;
-        min-height: 0;
+        width: 100%;
+        height: 76vh;
+        height: 76dvh;
+        height: 76dvh;
+        min-height: 640px;
+        border: 0;
+        display: block;
       }
-    }
 
-    @media (max-width: 699px) {
-      .pessoa {
-        padding: 28px 24px;
+      @media (max-width: 700px) {
+        .moldura-contato {
+          min-height: 0;
+          min-height: 0;
+        }
+
+        .moldura-contato iframe {
+          height: 72dvh;
+          min-height: 0;
+          height: 72dvh;
+          min-height: 0;
+        }
       }
-    }
+
+      @media (max-width: 699px) {
+        .pessoa {
+          padding: 28px 24px;
+        }
+      }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1581,6 +1786,7 @@
 </head>
 
 <body>
+  <canvas id="trama" aria-hidden="true"></canvas>
   <canvas id="trama" aria-hidden="true"></canvas>
   <header class="topo">
     <div class="wrap topo-conteudo">
@@ -1667,14 +1873,21 @@
           <h3>Qual o mercado?</h3>
           <p>Quem produz a tecnologia, qual a dinâmica, onde estão os inventores e compradores da tecnologia.</p>
           <span class="saida">Produtos: estudos setoriais, benchmarking, dashboard, painel, white paper</span>
+          <p>Quem produz a tecnologia, qual a dinâmica, onde estão os inventores e compradores da tecnologia.</p>
+          <span class="saida">Produtos: estudos setoriais, benchmarking, dashboard, painel, white paper</span>
         </div>
         <div class="pergunta">
           <h3>Qual a maturidade tecnológica?</h3>
           <p>Maturidade, quem deposita patente, quem produz, onde estão os fornecedores e o que falta para escalar.</p>
           <span class="saida">Produtos: prospecção tecnológica</span>
+          <span class="saida">Produtos: prospecção tecnológica</span>
         </div>
         <div class="pergunta">
           <h3>Quais instrumentos de política industrial?</h3>
+          <p>Quais instrumentos e fontes de fomento podem ampliar as oportunidades da indústria e quais são as
+            implicações econômicas, sociais e ambientas das políticas industriais.
+          </p>
+          <span class="saida">Produtos: planos estratégicos</span>
           <p>Quais instrumentos e fontes de fomento podem ampliar as oportunidades da indústria e quais são as
             implicações econômicas, sociais e ambientas das políticas industriais.
           </p>
@@ -1684,7 +1897,11 @@
           <h3>O que muda quando a regra muda?</h3>
           <p>Quais efeitos na economia, como se dará o seu uso, como acessar benefícios e quais implicações podem
             ocasionar na industria baiana.
+          <h3>O que muda quando a regra muda?</h3>
+          <p>Quais efeitos na economia, como se dará o seu uso, como acessar benefícios e quais implicações podem
+            ocasionar na industria baiana.
           </p>
+          <span class="saida">Produtos: nota técnica</span>
           <span class="saida">Produtos: nota técnica</span>
         </div>
       </div>
@@ -1788,6 +2005,7 @@
           <span class="papel">Liderança institucional</span>
           <h3 translate="no">André Oliveira</h3>
           <span>Superintendente Executivo de Planejamento e Novos Negócios do SENAI CIMATEC</span>
+          <span>Superintendente Executivo de Planejamento e Novos Negócios do SENAI CIMATEC</span>
         </div>
       </div>
 
@@ -1799,11 +2017,17 @@
           <span class="area">Economia industrial e da inovação, desenvolvimento regional</span>
           <span class="form">Doutora em Economia (UFBA)</span>
           <span class="form"><a href="http://lattes.cnpq.br/9328556139281194" target="_blank">Lattes</a></span>
+          <span class="area">Economia industrial e da inovação, desenvolvimento regional</span>
+          <span class="form">Doutora em Economia (UFBA)</span>
+          <span class="form"><a href="http://lattes.cnpq.br/9328556139281194" target="_blank">Lattes</a></span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Yuri.jpeg" alt="Yuri Dantas">
           <h3 translate="no">Yuri Dantas</h3>
           <span class="papel">Analista de dados</span>
+          <span class="area">Política industrial, políticas públicas e transição energética</span>
+          <span class="form">Mestre em Economia (UFBA)</span>
+          <span class="form"><a href="http://lattes.cnpq.br/0210327430133340" target="_blank">Lattes</a></span>
           <span class="area">Política industrial, políticas públicas e transição energética</span>
           <span class="form">Mestre em Economia (UFBA)</span>
           <span class="form"><a href="http://lattes.cnpq.br/0210327430133340" target="_blank">Lattes</a></span>
@@ -1815,11 +2039,17 @@
           <span class="area">Modelagem preditiva, política pública e desenvolvimento regional</span>
           <span class="form">Doutorando em Economia (UFBA)</span>
           <span class="form"><a href="http://lattes.cnpq.br/1607374084886589" target="_blank">Lattes</a></span>
+          <span class="area">Modelagem preditiva, política pública e desenvolvimento regional</span>
+          <span class="form">Doutorando em Economia (UFBA)</span>
+          <span class="form"><a href="http://lattes.cnpq.br/1607374084886589" target="_blank">Lattes</a></span>
         </div>
         <div class="pessoa">
           <img src="https://nei-senai-cimatec.github.io/nei/img/team/Felipe.jpeg" alt="Felipe Dourado">
           <h3 translate="no">Felipe Dourado</h3>
           <span class="papel">Pesquisador bolsista</span>
+          <span class="area">Integração de dados, painéis e automação industrial</span>
+          <span class="form">Especialista em Data Science e Analytics (SENAI CIMATEC)</span>
+          <span class="form"><a href="http://lattes.cnpq.br/0381558295826420" target="_blank">Lattes</a></span>
           <span class="area">Integração de dados, painéis e automação industrial</span>
           <span class="form">Especialista em Data Science e Analytics (SENAI CIMATEC)</span>
           <span class="form"><a href="http://lattes.cnpq.br/0381558295826420" target="_blank">Lattes</a></span>
@@ -1851,6 +2081,9 @@
           <p class="intro" style="margin-bottom:18px">Registre a demanda pelo formulário. O Núcleo retorna em até
             5 dias úteis com escopo, prazo e formato de entrega.</p>
           <button class="btn abre-form" type="button">Registrar uma demanda</button>
+          <p class="intro" style="margin-bottom:18px">Registre a demanda pelo formulário. O Núcleo retorna em até
+            5 dias úteis com escopo, prazo e formato de entrega.</p>
+          <button class="btn abre-form" type="button">Registrar uma demanda</button>
         </div>
       </div>
     </div>
@@ -1861,6 +2094,48 @@
       <p class="mini">
         <span translate="no">SENAI CIMATEC <br>Núcleo de Economia Industrial - NEI.</span>
         Unidade de inteligência competitiva do <span translate="no">SENAI CIMATEC</span>.
+      </p>
+      <ul class="redes">
+        <li>
+          <a href="https://www.facebook.com/cimatecoficial/?locale=pt_BR" target="_blank" rel="noopener"
+            aria-label="SENAI CIMATEC no Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor"
+                d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.55 2 9.7 3.66 9.7 6.7v2.62H6.61v3.56H9.7V22h3.7v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.03.28-1.73 1.72-1.73Z" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/cimatecoficial/" target="_blank" rel="noopener"
+            aria-label="SENAI CIMATEC no Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5" fill="none" stroke="currentColor"
+                stroke-width="1.9" />
+              <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" stroke-width="1.9" />
+              <circle cx="17.3" cy="6.7" r="1.25" fill="currentColor" />
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/school/senaicimatec/posts/?feedView=all" target="_blank" rel="noopener"
+            aria-label="SENAI CIMATEC no LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path fill="currentColor"
+                d="M6.94 5a2 2 0 1 1-4.001-.001A2 2 0 0 1 6.94 5ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68Z" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="wrap rodape-legal">
+      <p class="mini">© 2026 <span translate="no">SENAI CIMATEC</span></p>
+      <nav class="legais" aria-label="Informações legais">
+        <a href="https://senaicimatec.com.br/seguranca-da-informacao/" target="_blank" rel="noopener">
+          Política de privacidade e segurança da informação
+        </a>
+      </nav>
+      <span translate="no">SENAI CIMATEC <br>Núcleo de Economia Industrial - NEI.</span>
+      Unidade de inteligência competitiva do <span translate="no">SENAI CIMATEC</span>.
       </p>
       <ul class="redes">
         <li>
@@ -2248,6 +2523,12 @@
             minlength="8" required>
         </div>
 
+        <p class="login-alternar" style="margin-top:14px;padding-top:0;border:0;font-size:12.5px">
+          Ao criar sua conta você concorda com a
+          <a href="https://senaicimatec.com.br/seguranca-da-informacao/" target="_blank" rel="noopener">
+            política de privacidade
+          </a>.
+        </p><br>
         <p class="login-alternar" style="margin-top:14px;padding-top:0;border:0;font-size:12.5px">
           Ao criar sua conta você concorda com a
           <a href="https://senaicimatec.com.br/seguranca-da-informacao/" target="_blank" rel="noopener">
